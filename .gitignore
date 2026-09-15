@@ -1,7 +1,12 @@
 # Customer/source data: never upload to external repositories.
 /drive-download-*/
 /drive-download-*.zip
-/analysis_output/
+/analysis_output/*
+!/analysis_output/work/
+/analysis_output/work/*
+!/analysis_output/work/ocr_results/
+/analysis_output/work/ocr_results/*
+!/analysis_output/work/ocr_results/姿見図サンプル_読取結果.json
 /tmp/
 /*.pdf
 
@@ -19,4 +24,3 @@ __pycache__/
 .venv/
 .vscode/
 .idea/
-
