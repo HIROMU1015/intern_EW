@@ -1,0 +1,51 @@
+{
+  "schema_version": "lighting-drawing-item/v1",
+  "items": [
+    {
+      "source_file": "sample.pdf",
+      "page": 1,
+      "item_no": 1,
+      "drawing_label": "DL1",
+      "identity": {
+        "manufacturer": "Panasonic",
+        "category": "ダウンライト",
+        "product_code_raw": "XND2532SV LE9",
+        "hinban": "XND2532SV",
+        "kidou": "LE9",
+        "key_hint": "250形 5000K",
+        "public_model_codes": [],
+        "component_codes": []
+      },
+      "quantity": {
+        "value": 4,
+        "unit": "台",
+        "raw": "4台"
+      },
+      "specifications": {
+        "luminous_flux_lm": {
+          "value": 2240,
+          "raw": "2240lm"
+        },
+        "color_temperature_k": {
+          "value": 5000,
+          "raw": "5000K"
+        },
+        "cutout_size": {
+          "shape": "round",
+          "diameter_mm": 100,
+          "raw": "埋込穴φ100"
+        },
+        "mounting_method": "ceiling_recessed",
+        "waterproof": {
+          "value": false,
+          "raw": "防雨形ではない"
+        },
+        "dimming": {
+          "value": false,
+          "raw": "非調光"
+        }
+      },
+      "uncertain_fields": []
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+__pycache__/
+*.py[cod]
+*.building
+*.writing
+tests/_runtime_*/
+/data/
+/validation/

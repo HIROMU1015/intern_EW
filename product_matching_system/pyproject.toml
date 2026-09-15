@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "lighting-product-matcher"
+version = "0.1.0"
+description = "Local normalization and product identification for lighting drawing data"
+requires-python = ">=3.11"
+dependencies = []
+
+[project.scripts]
+lighting-product-matcher = "lighting_matcher.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["lighting_matcher*"]

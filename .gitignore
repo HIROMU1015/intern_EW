@@ -1,0 +1,22 @@
+# Customer/source data: never upload to external repositories.
+/drive-download-*/
+/drive-download-*.zip
+/analysis_output/
+/tmp/
+/*.pdf
+
+# Local drafts outside this implementation commit.
+/proposal/
+/提案書_*.md
+
+# Generated from the customer/product datasets.
+/product_matching_system/data/
+/product_matching_system/validation/
+
+# Python/editor artifacts.
+__pycache__/
+*.py[cod]
+.venv/
+.vscode/
+.idea/
+

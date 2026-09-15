@@ -1,0 +1,120 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "lighting-drawing-item-v1",
+  "title": "Lighting drawing item",
+  "type": "object",
+  "required": ["identity", "specifications"],
+  "properties": {
+    "source_file": {"type": ["string", "null"]},
+    "page": {"type": ["integer", "null"], "minimum": 1},
+    "item_no": {"type": ["integer", "null"], "minimum": 1},
+    "drawing_label": {"type": ["string", "null"]},
+    "identity": {
+      "type": "object",
+      "properties": {
+        "manufacturer": {"type": ["string", "null"]},
+        "product_name": {"type": ["string", "null"]},
+        "category": {"type": ["string", "null"]},
+        "style": {"type": ["string", "null"]},
+        "product_code_raw": {"type": ["string", "null"]},
+        "product_code_compact": {"type": ["string", "null"]},
+        "hinban": {"type": ["string", "null"]},
+        "kidou": {"type": ["string", "null"]},
+        "key_hint": {"type": ["string", "null"]},
+        "public_model_codes": {
+          "type": "array",
+          "items": {"type": "string"}
+        },
+        "component_codes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "role": {"type": ["string", "null"]},
+              "code_raw": {"type": ["string", "null"]},
+              "code_compact": {"type": ["string", "null"]}
+            }
+          }
+        }
+      }
+    },
+    "quantity": {
+      "type": ["object", "null"],
+      "properties": {
+        "value": {"type": ["number", "null"]},
+        "unit": {"type": ["string", "null"]},
+        "raw": {"type": ["string", "null"]}
+      }
+    },
+    "specifications": {
+      "type": "object",
+      "properties": {
+        "brightness_equivalent": {"$ref": "#/$defs/scalarOrEvidence"},
+        "brightness_class": {"$ref": "#/$defs/scalarOrEvidence"},
+        "luminous_flux_lm": {"$ref": "#/$defs/scalarOrEvidence"},
+        "luminous_flux_min_lm": {"$ref": "#/$defs/scalarOrEvidence"},
+        "color_temperature_k": {"$ref": "#/$defs/scalarOrEvidence"},
+        "power_consumption_w": {"$ref": "#/$defs/scalarOrEvidence"},
+        "cri_ra": {"$ref": "#/$defs/scalarOrEvidence"},
+        "voltage": {
+          "type": ["object", "string", "null"],
+          "properties": {
+            "kind": {"enum": ["AC", "DC", null]},
+            "min_v": {"type": ["number", "null"]},
+            "max_v": {"type": ["number", "null"]},
+            "value_v": {"type": ["number", "null"]},
+            "raw": {"type": ["string", "null"]}
+          }
+        },
+        "fixture_size": {"$ref": "#/$defs/dimension"},
+        "cutout_size": {"$ref": "#/$defs/dimension"},
+        "mounting_method": {
+          "oneOf": [
+            {"type": "string"},
+            {"type": "array", "items": {"type": "string"}},
+            {"type": "null"}
+          ]
+        },
+        "waterproof": {"$ref": "#/$defs/scalarOrEvidence"},
+        "dimming": {"$ref": "#/$defs/scalarOrEvidence"}
+      }
+    },
+    "uncertain_fields": {
+      "type": "array",
+      "items": {"type": "string"}
+    },
+    "raw_text": {"type": ["string", "null"]}
+  },
+  "$defs": {
+    "scalarOrEvidence": {
+      "oneOf": [
+        {"type": ["string", "number", "boolean", "null"]},
+        {
+          "type": "object",
+          "properties": {
+            "value": {"type": ["string", "number", "boolean", "null"]},
+            "raw": {"type": ["string", "null"]},
+            "confidence": {"type": ["number", "null"], "minimum": 0, "maximum": 1}
+          }
+        }
+      ]
+    },
+    "dimension": {
+      "oneOf": [
+        {"type": "string"},
+        {
+          "type": "object",
+          "properties": {
+            "shape": {"type": ["string", "null"]},
+            "diameter_mm": {"type": ["number", "null"]},
+            "width_mm": {"type": ["number", "null"]},
+            "height_mm": {"type": ["number", "null"]},
+            "length_mm": {"type": ["number", "null"]},
+            "raw": {"type": ["string", "null"]}
+          }
+        },
+        {"type": "null"}
+      ]
+    }
+  }
+}
