@@ -1,6 +1,9 @@
 # Customer/source data: never upload to external repositories.
 /drive-download-*/
 /drive-download-*.zip
+# Drawing extraction archives/results produced from the customer drawings.
+/gpt_*.zip
+/gpt_*.json
 /analysis_output/*
 !/analysis_output/work/
 /analysis_output/work/*
