@@ -15,6 +15,36 @@ export interface SourceInfo {
   missing_paths: string[]
 }
 
+export interface ImageExtractionStatus {
+  ready: boolean
+  key_configured: boolean
+  sdk_available: boolean
+  provider: string
+  model: string
+  max_images_per_run: number
+}
+
+export interface ImageExtractionTarget {
+  id: string
+  source_file: string
+  page: number
+  item_no: number
+  route: string | null
+  available: boolean
+}
+
+export interface PdfDraft {
+  id: string
+  filename: string
+  state: 'preparing' | 'ready' | 'running' | 'completed' | 'failed'
+  page_count: number
+  image_count: number
+  pages_without_items: number
+  completed_images: number
+  error: string | null
+  project: ProjectInfo | null
+}
+
 export interface ProjectInfo {
   id: string
   name: string
@@ -31,6 +61,12 @@ export interface ProjectInfo {
 }
 
 export interface IngestReport {
+  api_metadata?: {
+    provider: string
+    model: string
+    image_count: number
+    usages: { target_id: string; usage: { total_tokens?: number } | null }[]
+  }
   source_label: string
   detected_format: string
   analysis_path: string

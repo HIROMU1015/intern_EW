@@ -1,0 +1,4 @@
+# PDFの取り込みと画像解析APIを使うための追加パッケージ。
+openai
+Pillow
+PyMuPDF

@@ -2,9 +2,12 @@
 
 from __future__ import annotations
 
+import re
+import uuid
+from pathlib import Path
 from typing import Any
 
-from fastapi import FastAPI, HTTPException, Query, Response
+from fastapi import FastAPI, HTTPException, Query, Request, Response
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse
 from pydantic import BaseModel, Field
@@ -12,6 +15,7 @@ from pydantic import BaseModel, Field
 from . import exporters
 from .config import SETTINGS
 from .matching import DEFAULT_TOP_K
+from .pdf_import import MAX_PDF_BYTES
 from .service import (
     DECISION_LABELS,
     QUANTITY_LABELS,
@@ -44,6 +48,12 @@ class CreateProjectRequest(BaseModel):
     source_key: str
     name: str | None = None
     prefetch: bool = True
+
+
+class ImageExtractionRequest(BaseModel):
+    source_key: str
+    target_ids: list[str] = Field(min_length=1, max_length=10)
+    name: str | None = None
 
 
 class SearchRequest(BaseModel):
@@ -98,6 +108,94 @@ def health() -> dict[str, Any]:
 @app.get("/api/sources")
 def sources() -> dict[str, Any]:
     return {"sources": service.sources()}
+
+
+@app.get("/api/image-extraction/status")
+def image_extraction_status() -> dict[str, Any]:
+    return service.image_extraction.status()
+
+
+@app.post("/api/pdf-drafts")
+async def create_pdf_draft(request: Request, filename: str = Query(...)) -> dict[str, Any]:
+    display_name = filename.replace("\\", "/").rsplit("/", 1)[-1].strip()
+    if not display_name.lower().endswith(".pdf"):
+        raise HTTPException(status_code=400, detail="PDFファイルを選択してください。")
+    safe_name = re.sub(r'[<>:"/\\|?*\x00-\x1f]', "_", display_name).strip(" .")[:120]
+    if not safe_name.lower().endswith(".pdf"):
+        safe_name += ".pdf"
+    if Path(safe_name).stem.upper() in {"CON", "PRN", "AUX", "NUL", *(f"COM{i}" for i in range(1, 10)), *(f"LPT{i}" for i in range(1, 10))}:
+        safe_name = "uploaded_" + safe_name
+    draft_id = uuid.uuid4().hex
+    draft_dir = service.settings.data_dir / "pdf_imports" / draft_id
+    draft_dir.mkdir(parents=True, exist_ok=False)
+    pdf_path = draft_dir / safe_name
+    total = 0
+    try:
+        with pdf_path.open("wb") as output:
+            async for chunk in request.stream():
+                total += len(chunk)
+                if total > MAX_PDF_BYTES:
+                    raise HTTPException(status_code=413, detail="PDFは25MB以下にしてください。")
+                output.write(chunk)
+        with pdf_path.open("rb") as uploaded:
+            signature = uploaded.read(5)
+        if total < 5 or signature != b"%PDF-":
+            raise HTTPException(status_code=400, detail="PDFファイルの形式を確認してください。")
+    except Exception:
+        pdf_path.unlink(missing_ok=True)
+        draft_dir.rmdir()
+        raise
+    return service.pdf_import.register(draft_id, display_name, pdf_path)
+
+
+@app.get("/api/pdf-drafts/{draft_id}")
+def get_pdf_draft(draft_id: str) -> dict[str, Any]:
+    draft = service.pdf_import.status(draft_id)
+    if draft is None:
+        raise HTTPException(status_code=404, detail="PDFの取り込み作業が見つかりません。")
+    return draft
+
+
+@app.post("/api/pdf-drafts/{draft_id}/confirm")
+def confirm_pdf_draft(draft_id: str) -> dict[str, Any]:
+    try:
+        draft = service.pdf_import.confirm(draft_id)
+    except ValueError as error:
+        raise HTTPException(status_code=400, detail=str(error)) from error
+    if draft is None:
+        raise HTTPException(status_code=404, detail="PDFの取り込み作業が見つかりません。")
+    return draft
+
+
+@app.get("/api/image-extraction/targets")
+def image_extraction_targets(source_key: str = Query(...)) -> dict[str, Any]:
+    source = service.settings.source(source_key)
+    if source is None:
+        raise HTTPException(status_code=404, detail="取り込み元が見つかりません。")
+    try:
+        return {"targets": service.image_extraction.targets(source)}
+    except ValueError as error:
+        raise HTTPException(status_code=400, detail=str(error)) from error
+
+
+@app.get("/api/image-extraction/targets/{target_id}/image")
+def image_extraction_target_image(target_id: str, source_key: str = Query(...)) -> FileResponse:
+    source = service.settings.source(source_key)
+    if source is None:
+        raise HTTPException(status_code=404, detail="取り込み元が見つかりません。")
+    try:
+        path = service.image_extraction.image_path(source, target_id)
+    except ValueError as error:
+        raise HTTPException(status_code=400, detail=str(error)) from error
+    return FileResponse(path, media_type="image/png")
+
+
+@app.post("/api/image-extraction/runs")
+def run_image_extraction(request: ImageExtractionRequest) -> dict[str, Any]:
+    try:
+        return service.run_image_extraction(request.source_key, request.target_ids, request.name)
+    except ServiceError as error:
+        raise _handle(error) from error
 
 
 @app.get("/api/projects")

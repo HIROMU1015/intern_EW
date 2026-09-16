@@ -1,7 +1,7 @@
 """パス設定と取り込み元（案件ソース）の定義。
 
-外部サービスへは接続しない。読み込み対象は設定ファイルに登録したローカルパスだけで、
-APIのリクエストから任意の絶対パスを指定して読めないようにする。
+画像解析APIへの送信対象は、登録済みの前処理画像またはアプリに投入したPDFから
+サーバーが生成した画像に限る。APIのリクエストから任意の絶対パスは指定できない。
 """
 
 from __future__ import annotations
@@ -19,6 +19,7 @@ PRODUCT_SYSTEM_ROOT = WORKSPACE_ROOT / "product_matching_system"
 DEFAULT_PRODUCT_DB = PRODUCT_SYSTEM_ROOT / "data" / "lighting_products.sqlite"
 DEFAULT_DATA_DIR = APP_ROOT / "data"
 DEFAULT_SOURCES_FILE = APP_ROOT / "backend" / "sources.json"
+DEFAULT_AI_BASE_URL = ""
 
 
 def _env_path(name: str, fallback: Path) -> Path:
@@ -121,6 +122,10 @@ class Settings:
     product_db: Path = field(default_factory=lambda: _env_path("REVIEW_APP_PRODUCT_DB", DEFAULT_PRODUCT_DB))
     data_dir: Path = field(default_factory=lambda: _env_path("REVIEW_APP_DATA_DIR", DEFAULT_DATA_DIR))
     sources_file: Path = field(default_factory=lambda: _env_path("REVIEW_APP_SOURCES", DEFAULT_SOURCES_FILE))
+    ai_api_key: str | None = field(default_factory=lambda: os.environ.get("AVILEN_LLM_API_KEY") or None)
+    ai_base_url: str = field(default_factory=lambda: os.environ.get("AVILEN_LLM_BASE_URL", DEFAULT_AI_BASE_URL))
+    ai_provider: str = field(default_factory=lambda: os.environ.get("AVILEN_LLM_PROVIDER", "openai"))
+    ai_model: str = field(default_factory=lambda: os.environ.get("AVILEN_LLM_MODEL", "openai.gpt-5.5"))
 
     @property
     def review_db(self) -> Path:
@@ -129,6 +134,10 @@ class Settings:
     @property
     def export_dir(self) -> Path:
         return self.data_dir / "exports"
+
+    @property
+    def ai_extraction_dir(self) -> Path:
+        return self.data_dir / "ai_extractions"
 
     def ensure_dirs(self) -> None:
         self.data_dir.mkdir(parents=True, exist_ok=True)

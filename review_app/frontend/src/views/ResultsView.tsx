@@ -99,7 +99,7 @@ export default function ResultsView({ project, onError }: Props) {
         </Button>
       </Stack>
       <Alert severity="info" sx={{ mb: 1 }}>
-        CSVは今回の確認一覧です。既存見積システムへの正式な取り込み形式ではありません。未確認・保留・再確認が必要の対象も、確定済みと区別したうえで出力します。
+        CSVは採用商品ごとに1行で、品番・個数・税抜単価・税抜合計金額を出力します。数量が不明な場合と、複数商品への個数配分が未確定の場合は合計を空欄にします。単価0は0のまま出力します。未確認・保留の対象も確認状態を付けて出力します。
       </Alert>
       <Box sx={{ flex: 1, minHeight: 0, bgcolor: 'background.paper' }}>
         <DataGrid

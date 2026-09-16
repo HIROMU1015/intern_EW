@@ -11,8 +11,10 @@ from pathlib import Path
 from typing import Any
 
 from . import ingest
+from .ai_extraction import ImageExtractionService
 from .config import ResolvedSource, Settings, ZipMemberReference
 from .matching import DEFAULT_TOP_K, MatcherPool
+from .pdf_import import PdfImportManager
 from .store import ReviewStore, now_text
 
 ITEM_STATUSES = ("unconfirmed", "on_hold", "confirmed", "needs_recheck")
@@ -65,6 +67,8 @@ class ReviewService:
         self.settings.ensure_dirs()
         self.store = ReviewStore(settings.review_db)
         self.matcher = MatcherPool(settings.product_db)
+        self.image_extraction = ImageExtractionService(settings)
+        self.pdf_import = PdfImportManager(self)
 
     # ---- 取り込み ---------------------------------------------------------
     def sources(self) -> list[dict[str, Any]]:
@@ -89,6 +93,9 @@ class ReviewService:
         source = self.settings.source(source_key)
         if source is None:
             raise ServiceError(f"未登録の取り込み元です: {source_key}", 404)
+        return self._create_project_from_source(source, name, prefetch)
+
+    def _create_project_from_source(self, source: ResolvedSource, name: str | None, prefetch: bool) -> dict[str, Any]:
         availability = source.availability()
         if not availability["available"]:
             raise ServiceError("取り込み元のファイルが見つかりません: " + ", ".join(availability["missing_paths"]), 400)
@@ -128,6 +135,8 @@ class ReviewService:
             )
 
         report = self._ingest_report(items, warnings, detected_format, source, manifest_index)
+        if isinstance(payload, dict) and isinstance(payload.get("api_metadata"), dict):
+            report["api_metadata"] = payload["api_metadata"]
         project = {
             "id": project_id,
             "name": name or source.label,
@@ -145,6 +154,20 @@ class ReviewService:
         if prefetch and self.matcher.available:
             self.prefetch_searches(project_id)
         return {"project": self.store.get_project(project_id), "created": True, "message": None}
+
+    def run_image_extraction(self, source_key: str, target_ids: list[str], name: str | None = None) -> dict[str, Any]:
+        source = self.settings.source(source_key)
+        if source is None:
+            raise ServiceError("取り込み元が見つかりません。", 404)
+        try:
+            generated, usages = self.image_extraction.run(source, target_ids)
+        except ValueError as error:
+            raise ServiceError(str(error), 400) from error
+        except RuntimeError as error:
+            raise ServiceError(str(error), 503) from error
+        result = self._create_project_from_source(generated, name, True)
+        result["api_usages"] = usages
+        return result
 
     @staticmethod
     def _ingest_report(

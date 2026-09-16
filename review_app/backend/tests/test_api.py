@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+import csv
+import io
 import json
 import shutil
 import sys
@@ -344,6 +346,14 @@ class ApiTest(unittest.TestCase):
         self.assertIn("再確認が必要", text)
         self.assertIn("保留", text)
         self.assertIn("数量未確認", text)
+        csv_rows = list(csv.DictReader(io.StringIO(text)))
+        selected = next(row for row in csv_rows if row["管理記号"] == "A401" and row["採用品番"])
+        self.assertEqual(selected["商品名（品番）"], first["entries"][0]["decision"]["adopted_code"])
+        self.assertEqual(selected["個数"], "30")
+        self.assertEqual(
+            float(selected["税抜合計金額"]),
+            30 * first["entries"][0]["decision"]["adopted_summary"]["record"]["price_zeinuki"],
+        )
 
     def test_14_reingest_resumes_the_same_project(self):
         response = self.client.post("/api/projects", json={"source_key": "fixture"})

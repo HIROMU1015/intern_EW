@@ -9,6 +9,12 @@ description = "Local normalization and product identification for lighting drawi
 requires-python = ">=3.11"
 dependencies = []
 
+[project.optional-dependencies]
+pdf-preprocess = [
+  "Pillow>=10",
+  "PyMuPDF>=1.24",
+]
+
 [project.scripts]
 lighting-product-matcher = "lighting_matcher.cli:main"
 

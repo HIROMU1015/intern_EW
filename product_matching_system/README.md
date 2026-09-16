@@ -79,6 +79,34 @@ python -m lighting_matcher build-db `
   --report validation\db_build_report.json
 ```
 
+## PDF前処理
+
+姿見図PDFからGPT画像解析へ渡す入力を自動作成できます。元PDFは変更せず、ページ画像、商品枠ごとの画像、埋め込み文字、品質判定、処理経路を別フォルダへ保存します。
+
+初回のみ前処理用ライブラリを追加します。
+
+```powershell
+python -m pip install -e ".[pdf-preprocess]"
+```
+
+フォルダ内のPDFを一括処理する例です。
+
+```powershell
+python tools\preprocess_pdfs.py `
+  "..\local_drawings" `
+  --output-dir "..\analysis_output\work\preprocessed_auto" `
+  --dpi 220
+```
+
+出力先には次のものが作られます。
+
+- `manifest.json`: 元PDFのハッシュ、ページ品質、分割座標、推奨画像、処理経路
+- `summary.md`: PDF別の入力候補数と要確認ページ
+- `contact_sheet_*.png`: 分割結果をまとめて目視確認する一覧
+- `sampleXX/pXXX/items/`: GPT画像解析へ渡す商品画像
+
+埋め込み文字が使えるPDFは文字を優先し、規則的な表は商品枠へ分割します。罫線が不規則なページは無理に分割せずページ全体を要確認へ回し、空白・全面黒に近いページは差し戻し候補にします。`manifest.json` の各商品の `recommended_image` がGPT画像解析の標準入力です。
+
 テスト:
 
 ```powershell

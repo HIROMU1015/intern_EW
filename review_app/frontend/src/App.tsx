@@ -44,7 +44,7 @@ export default function App() {
             照明商品候補の確認
           </Typography>
           <Tabs value={tab} onChange={(_, value) => setTab(value)} sx={{ minHeight: 40 }}>
-            <Tab label="取り込み・再開" sx={{ minHeight: 40 }} />
+            <Tab label="PDFを取り込む・再開" sx={{ minHeight: 40 }} />
             <Tab label="確認画面" sx={{ minHeight: 40 }} disabled={!project} />
             <Tab label="結果一覧・出力" sx={{ minHeight: 40 }} disabled={!project} />
           </Tabs>
