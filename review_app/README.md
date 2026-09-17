@@ -71,12 +71,7 @@ node "$env:USERPROFILE\.cache\codex-runtimes\codex-primary-runtime\dependencies\
 
 概要PDFのOpenAI互換 `chat.completions.create` 例に合わせ、providerを付けたURLで呼び出します。接続は90秒、再試行0回です。画像入力は `image_url` のdata URL形式で渡します。APIキーは環境変数からバックエンドだけが読みます。
 
-キーが用意できたら、初回に一度だけWindowsのユーザー環境変数へ登録します。キーの入力は画面に表示されず、ソースコードにも保存されません。
-
-```powershell
-python -m pip install -r review_app\backend\requirements-ai.txt
-.\review_app\setup_api.ps1
-```
+キーが用意できたら、初回に一度だけエクスプローラーで `review_app/APIキーを登録.cmd` をダブルクリックし、APIキーを入力します。必要なPythonパッケージもこの操作で入ります。接続先が登録済みならAPIキーだけを入力します。未登録のPCでは概要PDFの接続先も尋ねます。キーの入力は画面に表示されず、ソースコードにも保存されません。
 
 設定後はバックエンドを再起動します。以後の起動でキーの再入力は不要です。フロントエンドの起動方法は上記「起動」と同じです。
 

@@ -1,16 +1,21 @@
-# Run once on Windows to remember the image-analysis API settings for this user.
+﻿# Run once on Windows to remember the image-analysis API settings for this user.
 $ErrorActionPreference = 'Stop'
 
-$secureKey = Read-Host '画像解析APIキー（入力は表示されません）' -AsSecureString
-if ($secureKey.Length -eq 0) {
-    throw 'APIキーが空です。設定は保存していません。'
+$baseUrl = [Environment]::GetEnvironmentVariable('AVILEN_LLM_BASE_URL', 'User')
+if ([string]::IsNullOrWhiteSpace($baseUrl)) {
+    $baseUrl = (Read-Host '接続先が未設定です。概要PDFに記載されたBASE/PROJECTのURL').Trim()
+} else {
+    Write-Host '接続先は設定済みです。'
 }
-
-$baseUrl = (Read-Host '概要PDFに記載されたBASE/PROJECTのURL').Trim()
 $uri = $null
 if (-not [Uri]::TryCreate($baseUrl, [UriKind]::Absolute, [ref]$uri) -or
     $uri.Scheme -ne 'https' -or $uri.Query -or $uri.Fragment) {
     throw 'BASE/PROJECTにはhttps://で始まるURLを入力してください。設定は保存していません。'
+}
+
+$secureKey = Read-Host '画像解析APIキー（入力は表示されません）' -AsSecureString
+if ($secureKey.Length -eq 0) {
+    throw 'APIキーが空です。設定は保存していません。'
 }
 
 $keyPointer = [Runtime.InteropServices.Marshal]::SecureStringToBSTR($secureKey)
