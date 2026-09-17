@@ -168,6 +168,23 @@ class ImageExtractionService:
                 raise RuntimeError("画像解析APIの回答形式が想定と異なります。")
         return item
 
+    @staticmethod
+    def _connection_error(error: Exception) -> str:
+        status_code = getattr(error, "status_code", None)
+        if status_code == 401:
+            return "画像解析APIに拒否されました（401: APIキーが無効または失効しています）。APIキーを登録し直してください。"
+        if status_code == 403:
+            return "画像解析APIに拒否されました（403: 権限不足）。このAPIキーが接続先プロジェクトを利用できるか、プロジェクト管理者に確認してください。"
+        if status_code == 404:
+            return "画像解析APIの接続先またはモデルが見つかりません（404）。接続先とモデル設定を確認してください。"
+        if status_code == 429:
+            return "画像解析APIの利用上限に達しました（429）。利用枠または再実行時刻を確認してください。"
+        if isinstance(status_code, int) and status_code >= 500:
+            return f"画像解析API側でエラーが発生しました（{status_code}）。時間を置いて再実行してください。"
+        if "timeout" in type(error).__name__.lower():
+            return "画像解析APIが90秒以内に応答しませんでした。通信状態を確認して再実行してください。"
+        return "画像解析APIへの接続または応答に失敗しました。接続設定と対応モデルを確認してください。"
+
     def run(
         self,
         source: ResolvedSource,
@@ -200,7 +217,7 @@ class ImageExtractionService:
             except RuntimeError:
                 raise
             except Exception as error:
-                raise RuntimeError("画像解析APIへの接続または応答に失敗しました。接続設定と対応モデルを確認してください。") from error
+                raise RuntimeError(self._connection_error(error)) from error
             item = self._validate_item(item)
             # 出所情報はモデルの出力を採用せず、登録済みマニフェストから確定する。
             item.update({

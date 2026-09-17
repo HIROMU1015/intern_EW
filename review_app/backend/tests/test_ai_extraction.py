@@ -142,6 +142,24 @@ class AiExtractionTest(unittest.TestCase):
         self.assertEqual(item, {"identity": {}, "specifications": {}})
         self.assertEqual(usage, {"total_tokens": 42})
 
+    def test_permission_error_explains_project_access(self):
+        self.configure("test-only-key")
+        target_id = self.client.get("/api/image-extraction/targets", params={"source_key": "fixture"}).json()["targets"][0]["id"]
+
+        class PermissionErrorFromGateway(Exception):
+            status_code = 403
+
+        with patch("review_backend.ai_extraction.importlib.util.find_spec", return_value=object()), patch.object(
+            main.service.image_extraction, "_request_image", side_effect=PermissionErrorFromGateway()
+        ):
+            response = self.client.post("/api/image-extraction/runs", json={"source_key": "fixture", "target_ids": [target_id]})
+
+        self.assertEqual(response.status_code, 503)
+        self.assertEqual(
+            response.json()["detail"],
+            "画像解析APIに拒否されました（403: 権限不足）。このAPIキーが接続先プロジェクトを利用できるか、プロジェクト管理者に確認してください。",
+        )
+
 
 if __name__ == "__main__":
     unittest.main()
