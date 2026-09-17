@@ -19,6 +19,7 @@ PRODUCT_SYSTEM_ROOT = WORKSPACE_ROOT / "product_matching_system"
 DEFAULT_PRODUCT_DB = PRODUCT_SYSTEM_ROOT / "data" / "lighting_products.sqlite"
 DEFAULT_DATA_DIR = APP_ROOT / "data"
 DEFAULT_SOURCES_FILE = APP_ROOT / "backend" / "sources.json"
+LOCAL_SOURCES_FILE = APP_ROOT / "backend" / "sources.local.json"
 DEFAULT_AI_BASE_URL = ""
 
 
@@ -45,6 +46,10 @@ def _ai_setting(name: str, fallback: str = "") -> str:
 def _env_path(name: str, fallback: Path) -> Path:
     value = os.environ.get(name)
     return Path(value).expanduser().resolve() if value else fallback
+
+
+def _default_sources_file() -> Path:
+    return LOCAL_SOURCES_FILE if LOCAL_SOURCES_FILE.is_file() else DEFAULT_SOURCES_FILE
 
 
 @dataclass(frozen=True)
@@ -141,7 +146,7 @@ class Settings:
     workspace_root: Path = WORKSPACE_ROOT
     product_db: Path = field(default_factory=lambda: _env_path("REVIEW_APP_PRODUCT_DB", DEFAULT_PRODUCT_DB))
     data_dir: Path = field(default_factory=lambda: _env_path("REVIEW_APP_DATA_DIR", DEFAULT_DATA_DIR))
-    sources_file: Path = field(default_factory=lambda: _env_path("REVIEW_APP_SOURCES", DEFAULT_SOURCES_FILE))
+    sources_file: Path = field(default_factory=lambda: _env_path("REVIEW_APP_SOURCES", _default_sources_file()))
     ai_api_key: str | None = field(default_factory=lambda: _ai_setting("AVILEN_LLM_API_KEY") or None)
     ai_base_url: str = field(default_factory=lambda: _ai_setting("AVILEN_LLM_BASE_URL", DEFAULT_AI_BASE_URL))
     ai_provider: str = field(default_factory=lambda: os.environ.get("AVILEN_LLM_PROVIDER", "openai"))

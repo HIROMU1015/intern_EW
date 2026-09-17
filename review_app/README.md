@@ -93,13 +93,9 @@ PDFは25MB・20ページまで、前処理で得た画像は1件のPDFにつき1
 
 ## 取り込み元
 
-従来の取り込み方法では、`review_app/backend/sources.json` に登録したローカルパスだけを読みます。PDF投入時は、バックエンドが自分の作業領域内に前処理画像を生成します。APIのリクエストで任意の絶対パスを指定して読む機能はありません。
-`パス#メンバー` と書くとZIP内のJSONを展開せずに読みます（元ZIPは変更しません）。
+クローン直後の `review_app/backend/sources.json` には、Gitに含まれない解析結果を登録していません。通常は画面へ姿見図PDFを投入して開始します。その結果JSONと前処理画像は `review_app/data/` にローカル保存され、Gitには追加されません。
 
-| key | 内容 |
-|---|---|
-| `gpt_direct_v3` | `gpt_direct_validation_image_only.zip` 内の画像解析結果（器具単位50件）＋ `analysis_output/work/preprocessed_auto_v3` の画像・マニフェスト |
-| `extraction_samples` | `analysis_output/extraction_samples.json`（ideal形式7件）＋ 同じ前処理出力の画像 |
+従来の解析結果を取り込むPCでは、`review_app/backend/sources.local.json` を作成して、解析JSON・マニフェスト・画像フォルダーを登録します。このファイルはGitの対象外で、存在すると `sources.json` より優先して読みます。`パス#メンバー` と書くとZIP内のJSONを展開せずに読みます。APIのリクエストで任意の絶対パスを指定して読む機能はありません。
 
 同じ解析JSON（SHA-256が同じ）を再度取り込むと、新規作成ではなく既存案件の再開になります。
 

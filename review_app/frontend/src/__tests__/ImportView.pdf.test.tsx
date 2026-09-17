@@ -30,6 +30,9 @@ describe('PDFを置いて候補確認へ進む', () => {
     vi.stubGlobal('fetch', fetchMock)
     render(<ImportView activeProject={null} onOpen={onOpen} onError={onError} />)
 
+    fireEvent.click(screen.getByText('詳細設定・従来の取り込み方法'))
+    expect(await screen.findByText('登録済みの旧解析データはありません。上の欄へ姿見図PDFを置いて開始してください。')).toBeTruthy()
+
     const file = new File(['%PDF-1.7\n'], 'drawing.pdf', { type: 'application/pdf' })
     fireEvent.drop(screen.getByRole('button', { name: '姿見図PDFをここに置く' }), { dataTransfer: { files: [file] } })
     await screen.findByText('1ページ、送信する画像2件。決定すると画像1件につきAPIを1回呼び、候補を表示します。')

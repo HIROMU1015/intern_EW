@@ -1,23 +1,4 @@
 {
-  "note": "APIから任意の絶対パスを読ませないため、取り込み元はここに登録したものだけを使う。パスは review_app/ からの相対。",
-  "sources": [
-    {
-      "key": "gpt_direct_v3",
-      "label": "GPT画像解析 解析済み対象（preprocessed_auto_v3）",
-      "format": "gpt_direct_image_extraction",
-      "analysis_json": "../gpt_direct_validation_image_only.zip#gpt_direct_validation/gpt_extraction_results.json",
-      "manifest": "../analysis_output/work/preprocessed_auto_v3/manifest.json",
-      "image_root": "../analysis_output/work/preprocessed_auto_v3",
-      "note": "元ZIPは展開せず、そのまま読み取る。画像とマニフェストは前処理出力を参照する。"
-    },
-    {
-      "key": "extraction_samples",
-      "label": "目視確認済みサンプル（ideal形式）",
-      "format": "ideal_item",
-      "analysis_json": "../analysis_output/extraction_samples.json",
-      "manifest": "../analysis_output/work/preprocessed_auto_v3/manifest.json",
-      "image_root": "../analysis_output/work/preprocessed_auto_v3",
-      "note": "既存の探索用サンプル。画像は同じ前処理出力から対応付ける。"
-    }
-  ]
+  "note": "クローン直後は姿見図PDFを画面から投入する。Gitに含まれない既存解析データは sources.local.json でPCごとに登録する。",
+  "sources": []
 }

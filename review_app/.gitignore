@@ -1,5 +1,7 @@
 # 作業データ（確認結果DB・出力）は成果物ではないため追跡しない。
 /data/
+# Gitに含めない既存解析データを使うPC専用の取り込み元設定。
+/backend/sources.local.json
 # フロントエンドの依存とビルド成果物。
 /frontend/node_modules/
 /frontend/dist/

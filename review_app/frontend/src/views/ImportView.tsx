@@ -227,6 +227,12 @@ export default function ImportView({ activeProject, onOpen, onError }: Props) {
       <Accordion variant="outlined" sx={{ mb: 3 }}>
         <AccordionSummary><Typography>詳細設定・従来の取り込み方法</Typography></AccordionSummary>
         <AccordionDetails>
+      {sources.length === 0 ? (
+        <Alert severity="info">
+          登録済みの旧解析データはありません。上の欄へ姿見図PDFを置いて開始してください。
+        </Alert>
+      ) : (
+        <>
       <Card variant="outlined" sx={{ mb: 3 }}>
         <CardContent>
           <Typography variant="h6" gutterBottom>画像から読み取り・候補を表示</Typography>
@@ -302,6 +308,8 @@ export default function ImportView({ activeProject, onOpen, onError }: Props) {
           </Card>
         ))}
       </Stack>
+        </>
+      )}
 
         </AccordionDetails>
       </Accordion>
