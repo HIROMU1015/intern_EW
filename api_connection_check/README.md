@@ -10,7 +10,7 @@ AVILEN LLM API Gatewayの次の3接続先へ、`Reply with exactly OK.` とい�
 
 Windowsでは `接続確認.cmd` をダブルクリックします。
 
-初回だけ、このフォルダー内に `.venv` を作成してOpenAI Python SDKをインストールします。APIキーは、Windowsに保存済みの `AVILEN_LLM_API_KEY` を自動で読み込みます。保存されていない場合は実行時に入力します。入力値は画面に表示されず、ファイルにも保存されません。
+初回だけ、このフォルダー内に `.venv` を作成してOpenAI Python SDKをインストールします。APIキーは起動するたびに必ず入力します。Windowsや環境変数に保存済みのキーは読み込みません。入力値は画面に表示されず、ファイルにも保存されません。
 
 PowerShellから実行する場合:
 

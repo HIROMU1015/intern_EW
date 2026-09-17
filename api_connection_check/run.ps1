@@ -22,12 +22,5 @@ if (-not (Test-Path -LiteralPath (Join-Path $venvRoot "Lib\site-packages\openai"
     }
 }
 
-if (-not $env:AVILEN_LLM_API_KEY) {
-    $savedApiKey = [Environment]::GetEnvironmentVariable("AVILEN_LLM_API_KEY", "User")
-    if ($savedApiKey) {
-        $env:AVILEN_LLM_API_KEY = $savedApiKey
-    }
-}
-
 & $pythonExe (Join-Path $checkRoot "check_models.py")
 exit $LASTEXITCODE

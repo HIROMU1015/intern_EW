@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 import getpass
-import os
 import time
 from dataclasses import dataclass
 
@@ -27,24 +26,7 @@ class CheckResult:
     total_tokens: int | None = None
 
 
-def windows_user_setting(name: str) -> str | None:
-    if os.name != "nt":
-        return None
-    try:
-        import winreg
-
-        with winreg.OpenKey(winreg.HKEY_CURRENT_USER, r"Environment") as key:
-            value, _ = winreg.QueryValueEx(key, name)
-    except OSError:
-        return None
-    return value if isinstance(value, str) and value else None
-
-
 def load_api_key() -> str:
-    api_key = os.environ.get("AVILEN_LLM_API_KEY") or windows_user_setting("AVILEN_LLM_API_KEY")
-    if api_key:
-        return api_key
-
     api_key = getpass.getpass("AVILEN_LLM_API_KEYを入力してください（画面には表示されません）: ").strip()
     if not api_key:
         raise SystemExit("APIキーが入力されていません。")
