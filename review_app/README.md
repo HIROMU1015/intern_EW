@@ -15,7 +15,7 @@
 | Python | 3.12 で確認。`fastapi` `uvicorn` `pydantic` が必要。PDFの前処理と画像解析APIには `PyMuPDF` `Pillow` `openai` が必要 |
 | Node.js | v24.19.0（Codexランタイム同梱のものを使用） |
 | pnpm | 11.19.0（同上） |
-| 商品DB | `product_matching_system/data/lighting_products.sqlite`（既存・読み取り専用） |
+| 商品DB | 圧縮版を同梱。初回バックエンド起動時に `product_matching_system/data/lighting_products.sqlite` へ自動展開（17万6,447件・価格入り） |
 
 Node.js はPATHに入っていないため、実行時に環境を指定します。
 
@@ -38,6 +38,16 @@ export PATH="$HOME/.cache/codex-runtimes/codex-primary-runtime/dependencies/node
 ```
 
 ## 起動
+
+対象ブランチだけを取得する場合:
+
+```powershell
+git clone --branch codex/pdf-import-csv-export --single-branch https://github.com/HIROMU1015/intern_EW.git
+cd intern_EW
+python -m pip install -r review_app\backend\requirements-ai.txt
+```
+
+初回バックエンド起動時に同梱の商品DBを自動展開します。APIキーがなくても、同梱の画像解析済み50件を取り込んで、候補検索・確認・CSV出力を試せます。
 
 1. バックエンド（別ターミナル）
 
@@ -93,7 +103,9 @@ PDFは25MB・20ページまで、前処理で得た画像は1件のPDFにつき1
 
 ## 取り込み元
 
-クローン直後の `review_app/backend/sources.json` には、Gitに含まれない解析結果を登録していません。通常は画面へ姿見図PDFを投入して開始します。その結果JSONと前処理画像は `review_app/data/` にローカル保存され、Gitには追加されません。
+クローンには画像解析済み50件のJSON・対応する切り抜き画像・マニフェストを同梱しています。「詳細設定・従来の取り込み方法」から「同梱の画像解析済みサンプル（50件）」を取り込むと、APIを呼ばずに候補確認画面まで試せます。
+
+新しい姿見図PDFを画面へ投入した場合、その結果JSONと前処理画像は `review_app/data/` にローカル保存され、Gitには追加されません。PDFから新しく画像解析するにはAPI設定が必要です。
 
 従来の解析結果を取り込むPCでは、`review_app/backend/sources.local.json` を作成して、解析JSON・マニフェスト・画像フォルダーを登録します。このファイルはGitの対象外で、存在すると `sources.json` より優先して読みます。`パス#メンバー` と書くとZIP内のJSONを展開せずに読みます。APIのリクエストで任意の絶対パスを指定して読む機能はありません。
 

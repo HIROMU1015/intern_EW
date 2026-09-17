@@ -6,6 +6,8 @@
 
 from __future__ import annotations
 
+import gzip
+import hashlib
 import json
 import os
 from dataclasses import dataclass, field
@@ -17,6 +19,8 @@ WORKSPACE_ROOT = APP_ROOT.parent                         # リポジトリ直下
 PRODUCT_SYSTEM_ROOT = WORKSPACE_ROOT / "product_matching_system"
 
 DEFAULT_PRODUCT_DB = PRODUCT_SYSTEM_ROOT / "data" / "lighting_products.sqlite"
+DEFAULT_PRODUCT_DB_ARCHIVE = APP_ROOT / "demo" / "lighting_products.sqlite.gz"
+DEFAULT_PRODUCT_DB_CHECKSUM = APP_ROOT / "demo" / "lighting_products.sqlite.sha256"
 DEFAULT_DATA_DIR = APP_ROOT / "data"
 DEFAULT_SOURCES_FILE = APP_ROOT / "backend" / "sources.json"
 LOCAL_SOURCES_FILE = APP_ROOT / "backend" / "sources.local.json"
@@ -50,6 +54,23 @@ def _env_path(name: str, fallback: Path) -> Path:
 
 def _default_sources_file() -> Path:
     return LOCAL_SOURCES_FILE if LOCAL_SOURCES_FILE.is_file() else DEFAULT_SOURCES_FILE
+
+
+def restore_bundled_database(archive: Path, checksum_file: Path, destination: Path) -> None:
+    expected = checksum_file.read_text(encoding="ascii").strip().lower()
+    temporary = destination.with_suffix(destination.suffix + ".writing")
+    destination.parent.mkdir(parents=True, exist_ok=True)
+    digest = hashlib.sha256()
+    try:
+        with gzip.open(archive, "rb") as source, temporary.open("wb") as target:
+            while chunk := source.read(1024 * 1024):
+                digest.update(chunk)
+                target.write(chunk)
+        if digest.hexdigest() != expected:
+            raise RuntimeError("同梱の商品DBの検証に失敗しました。リポジトリを取得し直してください。")
+        os.replace(temporary, destination)
+    finally:
+        temporary.unlink(missing_ok=True)
 
 
 @dataclass(frozen=True)
@@ -167,6 +188,13 @@ class Settings:
     def ensure_dirs(self) -> None:
         self.data_dir.mkdir(parents=True, exist_ok=True)
         self.export_dir.mkdir(parents=True, exist_ok=True)
+        if (
+            self.product_db == DEFAULT_PRODUCT_DB
+            and not self.product_db.is_file()
+            and DEFAULT_PRODUCT_DB_ARCHIVE.is_file()
+            and DEFAULT_PRODUCT_DB_CHECKSUM.is_file()
+        ):
+            restore_bundled_database(DEFAULT_PRODUCT_DB_ARCHIVE, DEFAULT_PRODUCT_DB_CHECKSUM, self.product_db)
 
     def sources(self) -> list[ResolvedSource]:
         if not self.sources_file.is_file():

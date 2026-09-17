@@ -1,0 +1,3250 @@
+{
+  "schema_version": "lighting-pdf-preprocess/v1",
+  "configuration": {
+    "dpi": 220,
+    "line_darkness": 0.16,
+    "keep_empty": false,
+    "source_priority": [
+      "usable_pdf_embedded_text",
+      "item_crop_vision",
+      "enhanced_item_crop_when_low_contrast",
+      "full_page_review_when_grid_is_uncertain"
+    ]
+  },
+  "summary": {
+    "document_count": 13,
+    "page_count": 19,
+    "item_input_count": 50,
+    "route_counts": {
+      "item_crop_vision": 15,
+      "embedded_text_plus_item_crops": 2,
+      "full_page_vision_review": 1,
+      "blank_or_unusable": 1
+    }
+  },
+  "contact_sheets": [],
+  "documents": [
+    {
+      "source_pdf": "sample01.pdf",
+      "source_sha256": "d56c6b266de94890765852f4ae7516fc1c5d8fdba04427aa5eb689405ae1d303",
+      "page_count": 1,
+      "pages": [
+        {
+          "page": 1,
+          "route": "item_crop_vision",
+          "rendered_page": null,
+          "quality": {
+            "width": 7285,
+            "height": 5145,
+            "mean_gray": 236.39,
+            "stddev_gray": 63.29,
+            "p05": 0,
+            "p95": 255,
+            "dynamic_range": 255,
+            "dark_pixel_ratio": 0.08306,
+            "very_dark_pixel_ratio": 0.06508,
+            "blank": false,
+            "low_contrast": false
+          },
+          "embedded_text": null,
+          "grid": {
+            "confidence": "high",
+            "reason": "projection_lines_detected; regularity=1.000; highly_irregular=false",
+            "columns": 6,
+            "rows": 5,
+            "x_lines": [
+              200,
+              1439,
+              2545,
+              3656,
+              4772,
+              5883,
+              6994
+            ],
+            "y_lines": [
+              155,
+              1134,
+              1999,
+              2868,
+              3734,
+              4599
+            ]
+          },
+          "item_count": 4,
+          "items": [
+            {
+              "item_no": 1,
+              "bbox_pixels": [
+                200,
+                155,
+                1439,
+                1134
+              ],
+              "quality": {
+                "width": 1235,
+                "height": 975,
+                "mean_gray": 250.22,
+                "stddev_gray": 27.92,
+                "p05": 255,
+                "p95": 255,
+                "dynamic_range": 0,
+                "dark_pixel_ratio": 0.02898,
+                "very_dark_pixel_ratio": 0.01056,
+                "blank": false,
+                "low_contrast": true
+              },
+              "body_quality": {
+                "width": 1215,
+                "height": 789,
+                "mean_gray": 251.32,
+                "stddev_gray": 22.92,
+                "p05": 255,
+                "p95": 255,
+                "dynamic_range": 0,
+                "dark_pixel_ratio": 0.02396,
+                "very_dark_pixel_ratio": 0.00633,
+                "blank": false,
+                "low_contrast": true
+              },
+              "likely_empty_grid_cell": false,
+              "embedded_text_status": {
+                "status": "absent",
+                "character_count": 0,
+                "readable_character_ratio": 0.0
+              },
+              "embedded_text_path": null,
+              "image_variants": {
+                "enhanced": "sample01/p001/items/item_001_enhanced.png"
+              },
+              "recommended_image": "sample01/p001/items/item_001_enhanced.png",
+              "binary_threshold": 132
+            },
+            {
+              "item_no": 10,
+              "bbox_pixels": [
+                3656,
+                1134,
+                4772,
+                1999
+              ],
+              "quality": {
+                "width": 1112,
+                "height": 861,
+                "mean_gray": 249.96,
+                "stddev_gray": 27.49,
+                "p05": 254,
+                "p95": 255,
+                "dynamic_range": 1,
+                "dark_pixel_ratio": 0.03307,
+                "very_dark_pixel_ratio": 0.00954,
+                "blank": false,
+                "low_contrast": true
+              },
+              "body_quality": {
+                "width": 1094,
+                "height": 697,
+                "mean_gray": 251.19,
+                "stddev_gray": 23.34,
+                "p05": 255,
+                "p95": 255,
+                "dynamic_range": 0,
+                "dark_pixel_ratio": 0.02543,
+                "very_dark_pixel_ratio": 0.00626,
+                "blank": false,
+                "low_contrast": true
+              },
+              "likely_empty_grid_cell": false,
+              "embedded_text_status": {
+                "status": "absent",
+                "character_count": 0,
+                "readable_character_ratio": 0.0
+              },
+              "embedded_text_path": null,
+              "image_variants": {
+                "enhanced": "sample01/p001/items/item_010_enhanced.png"
+              },
+              "recommended_image": "sample01/p001/items/item_010_enhanced.png",
+              "binary_threshold": 135
+            },
+            {
+              "item_no": 16,
+              "bbox_pixels": [
+                3656,
+                1999,
+                4772,
+                2868
+              ],
+              "quality": {
+                "width": 1112,
+                "height": 865,
+                "mean_gray": 251.24,
+                "stddev_gray": 22.97,
+                "p05": 255,
+                "p95": 255,
+                "dynamic_range": 0,
+                "dark_pixel_ratio": 0.02421,
+                "very_dark_pixel_ratio": 0.00644,
+                "blank": false,
+                "low_contrast": true
+              },
+              "body_quality": {
+                "width": 1094,
+                "height": 700,
+                "mean_gray": 252.91,
+                "stddev_gray": 16.42,
+                "p05": 255,
+                "p95": 255,
+                "dynamic_range": 0,
+                "dark_pixel_ratio": 0.01483,
+                "very_dark_pixel_ratio": 0.00231,
+                "blank": false,
+                "low_contrast": true
+              },
+              "likely_empty_grid_cell": false,
+              "embedded_text_status": {
+                "status": "absent",
+                "character_count": 0,
+                "readable_character_ratio": 0.0
+              },
+              "embedded_text_path": null,
+              "image_variants": {
+                "enhanced": "sample01/p001/items/item_016_enhanced.png"
+              },
+              "recommended_image": "sample01/p001/items/item_016_enhanced.png",
+              "binary_threshold": 133
+            },
+            {
+              "item_no": 30,
+              "bbox_pixels": [
+                5883,
+                3734,
+                6994,
+                4599
+              ],
+              "quality": {
+                "width": 1107,
+                "height": 861,
+                "mean_gray": 250.39,
+                "stddev_gray": 25.32,
+                "p05": 254,
+                "p95": 255,
+                "dynamic_range": 1,
+                "dark_pixel_ratio": 0.03218,
+                "very_dark_pixel_ratio": 0.00709,
+                "blank": false,
+                "low_contrast": true
+              },
+              "body_quality": {
+                "width": 1089,
+                "height": 697,
+                "mean_gray": 250.87,
+                "stddev_gray": 23.68,
+                "p05": 255,
+                "p95": 255,
+                "dynamic_range": 0,
+                "dark_pixel_ratio": 0.0285,
+                "very_dark_pixel_ratio": 0.00585,
+                "blank": false,
+                "low_contrast": true
+              },
+              "likely_empty_grid_cell": false,
+              "embedded_text_status": {
+                "status": "absent",
+                "character_count": 0,
+                "readable_character_ratio": 0.0
+              },
+              "embedded_text_path": null,
+              "image_variants": {
+                "enhanced": "sample01/p001/items/item_030_enhanced.png"
+              },
+              "recommended_image": "sample01/p001/items/item_030_enhanced.png",
+              "binary_threshold": 134
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "source_pdf": "sample02.pdf",
+      "source_sha256": "6695d770d35a76676400c7f01d8136b407848dddf133fb2379c79a3344380b82",
+      "page_count": 1,
+      "pages": [
+        {
+          "page": 1,
+          "route": "item_crop_vision",
+          "rendered_page": null,
+          "quality": {
+            "width": 7285,
+            "height": 5146,
+            "mean_gray": 195.46,
+            "stddev_gray": 105.45,
+            "p05": 0,
+            "p95": 255,
+            "dynamic_range": 255,
+            "dark_pixel_ratio": 0.24613,
+            "very_dark_pixel_ratio": 0.2244,
+            "blank": false,
+            "low_contrast": false
+          },
+          "embedded_text": null,
+          "grid": {
+            "confidence": "high",
+            "reason": "projection_lines_detected; regularity=1.000; highly_irregular=false",
+            "columns": 6,
+            "rows": 5,
+            "x_lines": [
+              246,
+              1097,
+              1949,
+              2796,
+              3642,
+              4489,
+              5341
+            ],
+            "y_lines": [
+              232,
+              1098,
+              1967,
+              2833,
+              3698,
+              4563
+            ]
+          },
+          "item_count": 4,
+          "items": [
+            {
+              "item_no": 1,
+              "bbox_pixels": [
+                246,
+                232,
+                1097,
+                1098
+              ],
+              "quality": {
+                "width": 847,
+                "height": 862,
+                "mean_gray": 244.85,
+                "stddev_gray": 42.44,
+                "p05": 178,
+                "p95": 255,
+                "dynamic_range": 77,
+                "dark_pixel_ratio": 0.05592,
+                "very_dark_pixel_ratio": 0.02886,
+                "blank": false,
+                "low_contrast": true
+              },
+              "body_quality": {
+                "width": 831,
+                "height": 699,
+                "mean_gray": 251.21,
+                "stddev_gray": 24.5,
+                "p05": 255,
+                "p95": 255,
+                "dynamic_range": 0,
+                "dark_pixel_ratio": 0.02346,
+                "very_dark_pixel_ratio": 0.00836,
+                "blank": false,
+                "low_contrast": true
+              },
+              "likely_empty_grid_cell": false,
+              "embedded_text_status": {
+                "status": "absent",
+                "character_count": 0,
+                "readable_character_ratio": 0.0
+              },
+              "embedded_text_path": null,
+              "image_variants": {
+                "enhanced": "sample02/p001/items/item_001_enhanced.png"
+              },
+              "recommended_image": "sample02/p001/items/item_001_enhanced.png",
+              "binary_threshold": 136
+            },
+            {
+              "item_no": 10,
+              "bbox_pixels": [
+                2796,
+                1098,
+                3642,
+                1967
+              ],
+              "quality": {
+                "width": 842,
+                "height": 865,
+                "mean_gray": 247.61,
+                "stddev_gray": 35.56,
+                "p05": 229,
+                "p95": 255,
+                "dynamic_range": 26,
+                "dark_pixel_ratio": 0.04341,
+                "very_dark_pixel_ratio": 0.01827,
+                "blank": false,
+                "low_contrast": true
+              },
+              "body_quality": {
+                "width": 826,
+                "height": 701,
+                "mean_gray": 251.11,
+                "stddev_gray": 24.47,
+                "p05": 255,
+                "p95": 255,
+                "dynamic_range": 0,
+                "dark_pixel_ratio": 0.02448,
+                "very_dark_pixel_ratio": 0.00811,
+                "blank": false,
+                "low_contrast": true
+              },
+              "likely_empty_grid_cell": false,
+              "embedded_text_status": {
+                "status": "absent",
+                "character_count": 0,
+                "readable_character_ratio": 0.0
+              },
+              "embedded_text_path": null,
+              "image_variants": {
+                "enhanced": "sample02/p001/items/item_010_enhanced.png"
+              },
+              "recommended_image": "sample02/p001/items/item_010_enhanced.png",
+              "binary_threshold": 136
+            },
+            {
+              "item_no": 16,
+              "bbox_pixels": [
+                2796,
+                1967,
+                3642,
+                2833
+              ],
+              "quality": {
+                "width": 842,
+                "height": 862,
+                "mean_gray": 246.76,
+                "stddev_gray": 37.02,
+                "p05": 205,
+                "p95": 255,
+                "dynamic_range": 50,
+                "dark_pixel_ratio": 0.04869,
+                "very_dark_pixel_ratio": 0.01981,
+                "blank": false,
+                "low_contrast": true
+              },
+              "body_quality": {
+                "width": 826,
+                "height": 699,
+                "mean_gray": 249.62,
+                "stddev_gray": 28.55,
+                "p05": 253,
+                "p95": 255,
+                "dynamic_range": 2,
+                "dark_pixel_ratio": 0.03403,
+                "very_dark_pixel_ratio": 0.01094,
+                "blank": false,
+                "low_contrast": true
+              },
+              "likely_empty_grid_cell": false,
+              "embedded_text_status": {
+                "status": "absent",
+                "character_count": 0,
+                "readable_character_ratio": 0.0
+              },
+              "embedded_text_path": null,
+              "image_variants": {
+                "enhanced": "sample02/p001/items/item_016_enhanced.png"
+              },
+              "recommended_image": "sample02/p001/items/item_016_enhanced.png",
+              "binary_threshold": 136
+            },
+            {
+              "item_no": 30,
+              "bbox_pixels": [
+                4489,
+                3698,
+                5341,
+                4563
+              ],
+              "quality": {
+                "width": 848,
+                "height": 861,
+                "mean_gray": 247.95,
+                "stddev_gray": 35.24,
+                "p05": 245,
+                "p95": 255,
+                "dynamic_range": 10,
+                "dark_pixel_ratio": 0.04031,
+                "very_dark_pixel_ratio": 0.01765,
+                "blank": false,
+                "low_contrast": true
+              },
+              "body_quality": {
+                "width": 832,
+                "height": 698,
+                "mean_gray": 251.31,
+                "stddev_gray": 24.23,
+                "p05": 255,
+                "p95": 255,
+                "dynamic_range": 0,
+                "dark_pixel_ratio": 0.02287,
+                "very_dark_pixel_ratio": 0.00855,
+                "blank": false,
+                "low_contrast": true
+              },
+              "likely_empty_grid_cell": false,
+              "embedded_text_status": {
+                "status": "absent",
+                "character_count": 0,
+                "readable_character_ratio": 0.0
+              },
+              "embedded_text_path": null,
+              "image_variants": {
+                "enhanced": "sample02/p001/items/item_030_enhanced.png"
+              },
+              "recommended_image": "sample02/p001/items/item_030_enhanced.png",
+              "binary_threshold": 135
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "source_pdf": "sample03.pdf",
+      "source_sha256": "f61a015ba1597eeee2aa9f8774cd4048306fb2196a1adee695666ff14fed24ec",
+      "page_count": 2,
+      "pages": [
+        {
+          "page": 1,
+          "route": "item_crop_vision",
+          "rendered_page": null,
+          "quality": {
+            "width": 3639,
+            "height": 2573,
+            "mean_gray": 239.73,
+            "stddev_gray": 50.54,
+            "p05": 125,
+            "p95": 255,
+            "dynamic_range": 130,
+            "dark_pixel_ratio": 0.08381,
+            "very_dark_pixel_ratio": 0.03501,
+            "blank": false,
+            "low_contrast": false
+          },
+          "embedded_text": null,
+          "grid": {
+            "confidence": "high",
+            "reason": "projection_lines_detected; regularity=1.000; highly_irregular=false",
+            "columns": 6,
+            "rows": 4,
+            "x_lines": [
+              184,
+              728,
+              1274,
+              1813,
+              2356,
+              2902,
+              3443
+            ],
+            "y_lines": [
+              111,
+              551,
+              990,
+              1429,
+              1868
+            ]
+          },
+          "item_count": 3,
+          "items": [
+            {
+              "item_no": 1,
+              "bbox_pixels": [
+                184,
+                111,
+                728,
+                551
+              ],
+              "quality": {
+                "width": 540,
+                "height": 436,
+                "mean_gray": 241.35,
+                "stddev_gray": 36.87,
+                "p05": 147,
+                "p95": 255,
+                "dynamic_range": 108,
+                "dark_pixel_ratio": 0.09556,
+                "very_dark_pixel_ratio": 0.01001,
+                "blank": false,
+                "low_contrast": false
+              },
+              "body_quality": {
+                "width": 532,
+                "height": 354,
+                "mean_gray": 244.08,
+                "stddev_gray": 33.26,
+                "p05": 161,
+                "p95": 255,
+                "dynamic_range": 94,
+                "dark_pixel_ratio": 0.07638,
+                "very_dark_pixel_ratio": 0.00799,
+                "blank": false,
+                "low_contrast": false
+              },
+              "likely_empty_grid_cell": false,
+              "embedded_text_status": {
+                "status": "absent",
+                "character_count": 0,
+                "readable_character_ratio": 0.0
+              },
+              "embedded_text_path": null,
+              "image_variants": {
+                "enhanced": "sample03/p001/items/item_001.png"
+              },
+              "recommended_image": "sample03/p001/items/item_001.png",
+              "binary_threshold": null
+            },
+            {
+              "item_no": 13,
+              "bbox_pixels": [
+                184,
+                990,
+                728,
+                1429
+              ],
+              "quality": {
+                "width": 540,
+                "height": 435,
+                "mean_gray": 244.29,
+                "stddev_gray": 35.02,
+                "p05": 157,
+                "p95": 255,
+                "dynamic_range": 98,
+                "dark_pixel_ratio": 0.07313,
+                "very_dark_pixel_ratio": 0.0109,
+                "blank": false,
+                "low_contrast": false
+              },
+              "body_quality": {
+                "width": 532,
+                "height": 353,
+                "mean_gray": 245.93,
+                "stddev_gray": 33.2,
+                "p05": 173,
+                "p95": 255,
+                "dynamic_range": 82,
+                "dark_pixel_ratio": 0.06114,
+                "very_dark_pixel_ratio": 0.01015,
+                "blank": false,
+                "low_contrast": true
+              },
+              "likely_empty_grid_cell": false,
+              "embedded_text_status": {
+                "status": "absent",
+                "character_count": 0,
+                "readable_character_ratio": 0.0
+              },
+              "embedded_text_path": null,
+              "image_variants": {
+                "enhanced": "sample03/p001/items/item_013.png"
+              },
+              "recommended_image": "sample03/p001/items/item_013.png",
+              "binary_threshold": null
+            },
+            {
+              "item_no": 24,
+              "bbox_pixels": [
+                2902,
+                1429,
+                3443,
+                1868
+              ],
+              "quality": {
+                "width": 537,
+                "height": 435,
+                "mean_gray": 239.74,
+                "stddev_gray": 40.73,
+                "p05": 129,
+                "p95": 255,
+                "dynamic_range": 126,
+                "dark_pixel_ratio": 0.10201,
+                "very_dark_pixel_ratio": 0.01549,
+                "blank": false,
+                "low_contrast": false
+              },
+              "body_quality": {
+                "width": 529,
+                "height": 353,
+                "mean_gray": 244.91,
+                "stddev_gray": 34.19,
+                "p05": 163,
+                "p95": 255,
+                "dynamic_range": 92,
+                "dark_pixel_ratio": 0.06845,
+                "very_dark_pixel_ratio": 0.01081,
+                "blank": false,
+                "low_contrast": false
+              },
+              "likely_empty_grid_cell": false,
+              "embedded_text_status": {
+                "status": "absent",
+                "character_count": 0,
+                "readable_character_ratio": 0.0
+              },
+              "embedded_text_path": null,
+              "image_variants": {
+                "enhanced": "sample03/p001/items/item_024.png"
+              },
+              "recommended_image": "sample03/p001/items/item_024.png",
+              "binary_threshold": null
+            }
+          ]
+        },
+        {
+          "page": 2,
+          "route": "item_crop_vision",
+          "rendered_page": null,
+          "quality": {
+            "width": 3639,
+            "height": 2573,
+            "mean_gray": 244.63,
+            "stddev_gray": 46.44,
+            "p05": 194,
+            "p95": 255,
+            "dynamic_range": 61,
+            "dark_pixel_ratio": 0.05099,
+            "very_dark_pixel_ratio": 0.03215,
+            "blank": false,
+            "low_contrast": true
+          },
+          "embedded_text": null,
+          "grid": {
+            "confidence": "high",
+            "reason": "projection_lines_detected; regularity=1.000; highly_irregular=false",
+            "columns": 3,
+            "rows": 4,
+            "x_lines": [
+              1818,
+              2355,
+              2902,
+              3450
+            ],
+            "y_lines": [
+              114,
+              548,
+              987,
+              1429,
+              1865
+            ]
+          },
+          "item_count": 1,
+          "items": [
+            {
+              "item_no": 3,
+              "bbox_pixels": [
+                2902,
+                114,
+                3450,
+                548
+              ],
+              "quality": {
+                "width": 544,
+                "height": 430,
+                "mean_gray": 249.04,
+                "stddev_gray": 27.8,
+                "p05": 219,
+                "p95": 255,
+                "dynamic_range": 36,
+                "dark_pixel_ratio": 0.04057,
+                "very_dark_pixel_ratio": 0.00798,
+                "blank": false,
+                "low_contrast": true
+              },
+              "body_quality": {
+                "width": 536,
+                "height": 349,
+                "mean_gray": 251.87,
+                "stddev_gray": 20.62,
+                "p05": 255,
+                "p95": 255,
+                "dynamic_range": 0,
+                "dark_pixel_ratio": 0.0217,
+                "very_dark_pixel_ratio": 0.00438,
+                "blank": false,
+                "low_contrast": true
+              },
+              "likely_empty_grid_cell": false,
+              "embedded_text_status": {
+                "status": "absent",
+                "character_count": 0,
+                "readable_character_ratio": 0.0
+              },
+              "embedded_text_path": null,
+              "image_variants": {
+                "enhanced": "sample03/p002/items/item_003_enhanced.png"
+              },
+              "recommended_image": "sample03/p002/items/item_003_enhanced.png",
+              "binary_threshold": 134
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "source_pdf": "sample04.pdf",
+      "source_sha256": "c14b7709d3aebd2b4f36708d8af4da7e796e3a8b5ecb6b9cf62a4cbda4e23917",
+      "page_count": 1,
+      "pages": [
+        {
+          "page": 1,
+          "route": "embedded_text_plus_item_crops",
+          "rendered_page": null,
+          "quality": {
+            "width": 3640,
+            "height": 2573,
+            "mean_gray": 229.68,
+            "stddev_gray": 72.14,
+            "p05": 0,
+            "p95": 255,
+            "dynamic_range": 255,
+            "dark_pixel_ratio": 0.11471,
+            "very_dark_pixel_ratio": 0.08798,
+            "blank": false,
+            "low_contrast": false
+          },
+          "embedded_text": null,
+          "grid": {
+            "confidence": "high",
+            "reason": "projection_lines_detected; regularity=1.000; highly_irregular=false",
+            "columns": 6,
+            "rows": 4,
+            "x_lines": [
+              123,
+              769,
+              1301,
+              1836,
+              2371,
+              2903,
+              3440
+            ],
+            "y_lines": [
+              64,
+              655,
+              1206,
+              1754,
+              2305
+            ]
+          },
+          "item_count": 4,
+          "items": [
+            {
+              "item_no": 1,
+              "bbox_pixels": [
+                123,
+                64,
+                769,
+                655
+              ],
+              "quality": {
+                "width": 642,
+                "height": 587,
+                "mean_gray": 247.06,
+                "stddev_gray": 36.8,
+                "p05": 216,
+                "p95": 255,
+                "dynamic_range": 39,
+                "dark_pixel_ratio": 0.04707,
+                "very_dark_pixel_ratio": 0.02102,
+                "blank": false,
+                "low_contrast": true
+              },
+              "body_quality": {
+                "width": 630,
+                "height": 475,
+                "mean_gray": 247.34,
+                "stddev_gray": 35.99,
+                "p05": 223,
+                "p95": 255,
+                "dynamic_range": 32,
+                "dark_pixel_ratio": 0.04558,
+                "very_dark_pixel_ratio": 0.0205,
+                "blank": false,
+                "low_contrast": true
+              },
+              "likely_empty_grid_cell": false,
+              "embedded_text_status": {
+                "status": "usable",
+                "character_count": 207,
+                "readable_character_ratio": 0.865
+              },
+              "embedded_text_path": null,
+              "image_variants": {
+                "enhanced": "sample04/p001/items/item_001_enhanced.png"
+              },
+              "recommended_image": "sample04/p001/items/item_001_enhanced.png",
+              "binary_threshold": 133
+            },
+            {
+              "item_no": 8,
+              "bbox_pixels": [
+                769,
+                655,
+                1301,
+                1206
+              ],
+              "quality": {
+                "width": 528,
+                "height": 547,
+                "mean_gray": 248.21,
+                "stddev_gray": 33.65,
+                "p05": 245,
+                "p95": 255,
+                "dynamic_range": 10,
+                "dark_pixel_ratio": 0.0401,
+                "very_dark_pixel_ratio": 0.01704,
+                "blank": false,
+                "low_contrast": true
+              },
+              "body_quality": {
+                "width": 518,
+                "height": 444,
+                "mean_gray": 247.75,
+                "stddev_gray": 35.07,
+                "p05": 237,
+                "p95": 255,
+                "dynamic_range": 18,
+                "dark_pixel_ratio": 0.04239,
+                "very_dark_pixel_ratio": 0.01988,
+                "blank": false,
+                "low_contrast": true
+              },
+              "likely_empty_grid_cell": false,
+              "embedded_text_status": {
+                "status": "usable",
+                "character_count": 211,
+                "readable_character_ratio": 0.839
+              },
+              "embedded_text_path": null,
+              "image_variants": {
+                "enhanced": "sample04/p001/items/item_008_enhanced.png"
+              },
+              "recommended_image": "sample04/p001/items/item_008_enhanced.png",
+              "binary_threshold": 133
+            },
+            {
+              "item_no": 13,
+              "bbox_pixels": [
+                123,
+                1206,
+                769,
+                1754
+              ],
+              "quality": {
+                "width": 642,
+                "height": 544,
+                "mean_gray": 247.77,
+                "stddev_gray": 35.05,
+                "p05": 233,
+                "p95": 255,
+                "dynamic_range": 22,
+                "dark_pixel_ratio": 0.04343,
+                "very_dark_pixel_ratio": 0.0175,
+                "blank": false,
+                "low_contrast": true
+              },
+              "body_quality": {
+                "width": 632,
+                "height": 441,
+                "mean_gray": 248.62,
+                "stddev_gray": 32.41,
+                "p05": 249,
+                "p95": 255,
+                "dynamic_range": 6,
+                "dark_pixel_ratio": 0.03885,
+                "very_dark_pixel_ratio": 0.01508,
+                "blank": false,
+                "low_contrast": true
+              },
+              "likely_empty_grid_cell": false,
+              "embedded_text_status": {
+                "status": "usable",
+                "character_count": 161,
+                "readable_character_ratio": 0.894
+              },
+              "embedded_text_path": null,
+              "image_variants": {
+                "enhanced": "sample04/p001/items/item_013_enhanced.png"
+              },
+              "recommended_image": "sample04/p001/items/item_013_enhanced.png",
+              "binary_threshold": 134
+            },
+            {
+              "item_no": 24,
+              "bbox_pixels": [
+                2903,
+                1754,
+                3440,
+                2305
+              ],
+              "quality": {
+                "width": 533,
+                "height": 547,
+                "mean_gray": 245.57,
+                "stddev_gray": 41.17,
+                "p05": 190,
+                "p95": 255,
+                "dynamic_range": 65,
+                "dark_pixel_ratio": 0.05207,
+                "very_dark_pixel_ratio": 0.02806,
+                "blank": false,
+                "low_contrast": true
+              },
+              "body_quality": {
+                "width": 523,
+                "height": 444,
+                "mean_gray": 246.93,
+                "stddev_gray": 37.19,
+                "p05": 214,
+                "p95": 255,
+                "dynamic_range": 41,
+                "dark_pixel_ratio": 0.04663,
+                "very_dark_pixel_ratio": 0.02198,
+                "blank": false,
+                "low_contrast": true
+              },
+              "likely_empty_grid_cell": false,
+              "embedded_text_status": {
+                "status": "absent",
+                "character_count": 0,
+                "readable_character_ratio": 0.0
+              },
+              "embedded_text_path": null,
+              "image_variants": {
+                "enhanced": "sample04/p001/items/item_024_enhanced.png"
+              },
+              "recommended_image": "sample04/p001/items/item_024_enhanced.png",
+              "binary_threshold": 133
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "source_pdf": "sample05.pdf",
+      "source_sha256": "68c25afea67972201baa7e11feee6b2af75978b128425378fae9c2546a593351",
+      "page_count": 1,
+      "pages": [
+        {
+          "page": 1,
+          "route": "embedded_text_plus_item_crops",
+          "rendered_page": null,
+          "quality": {
+            "width": 5145,
+            "height": 3638,
+            "mean_gray": 223.85,
+            "stddev_gray": 82.5,
+            "p05": 0,
+            "p95": 255,
+            "dynamic_range": 255,
+            "dark_pixel_ratio": 0.12634,
+            "very_dark_pixel_ratio": 0.12037,
+            "blank": false,
+            "low_contrast": false
+          },
+          "embedded_text": null,
+          "grid": {
+            "confidence": "high",
+            "reason": "projection_lines_detected; regularity=0.833; highly_irregular=false",
+            "columns": 6,
+            "rows": 3,
+            "x_lines": [
+              0,
+              1164,
+              1865,
+              2572,
+              3274,
+              3978,
+              4682
+            ],
+            "y_lines": [
+              0,
+              1216,
+              2149,
+              3078
+            ]
+          },
+          "item_count": 4,
+          "items": [
+            {
+              "item_no": 1,
+              "bbox_pixels": [
+                0,
+                0,
+                1164,
+                1216
+              ],
+              "quality": {
+                "width": 1160,
+                "height": 1212,
+                "mean_gray": 251.03,
+                "stddev_gray": 28.97,
+                "p05": 255,
+                "p95": 255,
+                "dynamic_range": 0,
+                "dark_pixel_ratio": 0.01978,
+                "very_dark_pixel_ratio": 0.01338,
+                "blank": false,
+                "low_contrast": true
+              },
+              "body_quality": {
+                "width": 1136,
+                "height": 982,
+                "mean_gray": 250.48,
+                "stddev_gray": 30.65,
+                "p05": 255,
+                "p95": 255,
+                "dynamic_range": 0,
+                "dark_pixel_ratio": 0.02292,
+                "very_dark_pixel_ratio": 0.01488,
+                "blank": false,
+                "low_contrast": true
+              },
+              "likely_empty_grid_cell": false,
+              "embedded_text_status": {
+                "status": "mojibake_or_sparse",
+                "character_count": 19,
+                "readable_character_ratio": 1.0
+              },
+              "embedded_text_path": null,
+              "image_variants": {
+                "enhanced": "sample05/p001/items/item_001_enhanced.png"
+              },
+              "recommended_image": "sample05/p001/items/item_001_enhanced.png",
+              "binary_threshold": 131
+            },
+            {
+              "item_no": 8,
+              "bbox_pixels": [
+                1164,
+                1216,
+                1865,
+                2149
+              ],
+              "quality": {
+                "width": 697,
+                "height": 929,
+                "mean_gray": 252.56,
+                "stddev_gray": 22.16,
+                "p05": 255,
+                "p95": 255,
+                "dynamic_range": 0,
+                "dark_pixel_ratio": 0.0124,
+                "very_dark_pixel_ratio": 0.00926,
+                "blank": false,
+                "low_contrast": true
+              },
+              "body_quality": {
+                "width": 683,
+                "height": 755,
+                "mean_gray": 254.38,
+                "stddev_gray": 11.19,
+                "p05": 255,
+                "p95": 255,
+                "dynamic_range": 0,
+                "dark_pixel_ratio": 0.00317,
+                "very_dark_pixel_ratio": 0.0019,
+                "blank": false,
+                "low_contrast": true
+              },
+              "likely_empty_grid_cell": false,
+              "embedded_text_status": {
+                "status": "mojibake_or_sparse",
+                "character_count": 14,
+                "readable_character_ratio": 1.0
+              },
+              "embedded_text_path": null,
+              "image_variants": {
+                "enhanced": "sample05/p001/items/item_008_enhanced.png"
+              },
+              "recommended_image": "sample05/p001/items/item_008_enhanced.png",
+              "binary_threshold": 129
+            },
+            {
+              "item_no": 12,
+              "bbox_pixels": [
+                3978,
+                1216,
+                4682,
+                2149
+              ],
+              "quality": {
+                "width": 700,
+                "height": 929,
+                "mean_gray": 250.12,
+                "stddev_gray": 31.41,
+                "p05": 255,
+                "p95": 255,
+                "dynamic_range": 0,
+                "dark_pixel_ratio": 0.02495,
+                "very_dark_pixel_ratio": 0.01686,
+                "blank": false,
+                "low_contrast": true
+              },
+              "body_quality": {
+                "width": 686,
+                "height": 755,
+                "mean_gray": 252.29,
+                "stddev_gray": 23.21,
+                "p05": 255,
+                "p95": 255,
+                "dynamic_range": 0,
+                "dark_pixel_ratio": 0.01447,
+                "very_dark_pixel_ratio": 0.00822,
+                "blank": false,
+                "low_contrast": true
+              },
+              "likely_empty_grid_cell": false,
+              "embedded_text_status": {
+                "status": "partial",
+                "character_count": 22,
+                "readable_character_ratio": 0.864
+              },
+              "embedded_text_path": null,
+              "image_variants": {
+                "enhanced": "sample05/p001/items/item_012_enhanced.png"
+              },
+              "recommended_image": "sample05/p001/items/item_012_enhanced.png",
+              "binary_threshold": 130
+            },
+            {
+              "item_no": 15,
+              "bbox_pixels": [
+                1865,
+                2149,
+                2572,
+                3078
+              ],
+              "quality": {
+                "width": 703,
+                "height": 925,
+                "mean_gray": 247.91,
+                "stddev_gray": 37.85,
+                "p05": 255,
+                "p95": 255,
+                "dynamic_range": 0,
+                "dark_pixel_ratio": 0.03563,
+                "very_dark_pixel_ratio": 0.02334,
+                "blank": false,
+                "low_contrast": true
+              },
+              "body_quality": {
+                "width": 689,
+                "height": 752,
+                "mean_gray": 249.36,
+                "stddev_gray": 33.66,
+                "p05": 255,
+                "p95": 255,
+                "dynamic_range": 0,
+                "dark_pixel_ratio": 0.02898,
+                "very_dark_pixel_ratio": 0.01728,
+                "blank": false,
+                "low_contrast": true
+              },
+              "likely_empty_grid_cell": false,
+              "embedded_text_status": {
+                "status": "absent",
+                "character_count": 0,
+                "readable_character_ratio": 0.0
+              },
+              "embedded_text_path": null,
+              "image_variants": {
+                "enhanced": "sample05/p001/items/item_015_enhanced.png"
+              },
+              "recommended_image": "sample05/p001/items/item_015_enhanced.png",
+              "binary_threshold": 131
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "source_pdf": "sample06.pdf",
+      "source_sha256": "2c457375ece5148c053204bc152f70876f045cb5ba788e2ea07ce901d9122317",
+      "page_count": 1,
+      "pages": [
+        {
+          "page": 1,
+          "route": "full_page_vision_review",
+          "rendered_page": null,
+          "quality": {
+            "width": 2573,
+            "height": 1819,
+            "mean_gray": 224.68,
+            "stddev_gray": 70.25,
+            "p05": 0,
+            "p95": 255,
+            "dynamic_range": 255,
+            "dark_pixel_ratio": 0.12093,
+            "very_dark_pixel_ratio": 0.08518,
+            "blank": false,
+            "low_contrast": false
+          },
+          "embedded_text": null,
+          "grid": {
+            "confidence": "low",
+            "reason": "projection_lines_detected; regularity=0.714; highly_irregular=true",
+            "columns": 7,
+            "rows": 4,
+            "x_lines": [
+              92,
+              304,
+              926,
+              1295,
+              1542,
+              1716,
+              1958,
+              2435
+            ],
+            "y_lines": [
+              88,
+              508,
+              798,
+              1087,
+              1377
+            ]
+          },
+          "item_count": 1,
+          "items": [
+            {
+              "item_no": 1,
+              "bbox_pixels": [
+                0,
+                0,
+                2573,
+                1819
+              ],
+              "quality": {
+                "width": 2569,
+                "height": 1815,
+                "mean_gray": 224.56,
+                "stddev_gray": 70.36,
+                "p05": 0,
+                "p95": 255,
+                "dynamic_range": 255,
+                "dark_pixel_ratio": 0.12138,
+                "very_dark_pixel_ratio": 0.0855,
+                "blank": false,
+                "low_contrast": false
+              },
+              "body_quality": {
+                "width": 2533,
+                "height": 1470,
+                "mean_gray": 218.86,
+                "stddev_gray": 77.09,
+                "p05": 0,
+                "p95": 255,
+                "dynamic_range": 255,
+                "dark_pixel_ratio": 0.14396,
+                "very_dark_pixel_ratio": 0.10688,
+                "blank": false,
+                "low_contrast": false
+              },
+              "likely_empty_grid_cell": false,
+              "embedded_text_status": {
+                "status": "absent",
+                "character_count": 0,
+                "readable_character_ratio": 0.0
+              },
+              "embedded_text_path": null,
+              "image_variants": {
+                "enhanced": "sample06/p001/items/item_001_enhanced.png"
+              },
+              "recommended_image": "sample06/p001/items/item_001_enhanced.png",
+              "binary_threshold": 132
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "source_pdf": "sample07.pdf",
+      "source_sha256": "e76f375e6105f9eb4f67528f6b4bf39235f64f5af02ae1260c3b621c24aa2201",
+      "page_count": 1,
+      "pages": [
+        {
+          "page": 1,
+          "route": "item_crop_vision",
+          "rendered_page": null,
+          "quality": {
+            "width": 3638,
+            "height": 2573,
+            "mean_gray": 225.23,
+            "stddev_gray": 77.21,
+            "p05": 0,
+            "p95": 254,
+            "dynamic_range": 254,
+            "dark_pixel_ratio": 0.12353,
+            "very_dark_pixel_ratio": 0.10494,
+            "blank": false,
+            "low_contrast": false
+          },
+          "embedded_text": null,
+          "grid": {
+            "confidence": "high",
+            "reason": "projection_lines_detected; regularity=1.000; highly_irregular=false",
+            "columns": 4,
+            "rows": 3,
+            "x_lines": [
+              91,
+              1028,
+              1833,
+              2644,
+              3452
+            ],
+            "y_lines": [
+              41,
+              836,
+              1496,
+              2159
+            ]
+          },
+          "item_count": 4,
+          "items": [
+            {
+              "item_no": 1,
+              "bbox_pixels": [
+                91,
+                41,
+                1028,
+                836
+              ],
+              "quality": {
+                "width": 933,
+                "height": 791,
+                "mean_gray": 246.35,
+                "stddev_gray": 34.84,
+                "p05": 221,
+                "p95": 254,
+                "dynamic_range": 33,
+                "dark_pixel_ratio": 0.043,
+                "very_dark_pixel_ratio": 0.01871,
+                "blank": false,
+                "low_contrast": true
+              },
+              "body_quality": {
+                "width": 917,
+                "height": 641,
+                "mean_gray": 246.88,
+                "stddev_gray": 33.35,
+                "p05": 225,
+                "p95": 254,
+                "dynamic_range": 29,
+                "dark_pixel_ratio": 0.04093,
+                "very_dark_pixel_ratio": 0.01731,
+                "blank": false,
+                "low_contrast": true
+              },
+              "likely_empty_grid_cell": false,
+              "embedded_text_status": {
+                "status": "absent",
+                "character_count": 0,
+                "readable_character_ratio": 0.0
+              },
+              "embedded_text_path": null,
+              "image_variants": {
+                "enhanced": "sample07/p001/items/item_001_enhanced.png"
+              },
+              "recommended_image": "sample07/p001/items/item_001_enhanced.png",
+              "binary_threshold": 134
+            },
+            {
+              "item_no": 5,
+              "bbox_pixels": [
+                91,
+                836,
+                1028,
+                1496
+              ],
+              "quality": {
+                "width": 933,
+                "height": 656,
+                "mean_gray": 251.28,
+                "stddev_gray": 21.07,
+                "p05": 253,
+                "p95": 254,
+                "dynamic_range": 1,
+                "dark_pixel_ratio": 0.01565,
+                "very_dark_pixel_ratio": 0.00598,
+                "blank": false,
+                "low_contrast": true
+              },
+              "body_quality": {
+                "width": 919,
+                "height": 531,
+                "mean_gray": 253.2,
+                "stddev_gray": 11.08,
+                "p05": 254,
+                "p95": 254,
+                "dynamic_range": 0,
+                "dark_pixel_ratio": 0.00478,
+                "very_dark_pixel_ratio": 0.00172,
+                "blank": false,
+                "low_contrast": true
+              },
+              "likely_empty_grid_cell": false,
+              "embedded_text_status": {
+                "status": "absent",
+                "character_count": 0,
+                "readable_character_ratio": 0.0
+              },
+              "embedded_text_path": null,
+              "image_variants": {
+                "enhanced": "sample07/p001/items/item_005_enhanced.png"
+              },
+              "recommended_image": "sample07/p001/items/item_005_enhanced.png",
+              "binary_threshold": 133
+            },
+            {
+              "item_no": 8,
+              "bbox_pixels": [
+                1833,
+                1496,
+                2644,
+                2159
+              ],
+              "quality": {
+                "width": 807,
+                "height": 659,
+                "mean_gray": 245.64,
+                "stddev_gray": 37.27,
+                "p05": 209,
+                "p95": 254,
+                "dynamic_range": 45,
+                "dark_pixel_ratio": 0.04703,
+                "very_dark_pixel_ratio": 0.0231,
+                "blank": false,
+                "low_contrast": true
+              },
+              "body_quality": {
+                "width": 793,
+                "height": 533,
+                "mean_gray": 250.0,
+                "stddev_gray": 27.05,
+                "p05": 254,
+                "p95": 254,
+                "dynamic_range": 0,
+                "dark_pixel_ratio": 0.02204,
+                "very_dark_pixel_ratio": 0.01163,
+                "blank": false,
+                "low_contrast": true
+              },
+              "likely_empty_grid_cell": false,
+              "embedded_text_status": {
+                "status": "absent",
+                "character_count": 0,
+                "readable_character_ratio": 0.0
+              },
+              "embedded_text_path": null,
+              "image_variants": {
+                "enhanced": "sample07/p001/items/item_008_enhanced.png"
+              },
+              "recommended_image": "sample07/p001/items/item_008_enhanced.png",
+              "binary_threshold": 133
+            },
+            {
+              "item_no": 9,
+              "bbox_pixels": [
+                2644,
+                1496,
+                3452,
+                2159
+              ],
+              "quality": {
+                "width": 804,
+                "height": 659,
+                "mean_gray": 248.34,
+                "stddev_gray": 29.7,
+                "p05": 243,
+                "p95": 254,
+                "dynamic_range": 11,
+                "dark_pixel_ratio": 0.03255,
+                "very_dark_pixel_ratio": 0.01447,
+                "blank": false,
+                "low_contrast": true
+              },
+              "body_quality": {
+                "width": 790,
+                "height": 533,
+                "mean_gray": 250.21,
+                "stddev_gray": 25.01,
+                "p05": 252,
+                "p95": 254,
+                "dynamic_range": 2,
+                "dark_pixel_ratio": 0.02148,
+                "very_dark_pixel_ratio": 0.00987,
+                "blank": false,
+                "low_contrast": true
+              },
+              "likely_empty_grid_cell": false,
+              "embedded_text_status": {
+                "status": "absent",
+                "character_count": 0,
+                "readable_character_ratio": 0.0
+              },
+              "embedded_text_path": null,
+              "image_variants": {
+                "enhanced": "sample07/p001/items/item_009_enhanced.png"
+              },
+              "recommended_image": "sample07/p001/items/item_009_enhanced.png",
+              "binary_threshold": 132
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "source_pdf": "sample08.pdf",
+      "source_sha256": "1f1924f08742d55a2d347609957a31d4bfee2184cd609449258d053649b81611",
+      "page_count": 1,
+      "pages": [
+        {
+          "page": 1,
+          "route": "item_crop_vision",
+          "rendered_page": null,
+          "quality": {
+            "width": 3640,
+            "height": 2573,
+            "mean_gray": 223.53,
+            "stddev_gray": 76.72,
+            "p05": 8,
+            "p95": 255,
+            "dynamic_range": 247,
+            "dark_pixel_ratio": 0.15057,
+            "very_dark_pixel_ratio": 0.11013,
+            "blank": false,
+            "low_contrast": false
+          },
+          "embedded_text": null,
+          "grid": {
+            "confidence": "high",
+            "reason": "projection_lines_detected; regularity=1.000; highly_irregular=false",
+            "columns": 7,
+            "rows": 3,
+            "x_lines": [
+              77,
+              571,
+              1065,
+              1558,
+              2052,
+              2546,
+              3039,
+              3533
+            ],
+            "y_lines": [
+              68,
+              821,
+              1574,
+              2330
+            ]
+          },
+          "item_count": 4,
+          "items": [
+            {
+              "item_no": 1,
+              "bbox_pixels": [
+                77,
+                68,
+                571,
+                821
+              ],
+              "quality": {
+                "width": 490,
+                "height": 749,
+                "mean_gray": 217.21,
+                "stddev_gray": 78.52,
+                "p05": 20,
+                "p95": 255,
+                "dynamic_range": 235,
+                "dark_pixel_ratio": 0.19797,
+                "very_dark_pixel_ratio": 0.12222,
+                "blank": false,
+                "low_contrast": false
+              },
+              "body_quality": {
+                "width": 480,
+                "height": 609,
+                "mean_gray": 218.76,
+                "stddev_gray": 75.8,
+                "p05": 22,
+                "p95": 255,
+                "dynamic_range": 233,
+                "dark_pixel_ratio": 0.19746,
+                "very_dark_pixel_ratio": 0.11051,
+                "blank": false,
+                "low_contrast": false
+              },
+              "likely_empty_grid_cell": false,
+              "embedded_text_status": {
+                "status": "mojibake_or_sparse",
+                "character_count": 101,
+                "readable_character_ratio": 0.0
+              },
+              "embedded_text_path": null,
+              "image_variants": {
+                "enhanced": "sample08/p001/items/item_001.png"
+              },
+              "recommended_image": "sample08/p001/items/item_001.png",
+              "binary_threshold": null
+            },
+            {
+              "item_no": 9,
+              "bbox_pixels": [
+                571,
+                821,
+                1065,
+                1574
+              ],
+              "quality": {
+                "width": 490,
+                "height": 749,
+                "mean_gray": 205.75,
+                "stddev_gray": 91.78,
+                "p05": 7,
+                "p95": 255,
+                "dynamic_range": 248,
+                "dark_pixel_ratio": 0.23378,
+                "very_dark_pixel_ratio": 0.17122,
+                "blank": false,
+                "low_contrast": false
+              },
+              "body_quality": {
+                "width": 480,
+                "height": 609,
+                "mean_gray": 204.67,
+                "stddev_gray": 91.98,
+                "p05": 8,
+                "p95": 255,
+                "dynamic_range": 247,
+                "dark_pixel_ratio": 0.24168,
+                "very_dark_pixel_ratio": 0.17455,
+                "blank": false,
+                "low_contrast": false
+              },
+              "likely_empty_grid_cell": false,
+              "embedded_text_status": {
+                "status": "mojibake_or_sparse",
+                "character_count": 315,
+                "readable_character_ratio": 0.006
+              },
+              "embedded_text_path": null,
+              "image_variants": {
+                "enhanced": "sample08/p001/items/item_009.png"
+              },
+              "recommended_image": "sample08/p001/items/item_009.png",
+              "binary_threshold": null
+            },
+            {
+              "item_no": 12,
+              "bbox_pixels": [
+                2052,
+                821,
+                2546,
+                1574
+              ],
+              "quality": {
+                "width": 490,
+                "height": 749,
+                "mean_gray": 239.83,
+                "stddev_gray": 38.01,
+                "p05": 199,
+                "p95": 255,
+                "dynamic_range": 56,
+                "dark_pixel_ratio": 0.05041,
+                "very_dark_pixel_ratio": 0.0168,
+                "blank": false,
+                "low_contrast": true
+              },
+              "body_quality": {
+                "width": 480,
+                "height": 609,
+                "mean_gray": 240.31,
+                "stddev_gray": 35.03,
+                "p05": 200,
+                "p95": 255,
+                "dynamic_range": 55,
+                "dark_pixel_ratio": 0.0474,
+                "very_dark_pixel_ratio": 0.01295,
+                "blank": false,
+                "low_contrast": true
+              },
+              "likely_empty_grid_cell": false,
+              "embedded_text_status": {
+                "status": "absent",
+                "character_count": 0,
+                "readable_character_ratio": 0.0
+              },
+              "embedded_text_path": null,
+              "image_variants": {
+                "enhanced": "sample08/p001/items/item_012_enhanced.png"
+              },
+              "recommended_image": "sample08/p001/items/item_012_enhanced.png",
+              "binary_threshold": 137
+            },
+            {
+              "item_no": 16,
+              "bbox_pixels": [
+                1065,
+                1574,
+                1558,
+                2330
+              ],
+              "quality": {
+                "width": 489,
+                "height": 752,
+                "mean_gray": 254.1,
+                "stddev_gray": 12.9,
+                "p05": 255,
+                "p95": 255,
+                "dynamic_range": 0,
+                "dark_pixel_ratio": 0.00509,
+                "very_dark_pixel_ratio": 0.00156,
+                "blank": false,
+                "low_contrast": true
+              },
+              "body_quality": {
+                "width": 479,
+                "height": 612,
+                "mean_gray": 255.0,
+                "stddev_gray": 0.0,
+                "p05": 255,
+                "p95": 255,
+                "dynamic_range": 0,
+                "dark_pixel_ratio": 0.0,
+                "very_dark_pixel_ratio": 0.0,
+                "blank": true,
+                "low_contrast": false
+              },
+              "likely_empty_grid_cell": false,
+              "embedded_text_status": {
+                "status": "mojibake_or_sparse",
+                "character_count": 216,
+                "readable_character_ratio": 0.005
+              },
+              "embedded_text_path": null,
+              "image_variants": {
+                "enhanced": "sample08/p001/items/item_016_enhanced.png"
+              },
+              "recommended_image": "sample08/p001/items/item_016_enhanced.png",
+              "binary_threshold": 100
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "source_pdf": "sample09.pdf",
+      "source_sha256": "da17ac3f2302d811ce99509c55fdc9c221ae940067836acf39546dedaca3aebd",
+      "page_count": 2,
+      "pages": [
+        {
+          "page": 1,
+          "route": "item_crop_vision",
+          "rendered_page": null,
+          "quality": {
+            "width": 2573,
+            "height": 1820,
+            "mean_gray": 228.64,
+            "stddev_gray": 71.86,
+            "p05": 0,
+            "p95": 255,
+            "dynamic_range": 255,
+            "dark_pixel_ratio": 0.12666,
+            "very_dark_pixel_ratio": 0.0856,
+            "blank": false,
+            "low_contrast": false
+          },
+          "embedded_text": null,
+          "grid": {
+            "confidence": "high",
+            "reason": "projection_lines_detected; regularity=1.000; highly_irregular=false",
+            "columns": 7,
+            "rows": 4,
+            "x_lines": [
+              61,
+              466,
+              794,
+              1122,
+              1447,
+              1775,
+              2103,
+              2431
+            ],
+            "y_lines": [
+              61,
+              531,
+              875,
+              1219,
+              1563
+            ]
+          },
+          "item_count": 3,
+          "items": [
+            {
+              "item_no": 1,
+              "bbox_pixels": [
+                61,
+                61,
+                466,
+                531
+              ],
+              "quality": {
+                "width": 401,
+                "height": 466,
+                "mean_gray": 247.59,
+                "stddev_gray": 32.26,
+                "p05": 193,
+                "p95": 255,
+                "dynamic_range": 62,
+                "dark_pixel_ratio": 0.05122,
+                "very_dark_pixel_ratio": 0.01403,
+                "blank": false,
+                "low_contrast": true
+              },
+              "body_quality": {
+                "width": 393,
+                "height": 378,
+                "mean_gray": 246.6,
+                "stddev_gray": 33.9,
+                "p05": 180,
+                "p95": 255,
+                "dynamic_range": 75,
+                "dark_pixel_ratio": 0.05788,
+                "very_dark_pixel_ratio": 0.01443,
+                "blank": false,
+                "low_contrast": true
+              },
+              "likely_empty_grid_cell": false,
+              "embedded_text_status": {
+                "status": "absent",
+                "character_count": 0,
+                "readable_character_ratio": 0.0
+              },
+              "embedded_text_path": null,
+              "image_variants": {
+                "enhanced": "sample09/p001/items/item_001_enhanced.png"
+              },
+              "recommended_image": "sample09/p001/items/item_001_enhanced.png",
+              "binary_threshold": 139
+            },
+            {
+              "item_no": 13,
+              "bbox_pixels": [
+                1775,
+                531,
+                2103,
+                875
+              ],
+              "quality": {
+                "width": 324,
+                "height": 340,
+                "mean_gray": 241.48,
+                "stddev_gray": 41.33,
+                "p05": 129,
+                "p95": 255,
+                "dynamic_range": 126,
+                "dark_pixel_ratio": 0.09542,
+                "very_dark_pixel_ratio": 0.02052,
+                "blank": false,
+                "low_contrast": false
+              },
+              "body_quality": {
+                "width": 316,
+                "height": 275,
+                "mean_gray": 242.72,
+                "stddev_gray": 39.83,
+                "p05": 138,
+                "p95": 255,
+                "dynamic_range": 117,
+                "dark_pixel_ratio": 0.08379,
+                "very_dark_pixel_ratio": 0.01972,
+                "blank": false,
+                "low_contrast": false
+              },
+              "likely_empty_grid_cell": false,
+              "embedded_text_status": {
+                "status": "absent",
+                "character_count": 0,
+                "readable_character_ratio": 0.0
+              },
+              "embedded_text_path": null,
+              "image_variants": {
+                "enhanced": "sample09/p001/items/item_013.png"
+              },
+              "recommended_image": "sample09/p001/items/item_013.png",
+              "binary_threshold": null
+            },
+            {
+              "item_no": 25,
+              "bbox_pixels": [
+                1122,
+                1219,
+                1447,
+                1563
+              ],
+              "quality": {
+                "width": 321,
+                "height": 340,
+                "mean_gray": 249.02,
+                "stddev_gray": 26.98,
+                "p05": 219,
+                "p95": 255,
+                "dynamic_range": 36,
+                "dark_pixel_ratio": 0.04438,
+                "very_dark_pixel_ratio": 0.00607,
+                "blank": false,
+                "low_contrast": true
+              },
+              "body_quality": {
+                "width": 313,
+                "height": 275,
+                "mean_gray": 251.44,
+                "stddev_gray": 20.03,
+                "p05": 255,
+                "p95": 255,
+                "dynamic_range": 0,
+                "dark_pixel_ratio": 0.02678,
+                "very_dark_pixel_ratio": 0.00223,
+                "blank": false,
+                "low_contrast": true
+              },
+              "likely_empty_grid_cell": false,
+              "embedded_text_status": {
+                "status": "absent",
+                "character_count": 0,
+                "readable_character_ratio": 0.0
+              },
+              "embedded_text_path": null,
+              "image_variants": {
+                "enhanced": "sample09/p001/items/item_025_enhanced.png"
+              },
+              "recommended_image": "sample09/p001/items/item_025_enhanced.png",
+              "binary_threshold": 134
+            }
+          ]
+        },
+        {
+          "page": 2,
+          "route": "item_crop_vision",
+          "rendered_page": null,
+          "quality": {
+            "width": 2573,
+            "height": 1820,
+            "mean_gray": 227.1,
+            "stddev_gray": 75.96,
+            "p05": 0,
+            "p95": 255,
+            "dynamic_range": 255,
+            "dark_pixel_ratio": 0.12414,
+            "very_dark_pixel_ratio": 0.10094,
+            "blank": false,
+            "low_contrast": false
+          },
+          "embedded_text": null,
+          "grid": {
+            "confidence": "high",
+            "reason": "projection_lines_detected; regularity=1.000; highly_irregular=false",
+            "columns": 7,
+            "rows": 4,
+            "x_lines": [
+              61,
+              465,
+              793,
+              1119,
+              1447,
+              1775,
+              2103,
+              2431
+            ],
+            "y_lines": [
+              61,
+              531,
+              875,
+              1219,
+              1563
+            ]
+          },
+          "item_count": 1,
+          "items": [
+            {
+              "item_no": 20,
+              "bbox_pixels": [
+                1447,
+                1219,
+                1775,
+                1563
+              ],
+              "quality": {
+                "width": 324,
+                "height": 340,
+                "mean_gray": 249.75,
+                "stddev_gray": 27.17,
+                "p05": 241,
+                "p95": 255,
+                "dynamic_range": 14,
+                "dark_pixel_ratio": 0.03511,
+                "very_dark_pixel_ratio": 0.00852,
+                "blank": false,
+                "low_contrast": true
+              },
+              "body_quality": {
+                "width": 316,
+                "height": 275,
+                "mean_gray": 251.74,
+                "stddev_gray": 20.56,
+                "p05": 255,
+                "p95": 255,
+                "dynamic_range": 0,
+                "dark_pixel_ratio": 0.02386,
+                "very_dark_pixel_ratio": 0.00434,
+                "blank": false,
+                "low_contrast": true
+              },
+              "likely_empty_grid_cell": false,
+              "embedded_text_status": {
+                "status": "absent",
+                "character_count": 0,
+                "readable_character_ratio": 0.0
+              },
+              "embedded_text_path": null,
+              "image_variants": {
+                "enhanced": "sample09/p002/items/item_020_enhanced.png"
+              },
+              "recommended_image": "sample09/p002/items/item_020_enhanced.png",
+              "binary_threshold": 132
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "source_pdf": "sample10.pdf",
+      "source_sha256": "079ae7d80e099e28e4ccea1a7ebc9955831bd565a928b6e3131ea6aa4dce94b3",
+      "page_count": 1,
+      "pages": [
+        {
+          "page": 1,
+          "route": "item_crop_vision",
+          "rendered_page": null,
+          "quality": {
+            "width": 3640,
+            "height": 2573,
+            "mean_gray": 220.04,
+            "stddev_gray": 72.81,
+            "p05": 9,
+            "p95": 255,
+            "dynamic_range": 246,
+            "dark_pixel_ratio": 0.20279,
+            "very_dark_pixel_ratio": 0.0874,
+            "blank": false,
+            "low_contrast": false
+          },
+          "embedded_text": null,
+          "grid": {
+            "confidence": "high",
+            "reason": "projection_lines_detected; regularity=1.000; highly_irregular=false",
+            "columns": 7,
+            "rows": 3,
+            "x_lines": [
+              77,
+              571,
+              1065,
+              1558,
+              2052,
+              2548,
+              3039,
+              3535
+            ],
+            "y_lines": [
+              68,
+              821,
+              1574,
+              2330
+            ]
+          },
+          "item_count": 4,
+          "items": [
+            {
+              "item_no": 1,
+              "bbox_pixels": [
+                77,
+                68,
+                571,
+                821
+              ],
+              "quality": {
+                "width": 490,
+                "height": 749,
+                "mean_gray": 246.26,
+                "stddev_gray": 35.59,
+                "p05": 187,
+                "p95": 255,
+                "dynamic_range": 68,
+                "dark_pixel_ratio": 0.05388,
+                "very_dark_pixel_ratio": 0.01582,
+                "blank": false,
+                "low_contrast": true
+              },
+              "body_quality": {
+                "width": 480,
+                "height": 609,
+                "mean_gray": 247.7,
+                "stddev_gray": 31.95,
+                "p05": 218,
+                "p95": 255,
+                "dynamic_range": 37,
+                "dark_pixel_ratio": 0.04506,
+                "very_dark_pixel_ratio": 0.01084,
+                "blank": false,
+                "low_contrast": true
+              },
+              "likely_empty_grid_cell": false,
+              "embedded_text_status": {
+                "status": "absent",
+                "character_count": 0,
+                "readable_character_ratio": 0.0
+              },
+              "embedded_text_path": null,
+              "image_variants": {
+                "enhanced": "sample10/p001/items/item_001_enhanced.png"
+              },
+              "recommended_image": "sample10/p001/items/item_001_enhanced.png",
+              "binary_threshold": 132
+            },
+            {
+              "item_no": 11,
+              "bbox_pixels": [
+                1558,
+                821,
+                2052,
+                1574
+              ],
+              "quality": {
+                "width": 490,
+                "height": 749,
+                "mean_gray": 236.76,
+                "stddev_gray": 42.47,
+                "p05": 132,
+                "p95": 255,
+                "dynamic_range": 123,
+                "dark_pixel_ratio": 0.1445,
+                "very_dark_pixel_ratio": 0.01093,
+                "blank": false,
+                "low_contrast": false
+              },
+              "body_quality": {
+                "width": 480,
+                "height": 609,
+                "mean_gray": 240.61,
+                "stddev_gray": 34.22,
+                "p05": 154,
+                "p95": 255,
+                "dynamic_range": 101,
+                "dark_pixel_ratio": 0.1232,
+                "very_dark_pixel_ratio": 0.00304,
+                "blank": false,
+                "low_contrast": false
+              },
+              "likely_empty_grid_cell": false,
+              "embedded_text_status": {
+                "status": "absent",
+                "character_count": 0,
+                "readable_character_ratio": 0.0
+              },
+              "embedded_text_path": null,
+              "image_variants": {
+                "enhanced": "sample10/p001/items/item_011.png"
+              },
+              "recommended_image": "sample10/p001/items/item_011.png",
+              "binary_threshold": null
+            },
+            {
+              "item_no": 12,
+              "bbox_pixels": [
+                2052,
+                821,
+                2548,
+                1574
+              ],
+              "quality": {
+                "width": 492,
+                "height": 749,
+                "mean_gray": 233.54,
+                "stddev_gray": 44.24,
+                "p05": 154,
+                "p95": 255,
+                "dynamic_range": 101,
+                "dark_pixel_ratio": 0.18771,
+                "very_dark_pixel_ratio": 0.02291,
+                "blank": false,
+                "low_contrast": false
+              },
+              "body_quality": {
+                "width": 482,
+                "height": 609,
+                "mean_gray": 235.39,
+                "stddev_gray": 39.36,
+                "p05": 169,
+                "p95": 255,
+                "dynamic_range": 86,
+                "dark_pixel_ratio": 0.18361,
+                "very_dark_pixel_ratio": 0.01561,
+                "blank": false,
+                "low_contrast": true
+              },
+              "likely_empty_grid_cell": false,
+              "embedded_text_status": {
+                "status": "absent",
+                "character_count": 0,
+                "readable_character_ratio": 0.0
+              },
+              "embedded_text_path": null,
+              "image_variants": {
+                "enhanced": "sample10/p001/items/item_012.png"
+              },
+              "recommended_image": "sample10/p001/items/item_012.png",
+              "binary_threshold": null
+            },
+            {
+              "item_no": 21,
+              "bbox_pixels": [
+                3039,
+                1574,
+                3535,
+                2330
+              ],
+              "quality": {
+                "width": 492,
+                "height": 752,
+                "mean_gray": 213.57,
+                "stddev_gray": 78.49,
+                "p05": 23,
+                "p95": 255,
+                "dynamic_range": 232,
+                "dark_pixel_ratio": 0.22745,
+                "very_dark_pixel_ratio": 0.12523,
+                "blank": false,
+                "low_contrast": false
+              },
+              "body_quality": {
+                "width": 482,
+                "height": 612,
+                "mean_gray": 215.98,
+                "stddev_gray": 75.58,
+                "p05": 24,
+                "p95": 255,
+                "dynamic_range": 231,
+                "dark_pixel_ratio": 0.22108,
+                "very_dark_pixel_ratio": 0.11034,
+                "blank": false,
+                "low_contrast": false
+              },
+              "likely_empty_grid_cell": false,
+              "embedded_text_status": {
+                "status": "absent",
+                "character_count": 0,
+                "readable_character_ratio": 0.0
+              },
+              "embedded_text_path": null,
+              "image_variants": {
+                "enhanced": "sample10/p001/items/item_021.png"
+              },
+              "recommended_image": "sample10/p001/items/item_021.png",
+              "binary_threshold": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "source_pdf": "sample11.pdf",
+      "source_sha256": "a990072ef1e3a10b0114f304350a803142db92cb5037ac08955f3fce9c3f27ec",
+      "page_count": 1,
+      "pages": [
+        {
+          "page": 1,
+          "route": "item_crop_vision",
+          "rendered_page": null,
+          "quality": {
+            "width": 3640,
+            "height": 2573,
+            "mean_gray": 222.13,
+            "stddev_gray": 82.44,
+            "p05": 0,
+            "p95": 255,
+            "dynamic_range": 255,
+            "dark_pixel_ratio": 0.14151,
+            "very_dark_pixel_ratio": 0.11994,
+            "blank": false,
+            "low_contrast": false
+          },
+          "embedded_text": null,
+          "grid": {
+            "confidence": "high",
+            "reason": "projection_lines_detected; regularity=0.857; highly_irregular=false",
+            "columns": 7,
+            "rows": 5,
+            "x_lines": [
+              0,
+              753,
+              1197,
+              1643,
+              2084,
+              2530,
+              2973,
+              3417
+            ],
+            "y_lines": [
+              45,
+              323,
+              767,
+              1203,
+              1656,
+              2107
+            ]
+          },
+          "item_count": 4,
+          "items": [
+            {
+              "item_no": 1,
+              "bbox_pixels": [
+                0,
+                45,
+                753,
+                323
+              ],
+              "quality": {
+                "width": 749,
+                "height": 274,
+                "mean_gray": 254.17,
+                "stddev_gray": 11.54,
+                "p05": 255,
+                "p95": 255,
+                "dynamic_range": 0,
+                "dark_pixel_ratio": 0.00456,
+                "very_dark_pixel_ratio": 0.00203,
+                "blank": false,
+                "low_contrast": true
+              },
+              "body_quality": {
+                "width": 741,
+                "height": 221,
+                "mean_gray": 254.17,
+                "stddev_gray": 11.58,
+                "p05": 255,
+                "p95": 255,
+                "dynamic_range": 0,
+                "dark_pixel_ratio": 0.00458,
+                "very_dark_pixel_ratio": 0.00204,
+                "blank": false,
+                "low_contrast": true
+              },
+              "likely_empty_grid_cell": false,
+              "embedded_text_status": {
+                "status": "absent",
+                "character_count": 0,
+                "readable_character_ratio": 0.0
+              },
+              "embedded_text_path": null,
+              "image_variants": {
+                "enhanced": "sample11/p001/items/item_001_enhanced.png"
+              },
+              "recommended_image": "sample11/p001/items/item_001_enhanced.png",
+              "binary_threshold": 129
+            },
+            {
+              "item_no": 6,
+              "bbox_pixels": [
+                2084,
+                323,
+                2530,
+                767
+              ],
+              "quality": {
+                "width": 442,
+                "height": 440,
+                "mean_gray": 248.76,
+                "stddev_gray": 31.48,
+                "p05": 239,
+                "p95": 255,
+                "dynamic_range": 16,
+                "dark_pixel_ratio": 0.03842,
+                "very_dark_pixel_ratio": 0.01354,
+                "blank": false,
+                "low_contrast": true
+              },
+              "body_quality": {
+                "width": 434,
+                "height": 357,
+                "mean_gray": 249.97,
+                "stddev_gray": 29.33,
+                "p05": 255,
+                "p95": 255,
+                "dynamic_range": 0,
+                "dark_pixel_ratio": 0.02906,
+                "very_dark_pixel_ratio": 0.01253,
+                "blank": false,
+                "low_contrast": true
+              },
+              "likely_empty_grid_cell": false,
+              "embedded_text_status": {
+                "status": "absent",
+                "character_count": 0,
+                "readable_character_ratio": 0.0
+              },
+              "embedded_text_path": null,
+              "image_variants": {
+                "enhanced": "sample11/p001/items/item_006_enhanced.png"
+              },
+              "recommended_image": "sample11/p001/items/item_006_enhanced.png",
+              "binary_threshold": 138
+            },
+            {
+              "item_no": 11,
+              "bbox_pixels": [
+                1197,
+                767,
+                1643,
+                1203
+              ],
+              "quality": {
+                "width": 442,
+                "height": 432,
+                "mean_gray": 247.26,
+                "stddev_gray": 35.22,
+                "p05": 208,
+                "p95": 255,
+                "dynamic_range": 47,
+                "dark_pixel_ratio": 0.04545,
+                "very_dark_pixel_ratio": 0.0177,
+                "blank": false,
+                "low_contrast": true
+              },
+              "body_quality": {
+                "width": 434,
+                "height": 350,
+                "mean_gray": 247.52,
+                "stddev_gray": 35.15,
+                "p05": 219,
+                "p95": 255,
+                "dynamic_range": 36,
+                "dark_pixel_ratio": 0.04406,
+                "very_dark_pixel_ratio": 0.01781,
+                "blank": false,
+                "low_contrast": true
+              },
+              "likely_empty_grid_cell": false,
+              "embedded_text_status": {
+                "status": "absent",
+                "character_count": 0,
+                "readable_character_ratio": 0.0
+              },
+              "embedded_text_path": null,
+              "image_variants": {
+                "enhanced": "sample11/p001/items/item_011_enhanced.png"
+              },
+              "recommended_image": "sample11/p001/items/item_011_enhanced.png",
+              "binary_threshold": 136
+            },
+            {
+              "item_no": 20,
+              "bbox_pixels": [
+                753,
+                1656,
+                1197,
+                2107
+              ],
+              "quality": {
+                "width": 440,
+                "height": 447,
+                "mean_gray": 240.01,
+                "stddev_gray": 46.34,
+                "p05": 117,
+                "p95": 255,
+                "dynamic_range": 138,
+                "dark_pixel_ratio": 0.09724,
+                "very_dark_pixel_ratio": 0.03184,
+                "blank": false,
+                "low_contrast": false
+              },
+              "body_quality": {
+                "width": 432,
+                "height": 363,
+                "mean_gray": 241.0,
+                "stddev_gray": 45.32,
+                "p05": 122,
+                "p95": 255,
+                "dynamic_range": 133,
+                "dark_pixel_ratio": 0.0903,
+                "very_dark_pixel_ratio": 0.03081,
+                "blank": false,
+                "low_contrast": false
+              },
+              "likely_empty_grid_cell": false,
+              "embedded_text_status": {
+                "status": "absent",
+                "character_count": 0,
+                "readable_character_ratio": 0.0
+              },
+              "embedded_text_path": null,
+              "image_variants": {
+                "enhanced": "sample11/p001/items/item_020.png"
+              },
+              "recommended_image": "sample11/p001/items/item_020.png",
+              "binary_threshold": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "source_pdf": "sample12.pdf",
+      "source_sha256": "5d443a9792a5753a6fc0360a2957eafd7d0f29c3cf53f040a651be793a45dcc6",
+      "page_count": 3,
+      "pages": [
+        {
+          "page": 1,
+          "route": "item_crop_vision",
+          "rendered_page": null,
+          "quality": {
+            "width": 2573,
+            "height": 1820,
+            "mean_gray": 216.2,
+            "stddev_gray": 83.08,
+            "p05": 0,
+            "p95": 255,
+            "dynamic_range": 255,
+            "dark_pixel_ratio": 0.19009,
+            "very_dark_pixel_ratio": 0.12132,
+            "blank": false,
+            "low_contrast": false
+          },
+          "embedded_text": null,
+          "grid": {
+            "confidence": "high",
+            "reason": "projection_lines_detected; regularity=1.000; highly_irregular=false",
+            "columns": 6,
+            "rows": 4,
+            "x_lines": [
+              90,
+              503,
+              901,
+              1299,
+              1695,
+              2092,
+              2489
+            ],
+            "y_lines": [
+              61,
+              386,
+              691,
+              997,
+              1302
+            ]
+          },
+          "item_count": 2,
+          "items": [
+            {
+              "item_no": 1,
+              "bbox_pixels": [
+                90,
+                61,
+                503,
+                386
+              ],
+              "quality": {
+                "width": 409,
+                "height": 321,
+                "mean_gray": 234.55,
+                "stddev_gray": 54.56,
+                "p05": 92,
+                "p95": 255,
+                "dynamic_range": 163,
+                "dark_pixel_ratio": 0.12563,
+                "very_dark_pixel_ratio": 0.04355,
+                "blank": false,
+                "low_contrast": false
+              },
+              "body_quality": {
+                "width": 401,
+                "height": 259,
+                "mean_gray": 236.58,
+                "stddev_gray": 53.97,
+                "p05": 95,
+                "p95": 255,
+                "dynamic_range": 160,
+                "dark_pixel_ratio": 0.10826,
+                "very_dark_pixel_ratio": 0.04472,
+                "blank": false,
+                "low_contrast": false
+              },
+              "likely_empty_grid_cell": false,
+              "embedded_text_status": {
+                "status": "absent",
+                "character_count": 0,
+                "readable_character_ratio": 0.0
+              },
+              "embedded_text_path": null,
+              "image_variants": {
+                "enhanced": "sample12/p001/items/item_001.png"
+              },
+              "recommended_image": "sample12/p001/items/item_001.png",
+              "binary_threshold": null
+            },
+            {
+              "item_no": 13,
+              "bbox_pixels": [
+                90,
+                691,
+                503,
+                997
+              ],
+              "quality": {
+                "width": 409,
+                "height": 302,
+                "mean_gray": 230.37,
+                "stddev_gray": 59.71,
+                "p05": 73,
+                "p95": 255,
+                "dynamic_range": 182,
+                "dark_pixel_ratio": 0.14944,
+                "very_dark_pixel_ratio": 0.05289,
+                "blank": false,
+                "low_contrast": false
+              },
+              "body_quality": {
+                "width": 401,
+                "height": 244,
+                "mean_gray": 234.99,
+                "stddev_gray": 55.02,
+                "p05": 90,
+                "p95": 255,
+                "dynamic_range": 165,
+                "dark_pixel_ratio": 0.12055,
+                "very_dark_pixel_ratio": 0.04568,
+                "blank": false,
+                "low_contrast": false
+              },
+              "likely_empty_grid_cell": false,
+              "embedded_text_status": {
+                "status": "absent",
+                "character_count": 0,
+                "readable_character_ratio": 0.0
+              },
+              "embedded_text_path": null,
+              "image_variants": {
+                "enhanced": "sample12/p001/items/item_013.png"
+              },
+              "recommended_image": "sample12/p001/items/item_013.png",
+              "binary_threshold": null
+            }
+          ]
+        },
+        {
+          "page": 2,
+          "route": "item_crop_vision",
+          "rendered_page": null,
+          "quality": {
+            "width": 2573,
+            "height": 1820,
+            "mean_gray": 215.82,
+            "stddev_gray": 82.46,
+            "p05": 0,
+            "p95": 255,
+            "dynamic_range": 255,
+            "dark_pixel_ratio": 0.19595,
+            "very_dark_pixel_ratio": 0.11866,
+            "blank": false,
+            "low_contrast": false
+          },
+          "embedded_text": null,
+          "grid": {
+            "confidence": "high",
+            "reason": "projection_lines_detected; regularity=1.000; highly_irregular=false",
+            "columns": 6,
+            "rows": 5,
+            "x_lines": [
+              90,
+              503,
+              901,
+              1299,
+              1695,
+              2092,
+              2489
+            ],
+            "y_lines": [
+              61,
+              386,
+              691,
+              997,
+              1302,
+              1608
+            ]
+          },
+          "item_count": 1,
+          "items": [
+            {
+              "item_no": 16,
+              "bbox_pixels": [
+                1299,
+                691,
+                1695,
+                997
+              ],
+              "quality": {
+                "width": 392,
+                "height": 302,
+                "mean_gray": 235.87,
+                "stddev_gray": 51.98,
+                "p05": 109,
+                "p95": 255,
+                "dynamic_range": 146,
+                "dark_pixel_ratio": 0.12171,
+                "very_dark_pixel_ratio": 0.03508,
+                "blank": false,
+                "low_contrast": false
+              },
+              "body_quality": {
+                "width": 384,
+                "height": 244,
+                "mean_gray": 240.47,
+                "stddev_gray": 44.88,
+                "p05": 127,
+                "p95": 255,
+                "dynamic_range": 128,
+                "dark_pixel_ratio": 0.09534,
+                "very_dark_pixel_ratio": 0.0254,
+                "blank": false,
+                "low_contrast": false
+              },
+              "likely_empty_grid_cell": false,
+              "embedded_text_status": {
+                "status": "absent",
+                "character_count": 0,
+                "readable_character_ratio": 0.0
+              },
+              "embedded_text_path": null,
+              "image_variants": {
+                "enhanced": "sample12/p002/items/item_016.png"
+              },
+              "recommended_image": "sample12/p002/items/item_016.png",
+              "binary_threshold": null
+            }
+          ]
+        },
+        {
+          "page": 3,
+          "route": "item_crop_vision",
+          "rendered_page": null,
+          "quality": {
+            "width": 2573,
+            "height": 1820,
+            "mean_gray": 215.58,
+            "stddev_gray": 83.71,
+            "p05": 0,
+            "p95": 255,
+            "dynamic_range": 255,
+            "dark_pixel_ratio": 0.19213,
+            "very_dark_pixel_ratio": 0.1244,
+            "blank": false,
+            "low_contrast": false
+          },
+          "embedded_text": null,
+          "grid": {
+            "confidence": "high",
+            "reason": "projection_lines_detected; regularity=1.000; highly_irregular=false",
+            "columns": 6,
+            "rows": 4,
+            "x_lines": [
+              90,
+              503,
+              901,
+              1299,
+              1695,
+              2092,
+              2489
+            ],
+            "y_lines": [
+              61,
+              386,
+              691,
+              997,
+              1302
+            ]
+          },
+          "item_count": 1,
+          "items": [
+            {
+              "item_no": 24,
+              "bbox_pixels": [
+                2092,
+                997,
+                2489,
+                1302
+              ],
+              "quality": {
+                "width": 393,
+                "height": 301,
+                "mean_gray": 235.02,
+                "stddev_gray": 54.33,
+                "p05": 93,
+                "p95": 255,
+                "dynamic_range": 162,
+                "dark_pixel_ratio": 0.12435,
+                "very_dark_pixel_ratio": 0.04362,
+                "blank": false,
+                "low_contrast": false
+              },
+              "body_quality": {
+                "width": 385,
+                "height": 243,
+                "mean_gray": 237.98,
+                "stddev_gray": 51.1,
+                "p05": 106,
+                "p95": 255,
+                "dynamic_range": 149,
+                "dark_pixel_ratio": 0.10348,
+                "very_dark_pixel_ratio": 0.03786,
+                "blank": false,
+                "low_contrast": false
+              },
+              "likely_empty_grid_cell": false,
+              "embedded_text_status": {
+                "status": "absent",
+                "character_count": 0,
+                "readable_character_ratio": 0.0
+              },
+              "embedded_text_path": null,
+              "image_variants": {
+                "enhanced": "sample12/p003/items/item_024.png"
+              },
+              "recommended_image": "sample12/p003/items/item_024.png",
+              "binary_threshold": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "source_pdf": "sample13.pdf",
+      "source_sha256": "8c549021bc73533f5481934badf3b09b40fd35cca27b93fc6ff0df5a6e62eab9",
+      "page_count": 3,
+      "pages": [
+        {
+          "page": 1,
+          "route": "item_crop_vision",
+          "rendered_page": null,
+          "quality": {
+            "width": 3640,
+            "height": 2573,
+            "mean_gray": 232.58,
+            "stddev_gray": 66.18,
+            "p05": 0,
+            "p95": 255,
+            "dynamic_range": 255,
+            "dark_pixel_ratio": 0.10831,
+            "very_dark_pixel_ratio": 0.07108,
+            "blank": false,
+            "low_contrast": false
+          },
+          "embedded_text": null,
+          "grid": {
+            "confidence": "high",
+            "reason": "projection_lines_detected; regularity=1.000; highly_irregular=false",
+            "columns": 8,
+            "rows": 5,
+            "x_lines": [
+              139,
+              560,
+              978,
+              1397,
+              1815,
+              2234,
+              2653,
+              3071,
+              3494
+            ],
+            "y_lines": [
+              107,
+              664,
+              1051,
+              1438,
+              1827,
+              2214
+            ]
+          },
+          "item_count": 2,
+          "items": [
+            {
+              "item_no": 1,
+              "bbox_pixels": [
+                139,
+                107,
+                560,
+                664
+              ],
+              "quality": {
+                "width": 417,
+                "height": 553,
+                "mean_gray": 246.18,
+                "stddev_gray": 34.99,
+                "p05": 180,
+                "p95": 255,
+                "dynamic_range": 75,
+                "dark_pixel_ratio": 0.0582,
+                "very_dark_pixel_ratio": 0.01546,
+                "blank": false,
+                "low_contrast": true
+              },
+              "body_quality": {
+                "width": 409,
+                "height": 449,
+                "mean_gray": 244.56,
+                "stddev_gray": 37.55,
+                "p05": 157,
+                "p95": 255,
+                "dynamic_range": 98,
+                "dark_pixel_ratio": 0.0705,
+                "very_dark_pixel_ratio": 0.01701,
+                "blank": false,
+                "low_contrast": false
+              },
+              "likely_empty_grid_cell": false,
+              "embedded_text_status": {
+                "status": "absent",
+                "character_count": 0,
+                "readable_character_ratio": 0.0
+              },
+              "embedded_text_path": null,
+              "image_variants": {
+                "enhanced": "sample13/p001/items/item_001_enhanced.png"
+              },
+              "recommended_image": "sample13/p001/items/item_001_enhanced.png",
+              "binary_threshold": 136
+            },
+            {
+              "item_no": 14,
+              "bbox_pixels": [
+                2234,
+                664,
+                2653,
+                1051
+              ],
+              "quality": {
+                "width": 415,
+                "height": 383,
+                "mean_gray": 233.1,
+                "stddev_gray": 51.85,
+                "p05": 97,
+                "p95": 255,
+                "dynamic_range": 158,
+                "dark_pixel_ratio": 0.14637,
+                "very_dark_pixel_ratio": 0.03615,
+                "blank": false,
+                "low_contrast": false
+              },
+              "body_quality": {
+                "width": 407,
+                "height": 310,
+                "mean_gray": 232.77,
+                "stddev_gray": 51.52,
+                "p05": 104,
+                "p95": 255,
+                "dynamic_range": 151,
+                "dark_pixel_ratio": 0.1505,
+                "very_dark_pixel_ratio": 0.03441,
+                "blank": false,
+                "low_contrast": false
+              },
+              "likely_empty_grid_cell": false,
+              "embedded_text_status": {
+                "status": "absent",
+                "character_count": 0,
+                "readable_character_ratio": 0.0
+              },
+              "embedded_text_path": null,
+              "image_variants": {
+                "enhanced": "sample13/p001/items/item_014.png"
+              },
+              "recommended_image": "sample13/p001/items/item_014.png",
+              "binary_threshold": null
+            }
+          ]
+        },
+        {
+          "page": 2,
+          "route": "item_crop_vision",
+          "rendered_page": null,
+          "quality": {
+            "width": 3640,
+            "height": 2573,
+            "mean_gray": 232.72,
+            "stddev_gray": 65.59,
+            "p05": 0,
+            "p95": 255,
+            "dynamic_range": 255,
+            "dark_pixel_ratio": 0.10928,
+            "very_dark_pixel_ratio": 0.06942,
+            "blank": false,
+            "low_contrast": false
+          },
+          "embedded_text": null,
+          "grid": {
+            "confidence": "high",
+            "reason": "projection_lines_detected; regularity=1.000; highly_irregular=false",
+            "columns": 8,
+            "rows": 5,
+            "x_lines": [
+              139,
+              560,
+              978,
+              1397,
+              1815,
+              2234,
+              2653,
+              3071,
+              3494
+            ],
+            "y_lines": [
+              107,
+              664,
+              1051,
+              1438,
+              1827,
+              2214
+            ]
+          },
+          "item_count": 2,
+          "items": [
+            {
+              "item_no": 10,
+              "bbox_pixels": [
+                560,
+                664,
+                978,
+                1051
+              ],
+              "quality": {
+                "width": 414,
+                "height": 383,
+                "mean_gray": 226.91,
+                "stddev_gray": 55.39,
+                "p05": 92,
+                "p95": 255,
+                "dynamic_range": 163,
+                "dark_pixel_ratio": 0.1943,
+                "very_dark_pixel_ratio": 0.03949,
+                "blank": false,
+                "low_contrast": false
+              },
+              "body_quality": {
+                "width": 406,
+                "height": 310,
+                "mean_gray": 224.73,
+                "stddev_gray": 56.09,
+                "p05": 93,
+                "p95": 255,
+                "dynamic_range": 162,
+                "dark_pixel_ratio": 0.21154,
+                "very_dark_pixel_ratio": 0.0388,
+                "blank": false,
+                "low_contrast": false
+              },
+              "likely_empty_grid_cell": false,
+              "embedded_text_status": {
+                "status": "absent",
+                "character_count": 0,
+                "readable_character_ratio": 0.0
+              },
+              "embedded_text_path": null,
+              "image_variants": {
+                "enhanced": "sample13/p002/items/item_010.png"
+              },
+              "recommended_image": "sample13/p002/items/item_010.png",
+              "binary_threshold": null
+            },
+            {
+              "item_no": 18,
+              "bbox_pixels": [
+                139,
+                1827,
+                560,
+                2214
+              ],
+              "quality": {
+                "width": 417,
+                "height": 383,
+                "mean_gray": 248.69,
+                "stddev_gray": 30.49,
+                "p05": 236,
+                "p95": 255,
+                "dynamic_range": 19,
+                "dark_pixel_ratio": 0.03778,
+                "very_dark_pixel_ratio": 0.01599,
+                "blank": false,
+                "low_contrast": true
+              },
+              "body_quality": {
+                "width": 409,
+                "height": 310,
+                "mean_gray": 250.22,
+                "stddev_gray": 26.29,
+                "p05": 255,
+                "p95": 255,
+                "dynamic_range": 0,
+                "dark_pixel_ratio": 0.03096,
+                "very_dark_pixel_ratio": 0.01262,
+                "blank": false,
+                "low_contrast": true
+              },
+              "likely_empty_grid_cell": false,
+              "embedded_text_status": {
+                "status": "absent",
+                "character_count": 0,
+                "readable_character_ratio": 0.0
+              },
+              "embedded_text_path": null,
+              "image_variants": {
+                "enhanced": "sample13/p002/items/item_018_enhanced.png"
+              },
+              "recommended_image": "sample13/p002/items/item_018_enhanced.png",
+              "binary_threshold": 131
+            }
+          ]
+        },
+        {
+          "page": 3,
+          "route": "blank_or_unusable",
+          "rendered_page": "sample13/p003/sample13_p003_220dpi.png",
+          "quality": {
+            "width": 3640,
+            "height": 2573,
+            "mean_gray": 18.99,
+            "stddev_gray": 66.78,
+            "p05": 0,
+            "p95": 255,
+            "dynamic_range": 255,
+            "dark_pixel_ratio": 0.92618,
+            "very_dark_pixel_ratio": 0.92552,
+            "blank": true,
+            "low_contrast": false
+          },
+          "embedded_text": null,
+          "grid": {
+            "confidence": "none",
+            "reason": "regular_grid_not_detected",
+            "columns": 0,
+            "rows": 0,
+            "x_lines": [],
+            "y_lines": []
+          },
+          "item_count": 0,
+          "items": []
+        }
+      ]
+    }
+  ]
+}

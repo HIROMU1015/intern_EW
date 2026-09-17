@@ -1,0 +1,3062 @@
+{
+  "schema_version": "gpt-direct-image-extraction-only/v1",
+  "created_at": "2026-09-15T21:06:02+09:00",
+  "source_manifest_relative_path": "manifest.json",
+  "scope": {
+    "included_samples": [
+      "sample01",
+      "sample02",
+      "sample03",
+      "sample04",
+      "sample05",
+      "sample06",
+      "sample07",
+      "sample08",
+      "sample09",
+      "sample10",
+      "sample11",
+      "sample12",
+      "sample13"
+    ],
+    "result_count": 50,
+    "db_candidate_search_included": false,
+    "validation_summary_included": false,
+    "note": "画像解析結果のみを収録し、商品DB検索結果や検証集計は含めていない。"
+  },
+  "method_notes": [
+    "前処理マニフェストの推奨画像から代表サンプルを選定した。",
+    "別OCRやPDF埋め込み文字は読み取り根拠として使用していない。",
+    "画像から直接読めない値は補完せず、疑問符またはnullとしている。",
+    "複数の品番は配列で保持している。"
+  ],
+  "results": [
+    {
+      "source_file": "sample01.pdf",
+      "page": 1,
+      "item_no": 1,
+      "image_path": "sample01/p001/items/item_001_enhanced.png",
+      "source_route": "item_crop_vision",
+      "selection_reason": "先頭付近、低画質/低コントラスト判定",
+      "drawing_label": "A401",
+      "identity": {
+        "management_symbol": "A401",
+        "manufacturer": null,
+        "product_name": null,
+        "category": "LED40形×1",
+        "full_model_number": [
+          "NNF41030 LE9",
+          "LDL40S"
+        ],
+        "hinban": "NNF41030",
+        "kidou": "LE9",
+        "public_facility_model": null,
+        "component_model_numbers": [
+          "LDL40S"
+        ],
+        "direct_notes": [],
+        "normalized_notes": [
+          "hinban/kidou は画像中の空白区切りから分割"
+        ]
+      },
+      "quantity": {
+        "raw": "30台",
+        "value": 30,
+        "unit": "台"
+      },
+      "specifications": {
+        "brightness_lm": null,
+        "color_temperature_K": null,
+        "power_W": null,
+        "voltage_V": {
+          "raw": "100〜242V"
+        },
+        "Ra": {
+          "raw": "84"
+        },
+        "dimensions": null,
+        "cutout": null,
+        "mounting": null,
+        "waterproof": null,
+        "dimming": null,
+        "other": [
+          "適合ランプ: 直管LEDランプ用",
+          "ランプ素材: ガラス管",
+          "反射板: 鋼板（高反射白色粉体塗装）",
+          "光源寿命: 40000時間"
+        ]
+      },
+      "uncertain_fields": [
+        "bottom_specs_some_characters"
+      ],
+      "raw_text": "A401 / LED40形×1 / 参考品番 NNF41030 LE9 / LDL40S / 30台 / 適合ランプ: 直管LEDランプ用 / 電圧100〜242V / ランプ素材: ガラス管, Ra:84 / 反射板: 鋼板（高反射白色粉体塗装） / 光源寿命40000時間",
+      "review_required": false,
+      "recognition_notes": [
+        "下部仕様は文字が小さいため一部低信頼。"
+      ]
+    },
+    {
+      "source_file": "sample01.pdf",
+      "page": 1,
+      "item_no": 10,
+      "image_path": "sample01/p001/items/item_010_enhanced.png",
+      "source_route": "item_crop_vision",
+      "selection_reason": "低画質/低コントラスト判定",
+      "drawing_label": "J100",
+      "identity": {
+        "management_symbol": "J100",
+        "manufacturer": null,
+        "product_name": null,
+        "category": "LED100形（10.1W）",
+        "full_model_number": [
+          "NNN72067Z LE9"
+        ],
+        "hinban": "NNN72067Z",
+        "kidou": "LE9",
+        "public_facility_model": null,
+        "component_model_numbers": [],
+        "direct_notes": [],
+        "normalized_notes": [
+          "hinban/kidou は画像中の空白区切りから分割"
+        ]
+      },
+      "quantity": {
+        "raw": "26台",
+        "value": 26,
+        "unit": "台"
+      },
+      "specifications": {
+        "brightness_lm": {
+          "raw": "840lm"
+        },
+        "color_temperature_K": {
+          "raw": "3500K"
+        },
+        "power_W": {
+          "raw": "10.1W"
+        },
+        "voltage_V": {
+          "raw": "100〜242V"
+        },
+        "Ra": {
+          "raw": "85"
+        },
+        "dimensions": {
+          "raw": "埋込高91"
+        },
+        "cutout": {
+          "raw": "φ100"
+        },
+        "mounting": {
+          "raw": "ダウンライト/埋込"
+        },
+        "waterproof": null,
+        "dimming": null,
+        "other": [
+          "拡散タイプ",
+          "反射板: アルミダイカスト",
+          "枠: アルミダイカスト（ホワイトつや消し）",
+          "パネル: ポリカーボネート（透明つや消し）"
+        ]
+      },
+      "uncertain_fields": [
+        "product_name_detail",
+        "finish_text"
+      ],
+      "raw_text": "J100 / LED100形（10.1W） / 参考品番 NNN72067Z LE9 / 26台 / LEDダウンライト（ひと粒）タイプ / 3500K, Ra85, 拡散タイプ, 器具光束840lm / 消費電力10.1W, 電圧100〜242V / 反射板: アルミダイカスト / 枠: アルミダイカスト（ホワイトつや消し） / パネル: ポリカーボネート（透明つや消し） / 埋込穴φ100, 埋込高91",
+      "review_required": false,
+      "recognition_notes": [
+        "下部の材質・仕上げは小さく、一部のみ読取。"
+      ]
+    },
+    {
+      "source_file": "sample01.pdf",
+      "page": 1,
+      "item_no": 16,
+      "image_path": "sample01/p001/items/item_016_enhanced.png",
+      "source_route": "item_crop_vision",
+      "selection_reason": "中央付近、低画質/低コントラスト判定",
+      "drawing_label": "P30",
+      "identity": {
+        "management_symbol": "P30",
+        "manufacturer": null,
+        "product_name": null,
+        "category": "LED丸形蛍光灯30形（18.5W）",
+        "full_model_number": [
+          "LGW51630 LE1"
+        ],
+        "hinban": "LGW51630",
+        "kidou": "LE1",
+        "public_facility_model": null,
+        "component_model_numbers": [],
+        "direct_notes": [],
+        "normalized_notes": [
+          "hinban/kidou は画像中の空白区切りから分割"
+        ]
+      },
+      "quantity": {
+        "raw": "13台",
+        "value": 13,
+        "unit": "台"
+      },
+      "specifications": {
+        "brightness_lm": null,
+        "color_temperature_K": {
+          "raw": "5000K"
+        },
+        "power_W": null,
+        "voltage_V": {
+          "raw": "100V"
+        },
+        "Ra": {
+          "raw": "85"
+        },
+        "dimensions": null,
+        "cutout": null,
+        "mounting": {
+          "raw": "壁直付タイプ、天井面・壁面取付専用"
+        },
+        "waterproof": {
+          "raw": "防湿型・防雨型"
+        },
+        "dimming": null,
+        "other": [
+          "カバー: アクリル（乳白）",
+          "本体: プラスチック（ホワイト）",
+          "二重絶縁"
+        ]
+      },
+      "uncertain_fields": [
+        "bottom_last_line"
+      ],
+      "raw_text": "P30 / LED丸形蛍光灯30形（18.5W） / 参考品番 LGW51630 LE1 / 13台 / 防湿型・防雨型 / 壁直付タイプ / 5000K, Ra85 / 電圧100V / 天井面・壁面取付専用 / カバー: アクリル（乳白） / 本体: プラスチック（ホワイト） / 二重絶縁",
+      "review_required": false,
+      "recognition_notes": [
+        "最下行の小文字は読取不可。"
+      ]
+    },
+    {
+      "source_file": "sample01.pdf",
+      "page": 1,
+      "item_no": 30,
+      "image_path": "sample01/p001/items/item_030_enhanced.png",
+      "source_route": "item_crop_vision",
+      "selection_reason": "末尾付近、低画質/低コントラスト判定",
+      "drawing_label": "f40",
+      "identity": {
+        "management_symbol": "f40",
+        "manufacturer": null,
+        "product_name": null,
+        "category": "LED40形（5.2W）",
+        "full_model_number": [
+          "XLGEC510HLE9"
+        ],
+        "hinban": "XLGEC510H",
+        "kidou": "LE9",
+        "public_facility_model": null,
+        "component_model_numbers": [],
+        "direct_notes": [],
+        "normalized_notes": [
+          "画像上は XLGEC510HLE9 と連続表記。末尾LE9を起動方式候補として分割。"
+        ]
+      },
+      "quantity": {
+        "raw": "1台",
+        "value": 1,
+        "unit": "台"
+      },
+      "specifications": {
+        "brightness_lm": null,
+        "color_temperature_K": {
+          "raw": "2700K"
+        },
+        "power_W": {
+          "raw": "5.2W"
+        },
+        "voltage_V": null,
+        "Ra": {
+          "raw": "74"
+        },
+        "dimensions": null,
+        "cutout": null,
+        "mounting": {
+          "raw": "ポール灯"
+        },
+        "waterproof": {
+          "raw": "防雨型"
+        },
+        "dimming": null,
+        "other": [
+          "光源寿命: 40000時間（光束維持率70%）",
+          "上部グローブ: アクリル",
+          "ポール径φ100の記載あり"
+        ]
+      },
+      "uncertain_fields": [
+        "full_model_number_spacing",
+        "several_material_specs",
+        "some_dimensions"
+      ],
+      "raw_text": "f40 / LED40形（5.2W） / 参考品番 XLGEC510HLE9 / 1台 / Ra74 / 防雨型・ポール灯 / 光源寿命40000時間（光束維持率70%） / 光色2700K / ポール径φ100 ほか",
+      "review_required": false,
+      "recognition_notes": [
+        "下部仕様の大部分は文字が潰れており、読めた箇所のみ記録。"
+      ]
+    },
+    {
+      "source_file": "sample02.pdf",
+      "page": 1,
+      "item_no": 1,
+      "image_path": "sample02/p001/items/item_001_enhanced.png",
+      "source_route": "item_crop_vision",
+      "selection_reason": "先頭付近、低画質/低コントラスト判定",
+      "drawing_label": [
+        "A39",
+        "A22"
+      ],
+      "identity": {
+        "management_symbol": [
+          "A39",
+          "A22"
+        ],
+        "manufacturer": null,
+        "product_name": null,
+        "category": "LEDベースライト/逆富士型",
+        "full_model_number": [
+          "XLX460DHNKLE9相当品",
+          "XLX430DENCLE9相当品"
+        ],
+        "hinban": [
+          "XLX460DHNK",
+          "XLX430DENC"
+        ],
+        "kidou": [
+          "LE9",
+          "LE9"
+        ],
+        "public_facility_model": null,
+        "component_model_numbers": [],
+        "direct_notes": [],
+        "normalized_notes": [
+          "2行の品番候補を同一画像内の別ラベルとして保持。"
+        ]
+      },
+      "quantity": null,
+      "specifications": {
+        "brightness_lm": {
+          "raw": [
+            "6,900lm",
+            "3,200lm"
+          ]
+        },
+        "color_temperature_K": {
+          "raw": "5000K"
+        },
+        "power_W": {
+          "raw": [
+            "38.3W以下",
+            "21.5W以下"
+          ]
+        },
+        "voltage_V": null,
+        "Ra": {
+          "raw": "83"
+        },
+        "dimensions": null,
+        "cutout": null,
+        "mounting": {
+          "raw": "逆富士型"
+        },
+        "waterproof": null,
+        "dimming": null,
+        "other": [
+          "ボルトフリー",
+          "本体: 鋼板"
+        ]
+      },
+      "uncertain_fields": [
+        "quantity"
+      ],
+      "raw_text": "A39 LED 38.3W以下 6,900lm XLX460DHNKLE9相当品 / A22 LED 21.5W以下 3,200lm XLX430DENCLE9相当品 / 〈逆富士型〉 / ボルトフリー / 本体: 鋼板 / 色温度:5000K / Ra:83",
+      "review_required": false,
+      "recognition_notes": [
+        "同一クロップ内にA39とA22の2行が存在。数量欄は確認できない。"
+      ]
+    },
+    {
+      "source_file": "sample02.pdf",
+      "page": 1,
+      "item_no": 10,
+      "image_path": "sample02/p001/items/item_010_enhanced.png",
+      "source_route": "item_crop_vision",
+      "selection_reason": "低画質/低コントラスト判定",
+      "drawing_label": "D33W",
+      "identity": {
+        "management_symbol": "D33W",
+        "manufacturer": null,
+        "product_name": null,
+        "category": "直管形LED 33W以下",
+        "full_model_number": [
+          "NNFV41231CLE9相当品"
+        ],
+        "hinban": "NNFV41231C",
+        "kidou": "LE9",
+        "public_facility_model": null,
+        "component_model_numbers": [],
+        "direct_notes": [],
+        "normalized_notes": [
+          "画像上は NNFV41231CLE9相当品 と連続表記。末尾LE9を起動方式候補として分割。"
+        ]
+      },
+      "quantity": null,
+      "specifications": {
+        "brightness_lm": {
+          "raw": "2,320lm"
+        },
+        "color_temperature_K": {
+          "raw": "5000K"
+        },
+        "power_W": null,
+        "voltage_V": null,
+        "Ra": {
+          "raw": "84"
+        },
+        "dimensions": null,
+        "cutout": null,
+        "mounting": {
+          "raw": "片反射笠"
+        },
+        "waterproof": {
+          "raw": "防湿・防雨型"
+        },
+        "dimming": null,
+        "other": [
+          "ボルトフリー",
+          "本体: ステンレス",
+          "反射笠: ステンレス"
+        ]
+      },
+      "uncertain_fields": [
+        "full_model_number_spacing",
+        "quantity"
+      ],
+      "raw_text": "D33W / 直管形LED 33W以下 2,320lm / NNFV41231CLE9相当品 / 〈片反射笠〉 / ボルトフリー / 本体:ステンレス / 反射笠:ステンレス / 防湿・防雨型 / 色温度:5000K / Ra:84",
+      "review_required": false,
+      "recognition_notes": [
+        "品番は連続表記。数量欄は確認できない。"
+      ]
+    },
+    {
+      "source_file": "sample02.pdf",
+      "page": 1,
+      "item_no": 16,
+      "image_path": "sample02/p001/items/item_016_enhanced.png",
+      "source_route": "item_crop_vision",
+      "selection_reason": "中央付近、低画質/低コントラスト判定",
+      "drawing_label": "Gc43C",
+      "identity": {
+        "management_symbol": "Gc43C",
+        "manufacturer": null,
+        "product_name": null,
+        "category": "LED 43W以下",
+        "full_model_number": [
+          "XL574PFVJLA9相当品"
+        ],
+        "hinban": "XL574PFVJ",
+        "kidou": "LA9",
+        "public_facility_model": null,
+        "component_model_numbers": [],
+        "direct_notes": [],
+        "normalized_notes": [
+          "画像上は XL574PFVJLA9相当品 と連続表記。末尾LA9を起動方式候補として分割。"
+        ]
+      },
+      "quantity": null,
+      "specifications": {
+        "brightness_lm": {
+          "raw": "5,530lm"
+        },
+        "color_temperature_K": {
+          "raw": "5000K"
+        },
+        "power_W": {
+          "raw": "43W以下"
+        },
+        "voltage_V": null,
+        "Ra": {
+          "raw": "83"
+        },
+        "dimensions": null,
+        "cutout": {
+          "raw": "埋込穴450□"
+        },
+        "mounting": {
+          "raw": "埋込・カバー"
+        },
+        "waterproof": null,
+        "dimming": {
+          "raw": "約10〜100%連続調光型"
+        },
+        "other": [
+          "ボルトフリー",
+          "本体: 鋼板",
+          "パネル: アクリル（乳白）",
+          "枠: アルミ"
+        ]
+      },
+      "uncertain_fields": [
+        "full_model_number_spacing",
+        "control_symbol_meaning",
+        "quantity"
+      ],
+      "raw_text": "Gc43C / LED 43W以下 5,530lm / XL574PFVJLA9相当品 / 〈埋込・カバー〉〈埋込穴450□〉 / ボルトフリー / 約10〜100%連続調光型 / 本体:鋼板 / パネル:アクリル（乳白） / 枠:アルミ / 色温度:5000K / Ra:83",
+      "review_required": false,
+      "recognition_notes": [
+        "Gc43C は管理記号として保持。数量欄は確認できない。"
+      ]
+    },
+    {
+      "source_file": "sample02.pdf",
+      "page": 1,
+      "item_no": 30,
+      "image_path": "sample02/p001/items/item_030_enhanced.png",
+      "source_route": "item_crop_vision",
+      "selection_reason": "末尾付近、低画質/低コントラスト判定",
+      "drawing_label": "L10",
+      "identity": {
+        "management_symbol": "L10",
+        "manufacturer": null,
+        "product_name": null,
+        "category": "LED 9.7W以下",
+        "full_model_number": [
+          "LGB84550LE1相当品"
+        ],
+        "hinban": "LGB84550",
+        "kidou": "LE1",
+        "public_facility_model": null,
+        "component_model_numbers": [],
+        "direct_notes": [],
+        "normalized_notes": [
+          "画像上は LGB84550LE1相当品 と連続表記。末尾LE1を起動方式候補として分割。"
+        ]
+      },
+      "quantity": null,
+      "specifications": {
+        "brightness_lm": {
+          "raw": "663lm"
+        },
+        "color_temperature_K": {
+          "raw": "2700K"
+        },
+        "power_W": {
+          "raw": "9.7W以下"
+        },
+        "voltage_V": {
+          "raw": "100V専用"
+        },
+        "Ra": {
+          "raw": "83"
+        },
+        "dimensions": null,
+        "cutout": null,
+        "mounting": {
+          "raw": "ブラケット"
+        },
+        "waterproof": null,
+        "dimming": null,
+        "other": [
+          "セード: アルミダイカスト",
+          "可動範囲: 上下90度、回転方向360度"
+        ]
+      },
+      "uncertain_fields": [
+        "quantity"
+      ],
+      "raw_text": "L10 / LED 9.7W以下 663lm / LGB84550LE1相当品 / 〈ブラケット〉 / 100V専用 / セード:アルミダイカスト / 可動範囲上下90度、回転方向360度 / 色温度:2700K / Ra:83",
+      "review_required": false,
+      "recognition_notes": [
+        "数量欄は確認できない。"
+      ]
+    },
+    {
+      "source_file": "sample03.pdf",
+      "page": 1,
+      "item_no": 1,
+      "image_path": "sample03/p001/items/item_001.png",
+      "source_route": "item_crop_vision",
+      "selection_reason": "先頭付近",
+      "drawing_label": [
+        "BL1-01",
+        "BL1-02",
+        "BL1-03",
+        "BL1-04"
+      ],
+      "identity": {
+        "management_symbol": [
+          "BL1-01",
+          "BL1-02",
+          "BL1-03",
+          "BL1-04"
+        ],
+        "manufacturer": "パナソニック",
+        "product_name": null,
+        "category": "ベースライト",
+        "full_model_number": [
+          "XLX450AENPLE9",
+          "XLX440AENULE9",
+          "XLX430AENPLE9",
+          "XLX420AENPLE9"
+        ],
+        "hinban": [
+          "XLX450AENP",
+          "XLX440AENU",
+          "XLX430AENP",
+          "XLX420AENP"
+        ],
+        "kidou": [
+          "LE9",
+          "LE9",
+          "LE9",
+          "LE9"
+        ],
+        "public_facility_model": null,
+        "component_model_numbers": [],
+        "direct_notes": [],
+        "normalized_notes": [
+          "4行の品番を同一画像内の別ラベルとして保持。"
+        ]
+      },
+      "quantity": null,
+      "specifications": {
+        "brightness_lm": {
+          "raw": [
+            "5200lm",
+            "4000lm",
+            "3200lm",
+            "2500lm"
+          ]
+        },
+        "color_temperature_K": {
+          "raw": "5000K"
+        },
+        "power_W": {
+          "raw": [
+            "31.9W",
+            "25W",
+            "20.6W",
+            "16.3W"
+          ]
+        },
+        "voltage_V": null,
+        "Ra": null,
+        "dimensions": null,
+        "cutout": null,
+        "mounting": null,
+        "waterproof": null,
+        "dimming": null,
+        "other": []
+      },
+      "uncertain_fields": [
+        "quantity"
+      ],
+      "raw_text": "BL1-01 ベースライト 5200lm 31.9w / BL1-02 ベースライト 4000lm 25w / BL1-03 ベースライト 3200lm 20.6w / BL1-04 ベースライト 2500lm 16.3w / 5000K / パナソニック XLX450AENPLE9 / XLX440AENULE9 / XLX430AENPLE9 / XLX420AENPLE9",
+      "review_required": false,
+      "recognition_notes": [
+        "同一クロップ内に4ラベル分の対応品番が記載。"
+      ]
+    },
+    {
+      "source_file": "sample03.pdf",
+      "page": 1,
+      "item_no": 13,
+      "image_path": "sample03/p001/items/item_013.png",
+      "source_route": "item_crop_vision",
+      "selection_reason": "中央付近、低画質/低コントラスト判定",
+      "drawing_label": "DL10",
+      "identity": {
+        "management_symbol": "DL10",
+        "manufacturer": "パナソニック",
+        "product_name": "グレアレスダウンライト",
+        "category": "ダウンライト",
+        "full_model_number": [
+          "NYY65942+NYY91300B+NTS90551LJ9"
+        ],
+        "hinban": null,
+        "kidou": null,
+        "public_facility_model": null,
+        "component_model_numbers": [
+          "NYY65942",
+          "NYY91300B",
+          "NTS90551LJ9"
+        ],
+        "direct_notes": [],
+        "normalized_notes": []
+      },
+      "quantity": null,
+      "specifications": {
+        "brightness_lm": {
+          "raw": "2470lm"
+        },
+        "color_temperature_K": {
+          "raw": "3500K"
+        },
+        "power_W": {
+          "raw": "43W"
+        },
+        "voltage_V": null,
+        "Ra": null,
+        "dimensions": null,
+        "cutout": null,
+        "mounting": null,
+        "waterproof": null,
+        "dimming": {
+          "raw": "調光"
+        },
+        "other": [
+          "広角48°"
+        ]
+      },
+      "uncertain_fields": [
+        "third_component_suffix",
+        "quantity"
+      ],
+      "raw_text": "DL10 / グレアレスダウンライト 2470lm 43W（調光）広角48° / 3500K / パナソニック NYY65942+NYY91300B+NTS90551LJ9",
+      "review_required": false,
+      "recognition_notes": [
+        "末尾の LJ9 は赤字の重なりがあり低信頼。"
+      ]
+    },
+    {
+      "source_file": "sample03.pdf",
+      "page": 1,
+      "item_no": 24,
+      "image_path": "sample03/p001/items/item_024.png",
+      "source_route": "item_crop_vision",
+      "selection_reason": "末尾付近",
+      "drawing_label": [
+        "eDL6",
+        "eDL7"
+      ],
+      "identity": {
+        "management_symbol": [
+          "eDL6",
+          "eDL7"
+        ],
+        "manufacturer": "パナソニック",
+        "product_name": null,
+        "category": "軒下ダウンライト",
+        "full_model_number": [
+          "NYY1202200-Q1+NTS95150LJ9",
+          "NYY1203201-Q1+NTS95150LJ9"
+        ],
+        "hinban": null,
+        "kidou": null,
+        "public_facility_model": null,
+        "component_model_numbers": [
+          "NYY1202200-Q1",
+          "NYY1203201-Q1",
+          "NTS95150LJ9"
+        ],
+        "direct_notes": [],
+        "normalized_notes": []
+      },
+      "quantity": null,
+      "specifications": {
+        "brightness_lm": {
+          "raw": [
+            "805lm",
+            "725lm"
+          ]
+        },
+        "color_temperature_K": {
+          "raw": "3500K"
+        },
+        "power_W": {
+          "raw": "15.5W"
+        },
+        "voltage_V": null,
+        "Ra": null,
+        "dimensions": null,
+        "cutout": null,
+        "mounting": null,
+        "waterproof": null,
+        "dimming": {
+          "raw": "調光"
+        },
+        "other": [
+          "eDL6: 中角28°",
+          "eDL7: 広角38°",
+          "耐塩害向上加工（アクリル2回塗り塗装）"
+        ]
+      },
+      "uncertain_fields": [
+        "component_codes_low_confidence",
+        "quantity"
+      ],
+      "raw_text": "eDL6 軒下ダウンライト 805lm 15.5w（調光）中角28° / eDL7 軒下ダウンライト 725lm 15.5w（調光）広角38° / ※耐塩害向上加工（アクリル2回塗り塗装） / 3500K / パナソニック NYY1202200-Q1+NTS95150LJ9 / NYY1203201-Q1+NTS95150LJ9",
+      "review_required": false,
+      "recognition_notes": [
+        "下段2行の品番は小さく、一部低信頼。"
+      ]
+    },
+    {
+      "source_file": "sample03.pdf",
+      "page": 2,
+      "item_no": 3,
+      "image_path": "sample03/p002/items/item_003_enhanced.png",
+      "source_route": "item_crop_vision",
+      "selection_reason": "中央付近、低画質/低コントラスト判定",
+      "drawing_label": null,
+      "identity": {
+        "management_symbol": null,
+        "manufacturer": "パナソニック",
+        "product_name": "セパレートセルコン用（設定／操作兼用液晶リモコン）",
+        "category": "設定/操作兼用液晶リモコン",
+        "full_model_number": [
+          "FSK90941U"
+        ],
+        "hinban": "FSK90941U",
+        "kidou": null,
+        "public_facility_model": null,
+        "component_model_numbers": [],
+        "direct_notes": [],
+        "normalized_notes": []
+      },
+      "quantity": null,
+      "specifications": {
+        "brightness_lm": null,
+        "color_temperature_K": null,
+        "power_W": null,
+        "voltage_V": null,
+        "Ra": null,
+        "dimensions": null,
+        "cutout": null,
+        "mounting": null,
+        "waterproof": null,
+        "dimming": null,
+        "other": [
+          "リモコンホルダ同梱"
+        ]
+      },
+      "uncertain_fields": [
+        "drawing_label",
+        "quantity"
+      ],
+      "raw_text": "セパレートセルコン用（設定／操作兼用液晶リモコン） / パナソニック FSK90941U / リモコンホルダ同梱",
+      "review_required": false,
+      "recognition_notes": [
+        "管理記号欄は空白または読取不能。"
+      ]
+    },
+    {
+      "source_file": "sample04.pdf",
+      "page": 1,
+      "item_no": 1,
+      "image_path": "sample04/p001/items/item_001_enhanced.png",
+      "source_route": "embedded_text_plus_item_crops",
+      "selection_reason": "先頭付近、低画質/低コントラスト判定",
+      "drawing_label": "D1",
+      "identity": {
+        "management_symbol": "D1",
+        "manufacturer": "三菱",
+        "product_name": "クラス250 50K 一般形MC DL φ125",
+        "category": "一般形MCダウンライト φ125",
+        "full_model_number": [
+          "EL-D02/2(252NM) AHN"
+        ],
+        "hinban": "EL-D02/2(252NM)",
+        "kidou": "AHN",
+        "public_facility_model": null,
+        "component_model_numbers": [],
+        "direct_notes": [],
+        "normalized_notes": [
+          "参考型番から hinban/kidou を空白で分割。"
+        ]
+      },
+      "quantity": null,
+      "specifications": {
+        "brightness_lm": {
+          "raw": "2240lm"
+        },
+        "color_temperature_K": {
+          "raw": "5000K"
+        },
+        "power_W": {
+          "raw": "16.3W"
+        },
+        "voltage_V": {
+          "raw": "AC100〜242V"
+        },
+        "Ra": {
+          "raw": "83"
+        },
+        "dimensions": null,
+        "cutout": {
+          "raw": "φ125"
+        },
+        "mounting": {
+          "raw": "ダウンライト"
+        },
+        "waterproof": null,
+        "dimming": null,
+        "other": [
+          "光源寿命:40000時間",
+          "消費効率:137.4lm/W",
+          "固定出力"
+        ]
+      },
+      "uncertain_fields": [
+        "quantity"
+      ],
+      "raw_text": "D1 / クラス250 50K 一般形MC DL φ125 / ダウンライト 固定 白色（5000K）Ra83 / AC100〜242V共用タイプ 固定出力 / 光源寿命:40000時間 / 光束:2240lm 消費電力:16.3W 消費効率:137.4lm/W / 埋込穴:φ125 / 参考型番: 三菱 EL-D02/2(252NM) AHN",
+      "review_required": false,
+      "recognition_notes": [
+        "全体的に読み取り可能。数量欄は確認できない。"
+      ]
+    },
+    {
+      "source_file": "sample04.pdf",
+      "page": 1,
+      "item_no": 8,
+      "image_path": "sample04/p001/items/item_008_enhanced.png",
+      "source_route": "embedded_text_plus_item_crops",
+      "selection_reason": "低画質/低コントラスト判定",
+      "drawing_label": null,
+      "identity": {
+        "management_symbol": null,
+        "manufacturer": "三菱",
+        "product_name": "リニューアルプレート",
+        "category": "リニューアルプレート",
+        "full_model_number": [
+          "EL-X0015"
+        ],
+        "hinban": "EL-X0015",
+        "kidou": null,
+        "public_facility_model": null,
+        "component_model_numbers": [],
+        "direct_notes": [],
+        "normalized_notes": []
+      },
+      "quantity": null,
+      "specifications": {
+        "brightness_lm": null,
+        "color_temperature_K": null,
+        "power_W": null,
+        "voltage_V": null,
+        "Ra": null,
+        "dimensions": null,
+        "cutout": {
+          "raw": "埋込穴:200"
+        },
+        "mounting": null,
+        "waterproof": null,
+        "dimming": null,
+        "other": [
+          "クラス200・150・100・60用",
+          "本体:鋼板 白色塗装仕上"
+        ]
+      },
+      "uncertain_fields": [
+        "drawing_label",
+        "quantity"
+      ],
+      "raw_text": "リニューアルプレート / クラス200・150・100・60用 / 本体:鋼板 白色塗装仕上 / 埋込穴:200 / 参考型番: 三菱 EL-X0015",
+      "review_required": false,
+      "recognition_notes": [
+        "左上の管理記号欄はクロップ外または空白。"
+      ]
+    },
+    {
+      "source_file": "sample04.pdf",
+      "page": 1,
+      "item_no": 13,
+      "image_path": "sample04/p001/items/item_013_enhanced.png",
+      "source_route": "embedded_text_plus_item_crops",
+      "selection_reason": "中央付近、低画質/低コントラスト判定",
+      "drawing_label": "V1",
+      "identity": {
+        "management_symbol": "V1",
+        "manufacturer": "三菱",
+        "product_name": null,
+        "category": "My20形3200固定 V形230幅",
+        "full_model_number": [
+          "MY-V230231/N AHTN"
+        ],
+        "hinban": "MY-V230231/N",
+        "kidou": "AHTN",
+        "public_facility_model": "LSS10-2-30",
+        "component_model_numbers": [],
+        "direct_notes": [],
+        "normalized_notes": []
+      },
+      "quantity": null,
+      "specifications": {
+        "brightness_lm": {
+          "raw": "3200lm"
+        },
+        "color_temperature_K": {
+          "raw": "5000K"
+        },
+        "power_W": {
+          "raw": "21.4W"
+        },
+        "voltage_V": {
+          "raw": "100V〜242V"
+        },
+        "Ra": {
+          "raw": "85"
+        },
+        "dimensions": null,
+        "cutout": null,
+        "mounting": {
+          "raw": "直付 V形230幅"
+        },
+        "waterproof": null,
+        "dimming": {
+          "raw": "段調光機能付"
+        },
+        "other": [
+          "光源寿命:40000時間",
+          "消費効率:149.5lm/W",
+          "ハイグレード",
+          "ライトユニット"
+        ]
+      },
+      "uncertain_fields": [
+        "some_middle_finish_text",
+        "quantity"
+      ],
+      "raw_text": "V1 / My20形3200固定 V形230幅 / Myシリーズ 昼白色（5000K）Ra85 / 100V〜242V共用タイプ 段調光機能付 / ハイグレード 直付 ライトユニット / 光源寿命:40000時間 / 光束:3200lm 消費電力:21.4W 消費効率:149.5lm/W / 公共施設型名:LSS10-2-30 / 参考型番: 三菱 MY-V230231/N AHTN",
+      "review_required": false,
+      "recognition_notes": [
+        "仕様の一部修飾語は小さく低信頼。主要値は読み取り可能。"
+      ]
+    },
+    {
+      "source_file": "sample04.pdf",
+      "page": 1,
+      "item_no": 24,
+      "image_path": "sample04/p001/items/item_024_enhanced.png",
+      "source_route": "embedded_text_plus_item_crops",
+      "selection_reason": "末尾付近、低画質/低コントラスト判定",
+      "drawing_label": "B6",
+      "identity": {
+        "management_symbol": "B6",
+        "manufacturer": "三菱",
+        "product_name": null,
+        "category": "My40形3200固定 埋込190幅",
+        "full_model_number": [
+          "MY-B430332/N AHTN"
+        ],
+        "hinban": "MY-B430332/N",
+        "kidou": "AHTN",
+        "public_facility_model": null,
+        "component_model_numbers": [],
+        "direct_notes": [],
+        "normalized_notes": []
+      },
+      "quantity": null,
+      "specifications": {
+        "brightness_lm": {
+          "raw": "3100lm"
+        },
+        "color_temperature_K": {
+          "raw": "5000K"
+        },
+        "power_W": {
+          "raw": "21W"
+        },
+        "voltage_V": {
+          "raw": "100V〜242V"
+        },
+        "Ra": {
+          "raw": "85"
+        },
+        "dimensions": null,
+        "cutout": {
+          "raw": "190×1257"
+        },
+        "mounting": {
+          "raw": "埋込190幅"
+        },
+        "waterproof": null,
+        "dimming": {
+          "raw": "段調光機能付"
+        },
+        "other": [
+          "光源寿命:40000時間",
+          "消費効率:147.6lm/W",
+          "Myシリーズ 昼白色",
+          "カバー付ライトユニット"
+        ]
+      },
+      "uncertain_fields": [
+        "middle_finish_text",
+        "quantity"
+      ],
+      "raw_text": "B6 / My40形3200固定 埋込190幅 / Myシリーズ 昼白色（5000K）Ra85 / 100V〜242V共用タイプ 段調光機能付 / ハイグレード カバー付ライトユニット / 光源寿命:40000時間 / 光束:3100lm 消費電力:21W 消費効率:147.6lm/W / 埋込穴:190×1257 / 参考型番: 三菱 MY-B430332/N AHTN",
+      "review_required": false,
+      "recognition_notes": [
+        "中段の仕上げ説明に潰れあり。"
+      ]
+    },
+    {
+      "source_file": "sample05.pdf",
+      "page": 1,
+      "item_no": 1,
+      "image_path": "sample05/p001/items/item_001_enhanced.png",
+      "source_route": "embedded_text_plus_item_crops",
+      "selection_reason": "先頭付近、低画質/低コントラスト判定",
+      "drawing_label": null,
+      "identity": {
+        "management_symbol": null,
+        "manufacturer": null,
+        "product_name": null,
+        "category": "LEDダウンライト",
+        "full_model_number": [],
+        "hinban": null,
+        "kidou": null,
+        "public_facility_model": "LRS1-950LM",
+        "component_model_numbers": [],
+        "direct_notes": [],
+        "normalized_notes": []
+      },
+      "quantity": null,
+      "specifications": {
+        "brightness_lm": null,
+        "color_temperature_K": null,
+        "power_W": null,
+        "voltage_V": null,
+        "Ra": null,
+        "dimensions": null,
+        "cutout": null,
+        "mounting": null,
+        "waterproof": null,
+        "dimming": null,
+        "other": [
+          "公共施設型番: LRS1-950LM"
+        ]
+      },
+      "uncertain_fields": [
+        "drawing_label",
+        "product_name_value",
+        "public_facility_model",
+        "quantity",
+        "model_number"
+      ],
+      "raw_text": "LEDダウンライト 950?以上 / 備考: / 公共施設型番 LRS1-950LM",
+      "review_required": true,
+      "recognition_notes": [
+        "クロップ上部と左側が欠け気味。公共施設型番らしき文字列以外の品番は確認できない。"
+      ]
+    },
+    {
+      "source_file": "sample05.pdf",
+      "page": 1,
+      "item_no": 8,
+      "image_path": "sample05/p001/items/item_008_enhanced.png",
+      "source_route": "embedded_text_plus_item_crops",
+      "selection_reason": "中央付近、低画質/低コントラスト判定",
+      "drawing_label": "BK2",
+      "identity": {
+        "management_symbol": "BK2",
+        "manufacturer": null,
+        "product_name": null,
+        "category": "LEDブラケット",
+        "full_model_number": [],
+        "hinban": null,
+        "kidou": null,
+        "public_facility_model": null,
+        "component_model_numbers": [],
+        "direct_notes": [],
+        "normalized_notes": []
+      },
+      "quantity": null,
+      "specifications": {
+        "brightness_lm": null,
+        "color_temperature_K": null,
+        "power_W": null,
+        "voltage_V": null,
+        "Ra": null,
+        "dimensions": null,
+        "cutout": null,
+        "mounting": null,
+        "waterproof": null,
+        "dimming": null,
+        "other": []
+      },
+      "uncertain_fields": [
+        "model_number",
+        "manufacturer",
+        "quantity",
+        "specifications"
+      ],
+      "raw_text": "BK2 / LEDブラケット / 備考:",
+      "review_required": false,
+      "recognition_notes": [
+        "品番・仕様値は画像内に確認できない。"
+      ]
+    },
+    {
+      "source_file": "sample05.pdf",
+      "page": 1,
+      "item_no": 12,
+      "image_path": "sample05/p001/items/item_012_enhanced.png",
+      "source_route": "embedded_text_plus_item_crops",
+      "selection_reason": "低画質/低コントラスト判定",
+      "drawing_label": "WBK4",
+      "identity": {
+        "management_symbol": "WBK4",
+        "manufacturer": null,
+        "product_name": null,
+        "category": "LEDエクステリアライト",
+        "full_model_number": [],
+        "hinban": null,
+        "kidou": null,
+        "public_facility_model": null,
+        "component_model_numbers": [],
+        "direct_notes": [],
+        "normalized_notes": []
+      },
+      "quantity": null,
+      "specifications": {
+        "brightness_lm": null,
+        "color_temperature_K": null,
+        "power_W": null,
+        "voltage_V": null,
+        "Ra": null,
+        "dimensions": null,
+        "cutout": null,
+        "mounting": null,
+        "waterproof": {
+          "raw": "防湿・防雨型"
+        },
+        "dimming": null,
+        "other": []
+      },
+      "uncertain_fields": [
+        "model_number",
+        "manufacturer",
+        "quantity",
+        "specifications"
+      ],
+      "raw_text": "WBK4 / LEDエクステリアライト / 防湿・防雨型",
+      "review_required": false,
+      "recognition_notes": [
+        "防湿・防雨型以外の仕様値は確認できない。"
+      ]
+    },
+    {
+      "source_file": "sample05.pdf",
+      "page": 1,
+      "item_no": 15,
+      "image_path": "sample05/p001/items/item_015_enhanced.png",
+      "source_route": "embedded_text_plus_item_crops",
+      "selection_reason": "末尾付近、低画質/低コントラスト判定",
+      "drawing_label": null,
+      "identity": {
+        "management_symbol": null,
+        "manufacturer": null,
+        "product_name": "通路誘導灯（C級 片面 天井付）",
+        "category": "通路誘導灯",
+        "full_model_number": [],
+        "hinban": null,
+        "kidou": null,
+        "public_facility_model": "ST1-FBF22-BL",
+        "component_model_numbers": [],
+        "direct_notes": [],
+        "normalized_notes": []
+      },
+      "quantity": null,
+      "specifications": {
+        "brightness_lm": null,
+        "color_temperature_K": null,
+        "power_W": null,
+        "voltage_V": null,
+        "Ra": null,
+        "dimensions": null,
+        "cutout": null,
+        "mounting": {
+          "raw": "片面 天井付"
+        },
+        "waterproof": null,
+        "dimming": null,
+        "other": [
+          "C級",
+          "公共施設型番: ST1-FBF22-BL"
+        ]
+      },
+      "uncertain_fields": [
+        "drawing_label",
+        "model_number",
+        "manufacturer",
+        "quantity"
+      ],
+      "raw_text": "通路誘導灯（C級 片面 天井付） / 公共施設型番 ST1-FBF22-BL",
+      "review_required": false,
+      "recognition_notes": [
+        "左側の管理記号欄はクロップ外または読取不能。"
+      ]
+    },
+    {
+      "source_file": "sample06.pdf",
+      "page": 1,
+      "item_no": 1,
+      "image_path": "sample06/p001/items/item_001_enhanced.png",
+      "source_route": "full_page_vision_review",
+      "selection_reason": "full_page_vision_review",
+      "drawing_label": "full_page_review",
+      "identity": {
+        "management_symbol": null,
+        "manufacturer": null,
+        "product_name": null,
+        "category": "照明器具一覧",
+        "full_model_number": [],
+        "hinban": null,
+        "kidou": null,
+        "public_facility_model": null,
+        "component_model_numbers": [],
+        "direct_notes": [],
+        "normalized_notes": []
+      },
+      "quantity": null,
+      "specifications": {
+        "brightness_lm": null,
+        "color_temperature_K": null,
+        "power_W": null,
+        "voltage_V": null,
+        "Ra": null,
+        "dimensions": null,
+        "cutout": null,
+        "mounting": null,
+        "waterproof": null,
+        "dimming": null,
+        "other": [
+          "A: FL40W×2",
+          "AA: FL40W×2 ★",
+          "B41: FL40W×1",
+          "BJ1: FL20W×1",
+          "C41: FL40W×1",
+          "C21: FL20W×1",
+          "C: FL40W×2(WP)",
+          "E: IL60W×?(WP)",
+          "F: IL40W×?",
+          "G: FDL27W×1",
+          "H: FDL13W×1",
+          "I: IL50W×1",
+          "J: FL20W×5",
+          "K: IL40W×1 ★",
+          "L: FDL18W×1(WP)",
+          "N: FL10W×1 ★",
+          "S: FPL18W×1(WP)"
+        ]
+      },
+      "uncertain_fields": [
+        "many_labels",
+        "E_count",
+        "F_count",
+        "MS_MW_MP_rows",
+        "bottom_notes"
+      ],
+      "raw_text": "照明器具 / A FL40W×2 / AA FL40W×2 ★ / B41 FL40W×1 / BJ1 FL20W×1 / C41 FL40W×1 / C21 FL20W×1 / C FL40W×2(WP) / E IL60W×?(WP) / F IL40W×? / G FDL27W×1 / H FDL13W×1 / I IL50W×1 / J FL20W×5 / K IL40W×1 ★ / L FDL18W×1(WP) / MS, MW, MP 付近にFL20W×1の記載 / N FL10W×1 ★ / S FPL18W×1(WP) / 注記: 原則として公共施設用照明器具、★は予備電源内蔵型の非常照明・誘導灯（読取低信頼）",
+      "review_required": true,
+      "recognition_notes": [
+        "full_page_vision_review対象。個別商品に分割されていないため、ページ上の読めた一覧情報のみ保持。"
+      ]
+    },
+    {
+      "source_file": "sample07.pdf",
+      "page": 1,
+      "item_no": 1,
+      "image_path": "sample07/p001/items/item_001_enhanced.png",
+      "source_route": "item_crop_vision",
+      "selection_reason": "先頭付近、低画質/低コントラスト判定",
+      "drawing_label": [
+        "A24",
+        "A53"
+      ],
+      "identity": {
+        "management_symbol": [
+          "A24",
+          "A53"
+        ],
+        "manufacturer": null,
+        "product_name": null,
+        "category": "LED直付",
+        "full_model_number": [
+          "直付XL955AFVKLA9",
+          "直付XL955EFVKLA9"
+        ],
+        "hinban": [
+          "XL955AFVK",
+          "XL955EFVK"
+        ],
+        "kidou": [
+          "LA9",
+          "LA9"
+        ],
+        "public_facility_model": null,
+        "component_model_numbers": [],
+        "direct_notes": [],
+        "normalized_notes": [
+          "画像上は「直付XL...」と表記。直付を取付方式、末尾LA9を起動方式候補として分割。"
+        ]
+      },
+      "quantity": null,
+      "specifications": {
+        "brightness_lm": null,
+        "color_temperature_K": null,
+        "power_W": {
+          "raw": [
+            "24W",
+            "52.1W"
+          ]
+        },
+        "voltage_V": null,
+        "Ra": null,
+        "dimensions": null,
+        "cutout": null,
+        "mounting": {
+          "raw": "直付"
+        },
+        "waterproof": null,
+        "dimming": null,
+        "other": []
+      },
+      "uncertain_fields": [
+        "quantity",
+        "full_model_number_prefix_handling"
+      ],
+      "raw_text": "A24 LED24W 直付 直付XL955AFVKLA9 / A53 LED52.1W 直付 直付XL955EFVKLA9",
+      "review_required": false,
+      "recognition_notes": [
+        "同一クロップ内に2行あり。"
+      ]
+    },
+    {
+      "source_file": "sample07.pdf",
+      "page": 1,
+      "item_no": 5,
+      "image_path": "sample07/p001/items/item_005_enhanced.png",
+      "source_route": "item_crop_vision",
+      "selection_reason": "中央付近、低画質/低コントラスト判定",
+      "drawing_label": null,
+      "identity": {
+        "management_symbol": null,
+        "manufacturer": null,
+        "product_name": null,
+        "category": null,
+        "full_model_number": [],
+        "hinban": null,
+        "kidou": null,
+        "public_facility_model": null,
+        "component_model_numbers": [],
+        "direct_notes": [],
+        "normalized_notes": []
+      },
+      "quantity": null,
+      "specifications": {
+        "brightness_lm": null,
+        "color_temperature_K": null,
+        "power_W": null,
+        "voltage_V": null,
+        "Ra": null,
+        "dimensions": null,
+        "cutout": null,
+        "mounting": null,
+        "waterproof": null,
+        "dimming": null,
+        "other": []
+      },
+      "uncertain_fields": [
+        "entire_item"
+      ],
+      "raw_text": "",
+      "review_required": true,
+      "recognition_notes": [
+        "罫線以外の読める商品情報が確認できない。空白または誤分割の可能性。"
+      ]
+    },
+    {
+      "source_file": "sample07.pdf",
+      "page": 1,
+      "item_no": 8,
+      "image_path": "sample07/p001/items/item_008_enhanced.png",
+      "source_route": "item_crop_vision",
+      "selection_reason": "低画質/低コントラスト判定",
+      "drawing_label": "C20B両",
+      "identity": {
+        "management_symbol": "C20B両",
+        "manufacturer": null,
+        "product_name": "通路誘導灯 B級BH形（20A形）両面型 電池内蔵 パイプ吊",
+        "category": "通路誘導灯",
+        "full_model_number": [
+          "FA40322LE1"
+        ],
+        "hinban": "FA40322",
+        "kidou": "LE1",
+        "public_facility_model": null,
+        "component_model_numbers": [],
+        "direct_notes": [],
+        "normalized_notes": []
+      },
+      "quantity": null,
+      "specifications": {
+        "brightness_lm": null,
+        "color_temperature_K": null,
+        "power_W": null,
+        "voltage_V": null,
+        "Ra": null,
+        "dimensions": null,
+        "cutout": null,
+        "mounting": {
+          "raw": "パイプ吊"
+        },
+        "waterproof": null,
+        "dimming": null,
+        "other": [
+          "B級BH形（20A形）",
+          "両面型",
+          "電池内蔵"
+        ]
+      },
+      "uncertain_fields": [
+        "quantity"
+      ],
+      "raw_text": "C20B両 / 通路誘導灯 B級BH形（20A形）両面型 電池内蔵 パイプ吊 / FA40322LE1",
+      "review_required": false,
+      "recognition_notes": [
+        "主要記載は読み取り可能。"
+      ]
+    },
+    {
+      "source_file": "sample07.pdf",
+      "page": 1,
+      "item_no": 9,
+      "image_path": "sample07/p001/items/item_009_enhanced.png",
+      "source_route": "item_crop_vision",
+      "selection_reason": "末尾付近、低画質/低コントラスト判定",
+      "drawing_label": null,
+      "identity": {
+        "management_symbol": null,
+        "manufacturer": null,
+        "product_name": "誘導灯信号装置",
+        "category": "誘導灯信号装置",
+        "full_model_number": [
+          "FF90023"
+        ],
+        "hinban": "FF90023",
+        "kidou": null,
+        "public_facility_model": null,
+        "component_model_numbers": [],
+        "direct_notes": [],
+        "normalized_notes": []
+      },
+      "quantity": null,
+      "specifications": {
+        "brightness_lm": null,
+        "color_temperature_K": null,
+        "power_W": null,
+        "voltage_V": null,
+        "Ra": null,
+        "dimensions": null,
+        "cutout": null,
+        "mounting": null,
+        "waterproof": null,
+        "dimming": null,
+        "other": []
+      },
+      "uncertain_fields": [
+        "drawing_label",
+        "quantity"
+      ],
+      "raw_text": "誘導灯信号装置 / FF90023",
+      "review_required": false,
+      "recognition_notes": [
+        "管理記号欄は空白または読取不能。"
+      ]
+    },
+    {
+      "source_file": "sample08.pdf",
+      "page": 1,
+      "item_no": 1,
+      "image_path": "sample08/p001/items/item_001.png",
+      "source_route": "item_crop_vision",
+      "selection_reason": "先頭付近",
+      "drawing_label": "T3",
+      "identity": {
+        "management_symbol": "T3",
+        "manufacturer": "atex",
+        "product_name": null,
+        "category": "テープライト ディフューザー",
+        "full_model_number": [
+          "TL10-090D35K"
+        ],
+        "hinban": "TL10-090D35K",
+        "kidou": null,
+        "public_facility_model": null,
+        "component_model_numbers": [],
+        "direct_notes": [],
+        "normalized_notes": []
+      },
+      "quantity": null,
+      "specifications": {
+        "brightness_lm": null,
+        "color_temperature_K": {
+          "raw": "3500K"
+        },
+        "power_W": {
+          "raw": "15W/m"
+        },
+        "voltage_V": {
+          "raw": "DC24V"
+        },
+        "Ra": null,
+        "dimensions": {
+          "raw": "W28 H17 L=2,880mm"
+        },
+        "cutout": null,
+        "mounting": null,
+        "waterproof": {
+          "raw": "屋内/屋外、耐水性・耐塵防湿形/IP67相当"
+        },
+        "dimming": null,
+        "other": [
+          "LEDピッチ:10mm",
+          "指向角2θ1/2:150°",
+          "筐体材質:光拡散材入シリコーンゴム",
+          "重量:300g/m",
+          "最大直列連結長:10.8m",
+          "電源リード線:シリコーン被覆線",
+          "使用温度:-10℃〜50℃"
+        ]
+      },
+      "uncertain_fields": [
+        "quantity"
+      ],
+      "raw_text": "T3 / テープライト ディフューザー / TL10-090D35K（L=2,880mm） / atex TL10-090D35K / 発光ダイオード(LED)3500K / LEDピッチ:10mm / W28 H17 L=2,880mm / 指向角2θ1/2 150° / 筐体材質 光拡散材入シリコーンゴム / 重量300g/m / 最大直列連結長10.8m / 電源リード線:シリコーン被覆線 / 入力電圧:DC24V / 消費電力:15W/m / 使用環境:屋内/屋外 / 使用温度:-10℃〜50℃ / 耐水性・耐塵防湿形/IP67(JIS C 0920)相当",
+      "review_required": false,
+      "recognition_notes": [
+        "仕様は比較的鮮明。"
+      ]
+    },
+    {
+      "source_file": "sample08.pdf",
+      "page": 1,
+      "item_no": 9,
+      "image_path": "sample08/p001/items/item_009.png",
+      "source_route": "item_crop_vision",
+      "selection_reason": "中央付近",
+      "drawing_label": "T11",
+      "identity": {
+        "management_symbol": "T11",
+        "manufacturer": "atex",
+        "product_name": null,
+        "category": "テープライトワイド・インドア",
+        "full_model_number": [
+          "TM08-090W30K"
+        ],
+        "hinban": "TM08-090W30K",
+        "kidou": null,
+        "public_facility_model": null,
+        "component_model_numbers": [],
+        "direct_notes": [],
+        "normalized_notes": []
+      },
+      "quantity": null,
+      "specifications": {
+        "brightness_lm": null,
+        "color_temperature_K": {
+          "raw": "3000K"
+        },
+        "power_W": {
+          "raw": "30W/m"
+        },
+        "voltage_V": {
+          "raw": "DC24V±1%"
+        },
+        "Ra": null,
+        "dimensions": {
+          "raw": "W28 H8 L7,380mm"
+        },
+        "cutout": null,
+        "mounting": null,
+        "waterproof": {
+          "raw": "屋内専用"
+        },
+        "dimming": {
+          "raw": "調光"
+        },
+        "other": [
+          "LEDピッチ:8.6mm",
+          "指向角2θ1/2:120°",
+          "筐体材質:シリコーン（透明）",
+          "重量:180g/m",
+          "最大直列連結長:4.87m",
+          "電源リード線:シリコーン被覆線",
+          "使用温度:-10℃〜40℃",
+          "最小曲半径:R60mm（光軸垂直方向）"
+        ]
+      },
+      "uncertain_fields": [
+        "quantity"
+      ],
+      "raw_text": "T11 / テープライトワイド・インドア / TM08-090W30K（L=7,380mm）調光 / atex TM08-090W30K / LED 3000K / LEDピッチ8.6mm / W28 H8 L7,380mm / 指向角2θ1/2 120° / 筐体材質 シリコーン（透明） / 重量180g/m / 最大直列連結長4.87m / 電源リード線 シリコーン被覆線 / 入力電圧 DC24V±1% / 消費電力30W/m / 使用環境 屋内専用 / 使用温度 -10℃〜40℃ / 最小曲半径 R60mm（光軸垂直方向）",
+      "review_required": false,
+      "recognition_notes": [
+        "仕様は比較的鮮明。"
+      ]
+    },
+    {
+      "source_file": "sample08.pdf",
+      "page": 1,
+      "item_no": 12,
+      "image_path": "sample08/p001/items/item_012_enhanced.png",
+      "source_route": "item_crop_vision",
+      "selection_reason": "低画質/低コントラスト判定",
+      "drawing_label": "J1",
+      "identity": {
+        "management_symbol": "J1",
+        "manufacturer": "DNL",
+        "product_name": null,
+        "category": "棚照明",
+        "full_model_number": [
+          "XC-LED976WW-MG"
+        ],
+        "hinban": "XC-LED976WW-MG",
+        "kidou": null,
+        "public_facility_model": null,
+        "component_model_numbers": [],
+        "direct_notes": [],
+        "normalized_notes": []
+      },
+      "quantity": null,
+      "specifications": {
+        "brightness_lm": null,
+        "color_temperature_K": {
+          "raw": "3500K"
+        },
+        "power_W": {
+          "raw": "14.0W"
+        },
+        "voltage_V": {
+          "raw": "AC100V"
+        },
+        "Ra": null,
+        "dimensions": {
+          "raw": "W8 H10 L=976mm"
+        },
+        "cutout": null,
+        "mounting": null,
+        "waterproof": {
+          "raw": "屋内"
+        },
+        "dimming": null,
+        "other": [
+          "重量:0.09kg",
+          "直流電源（別売）",
+          "取付マグネットXCMG（別売）",
+          "コネクター（別売）"
+        ]
+      },
+      "uncertain_fields": [
+        "quantity"
+      ],
+      "raw_text": "J1 / 棚照明 / XC-LED976WW-MG（L=976mm） / DNL XC-LED976WW-MG / 発光ダイオード(LED)3500K / モジュール入力電力14.0W / W8 H10 L=976mm / 重量0.09kg / 入力電圧 AC100V / 使用環境 屋内 / 直流電源（別売） / 取付マグネットXCMG（別売） / コネクター（別売）",
+      "review_required": false,
+      "recognition_notes": [
+        "仕様は比較的鮮明。"
+      ]
+    },
+    {
+      "source_file": "sample08.pdf",
+      "page": 1,
+      "item_no": 16,
+      "image_path": "sample08/p001/items/item_016_enhanced.png",
+      "source_route": "item_crop_vision",
+      "selection_reason": "末尾付近、低画質/低コントラスト判定",
+      "drawing_label": null,
+      "identity": {
+        "management_symbol": null,
+        "manufacturer": null,
+        "product_name": null,
+        "category": null,
+        "full_model_number": [],
+        "hinban": null,
+        "kidou": null,
+        "public_facility_model": null,
+        "component_model_numbers": [],
+        "direct_notes": [],
+        "normalized_notes": []
+      },
+      "quantity": null,
+      "specifications": {
+        "brightness_lm": null,
+        "color_temperature_K": null,
+        "power_W": null,
+        "voltage_V": null,
+        "Ra": null,
+        "dimensions": null,
+        "cutout": null,
+        "mounting": null,
+        "waterproof": null,
+        "dimming": null,
+        "other": []
+      },
+      "uncertain_fields": [
+        "entire_item"
+      ],
+      "raw_text": "",
+      "review_required": true,
+      "recognition_notes": [
+        "罫線以外の読める商品情報が確認できない。空白または誤分割の可能性。"
+      ]
+    },
+    {
+      "source_file": "sample09.pdf",
+      "page": 1,
+      "item_no": 1,
+      "image_path": "sample09/p001/items/item_001_enhanced.png",
+      "source_route": "item_crop_vision",
+      "selection_reason": "先頭付近、低画質/低コントラスト判定",
+      "drawing_label": "A1",
+      "identity": {
+        "management_symbol": "A1",
+        "manufacturer": null,
+        "product_name": null,
+        "category": "LEDダウンライト φ150",
+        "full_model_number": [],
+        "hinban": null,
+        "kidou": null,
+        "public_facility_model": "LRS1-17 LN",
+        "component_model_numbers": [],
+        "direct_notes": [],
+        "normalized_notes": []
+      },
+      "quantity": null,
+      "specifications": {
+        "brightness_lm": null,
+        "color_temperature_K": null,
+        "power_W": null,
+        "voltage_V": null,
+        "Ra": null,
+        "dimensions": null,
+        "cutout": {
+          "raw": "φ150"
+        },
+        "mounting": null,
+        "waterproof": null,
+        "dimming": null,
+        "other": [
+          "1994lm相当の記載あり"
+        ]
+      },
+      "uncertain_fields": [
+        "header_text",
+        "public_facility_model",
+        "manufacturer",
+        "model_number",
+        "quantity"
+      ],
+      "raw_text": "照明器具 表? / A1 LEDダウンライト（1994lm相当）φ150 / LRS1-17 LN",
+      "review_required": false,
+      "recognition_notes": [
+        "品番らしき LRS1-17 LN は公共施設型番の可能性あり。メーカー品番は確認できない。"
+      ]
+    },
+    {
+      "source_file": "sample09.pdf",
+      "page": 1,
+      "item_no": 13,
+      "image_path": "sample09/p001/items/item_013.png",
+      "source_route": "item_crop_vision",
+      "selection_reason": "中央付近",
+      "drawing_label": "M1",
+      "identity": {
+        "management_symbol": "M1",
+        "manufacturer": "三菱",
+        "product_name": null,
+        "category": "LED高天井用器具",
+        "full_model_number": [
+          "EL-GT15112N/W AHTN"
+        ],
+        "hinban": "EL-GT15112N/W",
+        "kidou": "AHTN",
+        "public_facility_model": null,
+        "component_model_numbers": [],
+        "direct_notes": [],
+        "normalized_notes": []
+      },
+      "quantity": null,
+      "specifications": {
+        "brightness_lm": {
+          "raw": "6000lm相当"
+        },
+        "color_temperature_K": null,
+        "power_W": null,
+        "voltage_V": null,
+        "Ra": null,
+        "dimensions": null,
+        "cutout": null,
+        "mounting": null,
+        "waterproof": null,
+        "dimming": {
+          "raw": "約5〜85%連続調光・初期照度補正型"
+        },
+        "other": [
+          "本体:アルミ",
+          "パネル:ポリカーボネート",
+          "アーム:亜鉛鋼板",
+          "落下防止ワイヤー付"
+        ]
+      },
+      "uncertain_fields": [
+        "some_spec_text",
+        "quantity"
+      ],
+      "raw_text": "M1 / LED高天井用器具（6000lm相当） / 本体:アルミ、パネル:ポリカーボネート / アーム:亜鉛鋼板 / 約5〜85%連続調光・初期照度補正型、落下防止ワイヤー付 / EL-GT15112N/W AHTN（三菱）",
+      "review_required": false,
+      "recognition_notes": [
+        "中段仕様はややぼけているが主要語は読取可能。"
+      ]
+    },
+    {
+      "source_file": "sample09.pdf",
+      "page": 1,
+      "item_no": 25,
+      "image_path": "sample09/p001/items/item_025_enhanced.png",
+      "source_route": "item_crop_vision",
+      "selection_reason": "末尾付近、低画質/低コントラスト判定",
+      "drawing_label": "Y1",
+      "identity": {
+        "management_symbol": "Y1",
+        "manufacturer": "パナソニック",
+        "product_name": null,
+        "category": "LEDミラーライト",
+        "full_model_number": [
+          "NNN13510 LE1"
+        ],
+        "hinban": "NNN13510",
+        "kidou": "LE1",
+        "public_facility_model": null,
+        "component_model_numbers": [],
+        "direct_notes": [],
+        "normalized_notes": []
+      },
+      "quantity": null,
+      "specifications": {
+        "brightness_lm": null,
+        "color_temperature_K": null,
+        "power_W": null,
+        "voltage_V": null,
+        "Ra": null,
+        "dimensions": null,
+        "cutout": null,
+        "mounting": null,
+        "waterproof": null,
+        "dimming": null,
+        "other": [
+          "カバー:プラスチック",
+          "サイドカバー:プラスチック"
+        ]
+      },
+      "uncertain_fields": [
+        "equivalent_class_text",
+        "quantity"
+      ],
+      "raw_text": "Y1 / LEDミラーライト（??形相当） / カバー:プラスチック / サイドカバー:プラスチック / NNN13510 LE1（パナソニック）",
+      "review_required": false,
+      "recognition_notes": [
+        "タイトル中の「相当」前の数値が潰れて読取不能。"
+      ]
+    },
+    {
+      "source_file": "sample09.pdf",
+      "page": 2,
+      "item_no": 20,
+      "image_path": "sample09/p002/items/item_020_enhanced.png",
+      "source_route": "item_crop_vision",
+      "selection_reason": "末尾付近、低画質/低コントラスト判定",
+      "drawing_label": "e",
+      "identity": {
+        "management_symbol": "e",
+        "manufacturer": "パナソニック",
+        "product_name": null,
+        "category": "LEDポーチライト",
+        "full_model_number": [
+          "LGWC80380LE1"
+        ],
+        "hinban": "LGWC80380",
+        "kidou": "LE1",
+        "public_facility_model": null,
+        "component_model_numbers": [],
+        "direct_notes": [],
+        "normalized_notes": []
+      },
+      "quantity": null,
+      "specifications": {
+        "brightness_lm": null,
+        "color_temperature_K": {
+          "raw": "3000K"
+        },
+        "power_W": null,
+        "voltage_V": {
+          "raw": "100V"
+        },
+        "Ra": {
+          "raw": "83"
+        },
+        "dimensions": null,
+        "cutout": null,
+        "mounting": null,
+        "waterproof": {
+          "raw": "防雨タイプ"
+        },
+        "dimming": null,
+        "other": [
+          "60形電球1灯器具相当",
+          "カバー:アクリル（乳白）",
+          "本体:プラスチック（ホワイト）"
+        ]
+      },
+      "uncertain_fields": [
+        "power_W",
+        "small_specs",
+        "quantity"
+      ],
+      "raw_text": "e / LEDポーチライト 60形電球1灯器具相当 / 電球色（3000K）, Ra83 / 消費電力6.?W, 電圧100V / 防雨タイプ / カバー:アクリル（乳白） / 本体:プラスチック（ホワイト） / パナソニック LGWC80380LE1",
+      "review_required": false,
+      "recognition_notes": [
+        "下部仕様の文字が非常に小さい。品番は読取可能。"
+      ]
+    },
+    {
+      "source_file": "sample10.pdf",
+      "page": 1,
+      "item_no": 1,
+      "image_path": "sample10/p001/items/item_001_enhanced.png",
+      "source_route": "item_crop_vision",
+      "selection_reason": "先頭付近、低画質/低コントラスト判定",
+      "drawing_label": "D1",
+      "identity": {
+        "management_symbol": "D1",
+        "manufacturer": "DNL",
+        "product_name": null,
+        "category": "棚下用ダウンライト",
+        "full_model_number": [
+          "D-EX123BC"
+        ],
+        "hinban": "D-EX123BC",
+        "kidou": null,
+        "public_facility_model": null,
+        "component_model_numbers": [],
+        "direct_notes": [],
+        "normalized_notes": []
+      },
+      "quantity": null,
+      "specifications": {
+        "brightness_lm": {
+          "raw": "350lm"
+        },
+        "color_temperature_K": {
+          "raw": "3500K"
+        },
+        "power_W": {
+          "raw": "5.0W"
+        },
+        "voltage_V": {
+          "raw": "AC100V"
+        },
+        "Ra": null,
+        "dimensions": null,
+        "cutout": {
+          "raw": "φ60"
+        },
+        "mounting": null,
+        "waterproof": null,
+        "dimming": {
+          "raw": "調光範囲20%〜100%、位相制御方式調光可"
+        },
+        "other": [
+          "70.0lm/W",
+          "1/2ビーム角25°"
+        ]
+      },
+      "uncertain_fields": [
+        "quantity"
+      ],
+      "raw_text": "D1 / 棚下用ダウンライト / D-EX123BC / DNL D-EX123BC / LED 3500K / 350lm / 5.0W / 70.0lm/W / 調光範囲20%〜100% / 位相制御方式調光可 / AC100V仕様 / 1/2ビーム角25° / 埋込穴φ60",
+      "review_required": false,
+      "recognition_notes": [
+        "仕様は読み取り可能。"
+      ]
+    },
+    {
+      "source_file": "sample10.pdf",
+      "page": 1,
+      "item_no": 11,
+      "image_path": "sample10/p001/items/item_011.png",
+      "source_route": "item_crop_vision",
+      "selection_reason": "中央付近",
+      "drawing_label": "U2",
+      "identity": {
+        "management_symbol": "U2",
+        "manufacturer": null,
+        "product_name": null,
+        "category": "ユニバーサルダウンライト",
+        "full_model_number": [
+          "ERD6075S+RX361N"
+        ],
+        "hinban": null,
+        "kidou": null,
+        "public_facility_model": null,
+        "component_model_numbers": [
+          "ERD6075S",
+          "RX361N"
+        ],
+        "direct_notes": [],
+        "normalized_notes": []
+      },
+      "quantity": null,
+      "specifications": {
+        "brightness_lm": null,
+        "color_temperature_K": {
+          "raw": "3500K"
+        },
+        "power_W": null,
+        "voltage_V": null,
+        "Ra": null,
+        "dimensions": null,
+        "cutout": {
+          "raw": "φ100"
+        },
+        "mounting": {
+          "raw": "ユニバーサルダウンライト"
+        },
+        "waterproof": null,
+        "dimming": {
+          "raw": "調光の記載あり"
+        },
+        "other": [
+          "D60 LEDモジュールの記載あり",
+          "枠/反射板/グレアカットコーン等の仕様あり（詳細低信頼）"
+        ]
+      },
+      "uncertain_fields": [
+        "manufacturer",
+        "brightness_lm",
+        "power_W",
+        "voltage_V",
+        "detailed_specs",
+        "quantity"
+      ],
+      "raw_text": "U2 / ユニバーサルダウンライト / ERD6075S+RX361N / カタログ画像内に ERD6075S、RX361N、3500K、調光、埋込穴φ100 などの記載",
+      "review_required": false,
+      "recognition_notes": [
+        "カタログ縮小画像のため細部は読取不能。構成品番と一部仕様のみ保持。"
+      ]
+    },
+    {
+      "source_file": "sample10.pdf",
+      "page": 1,
+      "item_no": 12,
+      "image_path": "sample10/p001/items/item_012.png",
+      "source_route": "item_crop_vision",
+      "selection_reason": "中央付近、低画質/低コントラスト判定",
+      "drawing_label": "WW1",
+      "identity": {
+        "management_symbol": "WW1",
+        "manufacturer": null,
+        "product_name": null,
+        "category": "ウォールウォッシャーダウンライト",
+        "full_model_number": [
+          "XD91804L+XE91222E"
+        ],
+        "hinban": null,
+        "kidou": null,
+        "public_facility_model": null,
+        "component_model_numbers": [
+          "XD91804L",
+          "XE91222E"
+        ],
+        "direct_notes": [],
+        "normalized_notes": []
+      },
+      "quantity": null,
+      "specifications": {
+        "brightness_lm": null,
+        "color_temperature_K": {
+          "raw": "3500K"
+        },
+        "power_W": {
+          "raw": "17.2W"
+        },
+        "voltage_V": null,
+        "Ra": null,
+        "dimensions": null,
+        "cutout": {
+          "raw": "φ125"
+        },
+        "mounting": null,
+        "waterproof": null,
+        "dimming": {
+          "raw": "ON-OFFタイプ表示あり"
+        },
+        "other": [
+          "Ra85の表示あり",
+          "固有エネルギー消費効率55.2lm/Wの記載あり",
+          "アルファネ30°/45°の記載あり"
+        ]
+      },
+      "uncertain_fields": [
+        "manufacturer",
+        "brightness_lm",
+        "voltage_V",
+        "many_catalog_details",
+        "quantity"
+      ],
+      "raw_text": "WW1 / ウォールウォッシャーダウンライト / XD91804L+XE91222E / アルファネ30°/45° / φ125 / 3500K / Ra85 / 消費電力17.2W / 固有エネルギー消費効率55.2lm/W / ON-OFFタイプ など",
+      "review_required": false,
+      "recognition_notes": [
+        "カタログ縮小画像。品番・主要仕様以外は低信頼。"
+      ]
+    },
+    {
+      "source_file": "sample10.pdf",
+      "page": 1,
+      "item_no": 21,
+      "image_path": "sample10/p001/items/item_021.png",
+      "source_route": "item_crop_vision",
+      "selection_reason": "末尾付近",
+      "drawing_label": "T2",
+      "identity": {
+        "management_symbol": "T2",
+        "manufacturer": "atex",
+        "product_name": null,
+        "category": "テープライト ディフューザー",
+        "full_model_number": [
+          "TL10-090D35K"
+        ],
+        "hinban": "TL10-090D35K",
+        "kidou": null,
+        "public_facility_model": null,
+        "component_model_numbers": [],
+        "direct_notes": [],
+        "normalized_notes": []
+      },
+      "quantity": null,
+      "specifications": {
+        "brightness_lm": null,
+        "color_temperature_K": {
+          "raw": "3500K"
+        },
+        "power_W": {
+          "raw": "15W/m"
+        },
+        "voltage_V": {
+          "raw": "DC24V"
+        },
+        "Ra": null,
+        "dimensions": {
+          "raw": "W28 H17 L=9,360mm"
+        },
+        "cutout": null,
+        "mounting": null,
+        "waterproof": {
+          "raw": "屋内/屋外、耐水性・耐塵防湿形/IP67相当"
+        },
+        "dimming": null,
+        "other": [
+          "LEDピッチ:10mm",
+          "指向角2θ1/2:150°",
+          "筐体材質:光拡散材入シリコーンゴム",
+          "重量:300g/m",
+          "最大直列連結長:10.8m",
+          "電源リード線:シリコーン被覆線",
+          "使用温度:-10℃〜50℃"
+        ]
+      },
+      "uncertain_fields": [
+        "quantity"
+      ],
+      "raw_text": "T2 / テープライト ディフューザー / TL10-090D35K（L=9,360mm） / atex TL10-090D35K / 発光ダイオード(LED)3500K / LEDピッチ:10mm / W28 H17 L=9,360mm / 指向角2θ1/2 150° / 筐体材質 光拡散材入シリコーンゴム / 重量300g/m / 最大直列連結長10.8m / 電源リード線:シリコーン被覆線 / 入力電圧:DC24V / 消費電力:15W/m / 使用環境:屋内/屋外 / 使用温度:-10℃〜50℃ / 耐水性・耐塵防湿形/IP67(JIS C 0920)相当",
+      "review_required": false,
+      "recognition_notes": [
+        "sample08 item001 と同系統。長さのみ異なる。"
+      ]
+    },
+    {
+      "source_file": "sample11.pdf",
+      "page": 1,
+      "item_no": 1,
+      "image_path": "sample11/p001/items/item_001_enhanced.png",
+      "source_route": "item_crop_vision",
+      "selection_reason": "先頭付近、低画質/低コントラスト判定",
+      "drawing_label": null,
+      "identity": {
+        "management_symbol": null,
+        "manufacturer": null,
+        "product_name": null,
+        "category": null,
+        "full_model_number": [],
+        "hinban": null,
+        "kidou": null,
+        "public_facility_model": null,
+        "component_model_numbers": [],
+        "direct_notes": [],
+        "normalized_notes": []
+      },
+      "quantity": null,
+      "specifications": {
+        "brightness_lm": null,
+        "color_temperature_K": null,
+        "power_W": null,
+        "voltage_V": null,
+        "Ra": null,
+        "dimensions": null,
+        "cutout": null,
+        "mounting": null,
+        "waterproof": null,
+        "dimming": null,
+        "other": []
+      },
+      "uncertain_fields": [
+        "entire_item"
+      ],
+      "raw_text": "",
+      "review_required": true,
+      "recognition_notes": [
+        "罫線/余白のみで商品情報は確認できない。空白または誤分割の可能性。"
+      ]
+    },
+    {
+      "source_file": "sample11.pdf",
+      "page": 1,
+      "item_no": 6,
+      "image_path": "sample11/p001/items/item_006_enhanced.png",
+      "source_route": "item_crop_vision",
+      "selection_reason": "低画質/低コントラスト判定",
+      "drawing_label": "E",
+      "identity": {
+        "management_symbol": "E",
+        "manufacturer": null,
+        "product_name": null,
+        "category": "LEDダウンシーリング 100形",
+        "full_model_number": [],
+        "hinban": null,
+        "kidou": null,
+        "public_facility_model": null,
+        "component_model_numbers": [],
+        "direct_notes": [],
+        "normalized_notes": []
+      },
+      "quantity": null,
+      "specifications": {
+        "brightness_lm": null,
+        "color_temperature_K": {
+          "raw": "2700K"
+        },
+        "power_W": null,
+        "voltage_V": {
+          "raw": "100V"
+        },
+        "Ra": {
+          "raw": "83"
+        },
+        "dimensions": null,
+        "cutout": null,
+        "mounting": {
+          "raw": "直付シーリング"
+        },
+        "waterproof": {
+          "raw": "防雨型の記載あり"
+        },
+        "dimming": null,
+        "other": [
+          "カバー:プラスチック（ホワイト）"
+        ]
+      },
+      "uncertain_fields": [
+        "model_number",
+        "power_W",
+        "waterproof_detail",
+        "quantity"
+      ],
+      "raw_text": "E / LEDダウンシーリング 100形 / 電球色（2700K）, Ra83 / 消費電力?.?W, 電圧100V / カバー:プラスチック（ホワイト） / 防雨型または防湿・防雨型の記載あり",
+      "review_required": false,
+      "recognition_notes": [
+        "品番は画像内に確認できない。下部仕様の数値が潰れている。"
+      ]
+    },
+    {
+      "source_file": "sample11.pdf",
+      "page": 1,
+      "item_no": 11,
+      "image_path": "sample11/p001/items/item_011_enhanced.png",
+      "source_route": "item_crop_vision",
+      "selection_reason": "中央付近、低画質/低コントラスト判定",
+      "drawing_label": "J",
+      "identity": {
+        "management_symbol": "J",
+        "manufacturer": null,
+        "product_name": null,
+        "category": "LEDスポットライト 80形",
+        "full_model_number": [],
+        "hinban": null,
+        "kidou": null,
+        "public_facility_model": null,
+        "component_model_numbers": [],
+        "direct_notes": [],
+        "normalized_notes": []
+      },
+      "quantity": null,
+      "specifications": {
+        "brightness_lm": null,
+        "color_temperature_K": {
+          "raw": "2700K"
+        },
+        "power_W": null,
+        "voltage_V": {
+          "raw": "100V"
+        },
+        "Ra": {
+          "raw": "83"
+        },
+        "dimensions": null,
+        "cutout": null,
+        "mounting": {
+          "raw": "スポットライト"
+        },
+        "waterproof": null,
+        "dimming": null,
+        "other": [
+          "アルミダイカスト（オフブラック）",
+          "可動範囲または首振り角度の記載あり",
+          "回転方向360度の記載あり"
+        ]
+      },
+      "uncertain_fields": [
+        "model_number",
+        "power_W",
+        "material_details",
+        "mounting_angle",
+        "quantity"
+      ],
+      "raw_text": "J / LEDスポットライト 80形 / 電球色（2700K）, Ra83 / 消費電力?.?W, 電圧100V / アルミダイカスト（オフブラック） / 可動範囲または首振り角度の記載 / 回転方向360度",
+      "review_required": false,
+      "recognition_notes": [
+        "品番は画像内に確認できない。下部仕様は小さく低信頼。"
+      ]
+    },
+    {
+      "source_file": "sample11.pdf",
+      "page": 1,
+      "item_no": 20,
+      "image_path": "sample11/p001/items/item_020.png",
+      "source_route": "item_crop_vision",
+      "selection_reason": "末尾付近",
+      "drawing_label": "a9WP",
+      "identity": {
+        "management_symbol": "a9WP",
+        "manufacturer": null,
+        "product_name": null,
+        "category": "非常灯",
+        "full_model_number": [
+          "D-LALH-98",
+          "LAE-0120"
+        ],
+        "hinban": null,
+        "kidou": null,
+        "public_facility_model": null,
+        "component_model_numbers": [
+          "D-LALH-98",
+          "LAE-0120"
+        ],
+        "direct_notes": [],
+        "normalized_notes": []
+      },
+      "quantity": null,
+      "specifications": {
+        "brightness_lm": null,
+        "color_temperature_K": null,
+        "power_W": {
+          "raw": "0.8W"
+        },
+        "voltage_V": null,
+        "Ra": null,
+        "dimensions": null,
+        "cutout": null,
+        "mounting": null,
+        "waterproof": {
+          "raw": "防雨型"
+        },
+        "dimming": null,
+        "other": [
+          "LED0.8W 非常灯",
+          "バッテリー内蔵型",
+          "器具取付高さ別の配置表あり"
+        ]
+      },
+      "uncertain_fields": [
+        "manufacturer",
+        "quantity",
+        "table_values_all"
+      ],
+      "raw_text": "a9WP / LED0.8W 非常灯 / 防雨型 / バッテリー内蔵型 / D-LALH-98 / LAE-0120 / 器具取付高さ 2.1m,2.4m,2.6m,3.0m,4.0m の配置表あり（単体配置A1、直線配置A2、四角配置A4）",
+      "review_required": false,
+      "recognition_notes": [
+        "品番2件と基本仕様は読取可能。下部表は存在のみ記録。"
+      ]
+    },
+    {
+      "source_file": "sample12.pdf",
+      "page": 1,
+      "item_no": 1,
+      "image_path": "sample12/p001/items/item_001.png",
+      "source_route": "item_crop_vision",
+      "selection_reason": "先頭付近",
+      "drawing_label": "D01",
+      "identity": {
+        "management_symbol": "D01",
+        "manufacturer": null,
+        "product_name": null,
+        "category": "アジャスタブルダウンライト",
+        "full_model_number": [
+          "YSDL-6300B 相当品"
+        ],
+        "hinban": "YSDL-6300B",
+        "kidou": null,
+        "public_facility_model": null,
+        "component_model_numbers": [],
+        "direct_notes": [],
+        "normalized_notes": []
+      },
+      "quantity": null,
+      "specifications": {
+        "brightness_lm": {
+          "raw": "211?lm"
+        },
+        "color_temperature_K": {
+          "raw": "3000K"
+        },
+        "power_W": {
+          "raw": "9.5W"
+        },
+        "voltage_V": null,
+        "Ra": {
+          "raw": "95"
+        },
+        "dimensions": {
+          "raw": "φ70, 高さ104の寸法記載"
+        },
+        "cutout": {
+          "raw": "φ60? または φ70? 図中寸法"
+        },
+        "mounting": null,
+        "waterproof": null,
+        "dimming": {
+          "raw": "PWM調光"
+        },
+        "other": [
+          "本体/枠:アルミダイキャスト仕上と思われる記載",
+          "サイン・WC等の用途注記あり"
+        ]
+      },
+      "uncertain_fields": [
+        "brightness_lm",
+        "cutout",
+        "material_specs",
+        "use_location_text",
+        "model_equivalence_text"
+      ],
+      "raw_text": "D01 / アジャスタブルダウンライト / LED 9.5W 211?lm 3000K_Ra95 PWM調光 / 図中 φ70, 104, φ60? の寸法 / YSDL-6300B 相当品",
+      "review_required": false,
+      "recognition_notes": [
+        "画像が粗く、数値と材質は一部不明。品番は YSDL-6300B と読める。"
+      ]
+    },
+    {
+      "source_file": "sample12.pdf",
+      "page": 1,
+      "item_no": 13,
+      "image_path": "sample12/p001/items/item_013.png",
+      "source_route": "item_crop_vision",
+      "selection_reason": "中央付近",
+      "drawing_label": "D09",
+      "identity": {
+        "management_symbol": "D09",
+        "manufacturer": null,
+        "product_name": "直付角型ダウンライト 半角型/直付加工",
+        "category": "直付角型ダウンライト",
+        "full_model_number": [
+          "YYJ5681BN 相当品"
+        ],
+        "hinban": "YYJ5681BN",
+        "kidou": null,
+        "public_facility_model": null,
+        "component_model_numbers": [],
+        "direct_notes": [],
+        "normalized_notes": []
+      },
+      "quantity": null,
+      "specifications": {
+        "brightness_lm": {
+          "raw": "298?lm"
+        },
+        "color_temperature_K": {
+          "raw": "3000K"
+        },
+        "power_W": {
+          "raw": "32.0W"
+        },
+        "voltage_V": null,
+        "Ra": {
+          "raw": "80"
+        },
+        "dimensions": {
+          "raw": "□140, φ200? の寸法記載"
+        },
+        "cutout": null,
+        "mounting": null,
+        "waterproof": null,
+        "dimming": {
+          "raw": "PWM調光"
+        },
+        "other": [
+          "1Fロビー・ラウンジ等の用途注記",
+          "本体:アルミダイキャスト仕上",
+          "反射板:アルミ?ホワイト仕上げと思われる記載"
+        ]
+      },
+      "uncertain_fields": [
+        "brightness_lm",
+        "power_supply_note",
+        "use_location_text",
+        "material_specs",
+        "dimensions"
+      ],
+      "raw_text": "D09 / 直付角型ダウンライト 半角型/直付加工 ※電源別置? / 1Fロビー・ラウンジ、6F?ホール等 / LED 32.0W 298?lm 3000K_Ra80 PWM調光 / 図中 □140, φ200? の寸法 / YYJ5681BN 相当品",
+      "review_required": false,
+      "recognition_notes": [
+        "粗画像。読めない文字は ? を残した。"
+      ]
+    },
+    {
+      "source_file": "sample12.pdf",
+      "page": 2,
+      "item_no": 16,
+      "image_path": "sample12/p002/items/item_016.png",
+      "source_route": "item_crop_vision",
+      "selection_reason": "中央付近",
+      "drawing_label": "F06",
+      "identity": {
+        "management_symbol": "F06",
+        "manufacturer": null,
+        "product_name": null,
+        "category": "円型リングライト（上下配光）",
+        "full_model_number": [
+          "181F498B/ZIRKOL1000CIRCLE 相当品"
+        ],
+        "hinban": null,
+        "kidou": null,
+        "public_facility_model": null,
+        "component_model_numbers": [
+          "181F498B",
+          "ZIRKOL1000CIRCLE"
+        ],
+        "direct_notes": [],
+        "normalized_notes": []
+      },
+      "quantity": null,
+      "specifications": {
+        "brightness_lm": null,
+        "color_temperature_K": {
+          "raw": "4000K"
+        },
+        "power_W": null,
+        "voltage_V": null,
+        "Ra": {
+          "raw": "80"
+        },
+        "dimensions": {
+          "raw": "200, 100, 50, 26 の寸法記載"
+        },
+        "cutout": null,
+        "mounting": null,
+        "waterproof": null,
+        "dimming": {
+          "raw": "PWM調光"
+        },
+        "other": [
+          "※電源別置",
+          "2Fショールーム・4/5F会議室の用途注記",
+          "a: LED207W?+1",
+          "b: LED207W",
+          "c: LED90W",
+          "本体/リム:アルミキャスト塗装仕上と思われる記載"
+        ]
+      },
+      "uncertain_fields": [
+        "power_W_details",
+        "component_code_spacing",
+        "material_specs",
+        "use_location_text"
+      ],
+      "raw_text": "F06 / 円型リングライト（上下配光） ※電源別置 / 2Fショールーム・4/5F会議室 / a:LED207W?+1 4000K_Ra80 PWM調光 / b:LED207W / c:LED90W / 図中 200,100,50,26 の寸法 / 181F498B/ZIRKOL1000CIRCLE 相当品",
+      "review_required": false,
+      "recognition_notes": [
+        "品番・仕様ともに一部が潰れているため review 推奨。"
+      ]
+    },
+    {
+      "source_file": "sample12.pdf",
+      "page": 3,
+      "item_no": 24,
+      "image_path": "sample12/p003/items/item_024.png",
+      "source_route": "item_crop_vision",
+      "selection_reason": "末尾付近",
+      "drawing_label": "KS3a",
+      "identity": {
+        "management_symbol": "KS3a",
+        "manufacturer": null,
+        "product_name": null,
+        "category": "iDシリーズ直付型40形 反射笠付型",
+        "full_model_number": [
+          "XLX430KENPLE9 相当品"
+        ],
+        "hinban": "XLX430KENP",
+        "kidou": "LE9",
+        "public_facility_model": null,
+        "component_model_numbers": [],
+        "direct_notes": [],
+        "normalized_notes": [
+          "画像上は XLX430KENPLE9 相当品。末尾LE9を起動方式候補として分割。"
+        ]
+      },
+      "quantity": null,
+      "specifications": {
+        "brightness_lm": {
+          "raw": "3200lmタイプ"
+        },
+        "color_temperature_K": {
+          "raw": "5000K"
+        },
+        "power_W": {
+          "raw": "20.8W"
+        },
+        "voltage_V": {
+          "raw": "100〜242V"
+        },
+        "Ra": {
+          "raw": "83"
+        },
+        "dimensions": null,
+        "cutout": null,
+        "mounting": {
+          "raw": "直付型/反射笠付型"
+        },
+        "waterproof": null,
+        "dimming": null,
+        "other": [
+          "一般タイプ",
+          "電源ユニット内蔵",
+          "本体:亜鉛鋼板",
+          "ライトバー:ポリカーボネート（乳白）",
+          "光源寿命:40000時間（光束維持率約85%）"
+        ]
+      },
+      "uncertain_fields": [
+        "some_lower_text",
+        "quantity"
+      ],
+      "raw_text": "KS3a / iDシリーズ直付型40形 反射笠付型 / 一般タイプ 3200lmタイプ / 消費電力20.8W / 電源ユニット内蔵 / 電圧100〜242V / 本体:亜鉛鋼板 / ライトバー:ポリカーボネート（乳白） / 光源寿命40000時間（光束維持率約85%） / 昼白色(5000K), Ra83 / XLX430KENPLE9 相当品",
+      "review_required": false,
+      "recognition_notes": [
+        "下部の一部文字は潰れているが主要仕様・品番は読取可能。"
+      ]
+    },
+    {
+      "source_file": "sample13.pdf",
+      "page": 1,
+      "item_no": 1,
+      "image_path": "sample13/p001/items/item_001_enhanced.png",
+      "source_route": "item_crop_vision",
+      "selection_reason": "先頭付近、低画質/低コントラスト判定",
+      "drawing_label": "DL1",
+      "identity": {
+        "management_symbol": "DL1",
+        "manufacturer": "パナソニック",
+        "product_name": null,
+        "category": "LEDダウンライト",
+        "full_model_number": [
+          "NTR759?LJ9 相当品"
+        ],
+        "hinban": "NTR759?",
+        "kidou": "LJ9",
+        "public_facility_model": null,
+        "component_model_numbers": [],
+        "direct_notes": [],
+        "normalized_notes": [
+          "品番の一部が潰れているため ? を残す。"
+        ]
+      },
+      "quantity": null,
+      "specifications": {
+        "brightness_lm": {
+          "raw": "775?lm"
+        },
+        "color_temperature_K": {
+          "raw": "3000K"
+        },
+        "power_W": {
+          "raw": "57.9W"
+        },
+        "voltage_V": {
+          "raw": "100〜242V"
+        },
+        "Ra": null,
+        "dimensions": null,
+        "cutout": {
+          "raw": "φ150"
+        },
+        "mounting": {
+          "raw": "埋込ダウンライト"
+        },
+        "waterproof": null,
+        "dimming": null,
+        "other": [
+          "電源ユニット内蔵",
+          "断熱材で上部を覆わない注意書き",
+          "枠:鋼板（ホワイトつや消し仕上）"
+        ]
+      },
+      "uncertain_fields": [
+        "product_class",
+        "brightness_lm",
+        "full_model_number_middle",
+        "location_text"
+      ],
+      "raw_text": "DL1 / LEDダウンライト 75?形 / 風除室 / 消費電力57.9W / 光束775?lm / (100〜242V) / 3000K(電球色) / 電源ユニット内蔵 / ※ダウンライトの上部を断熱材で覆わないこと / 枠:鋼板（ホワイトつや消し仕上） / 埋込穴φ150 / パナソニック NTR759?LJ9 相当品",
+      "review_required": false,
+      "recognition_notes": [
+        "品番中央と光束の桁が潰れている。推測補完せず ? を残した。"
+      ]
+    },
+    {
+      "source_file": "sample13.pdf",
+      "page": 1,
+      "item_no": 14,
+      "image_path": "sample13/p001/items/item_014.png",
+      "source_route": "item_crop_vision",
+      "selection_reason": "中央付近",
+      "drawing_label": "N42",
+      "identity": {
+        "management_symbol": "N42",
+        "manufacturer": "遠藤照明",
+        "product_name": "LED8.6W×1 WC表示灯 片面パネル壁付",
+        "category": "WC表示灯",
+        "full_model_number": [
+          "ERB6031SA 相当品",
+          "RS-905S-NTR 相当品"
+        ],
+        "hinban": null,
+        "kidou": null,
+        "public_facility_model": null,
+        "component_model_numbers": [
+          "ERB6031SA",
+          "RS-905S-NTR"
+        ],
+        "direct_notes": [],
+        "normalized_notes": []
+      },
+      "quantity": null,
+      "specifications": {
+        "brightness_lm": null,
+        "color_temperature_K": {
+          "raw": "4000K"
+        },
+        "power_W": {
+          "raw": "8.6W"
+        },
+        "voltage_V": {
+          "raw": "100V"
+        },
+        "Ra": null,
+        "dimensions": null,
+        "cutout": null,
+        "mounting": {
+          "raw": "片面パネル壁付"
+        },
+        "waterproof": null,
+        "dimming": null,
+        "other": [
+          "WC通路前",
+          "ピクトサインは電気工事として建築へ作成依頼の注記",
+          "枠・下面ライン等にPANTONE/DIC系色指定あり",
+          "男子青/女子赤の色指定あり"
+        ]
+      },
+      "uncertain_fields": [
+        "color_code_strings",
+        "component_role_details"
+      ],
+      "raw_text": "N42 / LED8.6W×1 WC表示灯 片面パネル壁付 / WC通路前 / 消費電力8.6W / (100V) / 4000K(白色) / ※ピクトサインは電気工事とし建築へ作成を依頼する（カッティングシール貼） / 枠・下面ライン: PANTONE11?近似色（DIC9004ブラック?） / 男子青: JS-6618?サファイアブルー / 女子赤: JS-6203?シェリー? / 遠藤照明 ERB6031SA（灯具）相当品 / 遠藤照明 RS-905S-NTR 相当品",
+      "review_required": false,
+      "recognition_notes": [
+        "色指定は小さく低信頼。主要品番2件と電力・電圧・色温度は読取可能。"
+      ]
+    },
+    {
+      "source_file": "sample13.pdf",
+      "page": 2,
+      "item_no": 10,
+      "image_path": "sample13/p002/items/item_010.png",
+      "source_route": "item_crop_vision",
+      "selection_reason": "中央付近",
+      "drawing_label": "e321",
+      "identity": {
+        "management_symbol": "e321",
+        "manufacturer": "パナソニック",
+        "product_name": null,
+        "category": "LEDベースライト iDシリーズ 非常灯",
+        "full_model_number": [
+          "XLG431AGN LE9"
+        ],
+        "hinban": "XLG431AGN",
+        "kidou": "LE9",
+        "public_facility_model": null,
+        "component_model_numbers": [],
+        "direct_notes": [],
+        "normalized_notes": [
+          "hinban/kidou は画像中の空白区切りから分割。"
+        ]
+      },
+      "quantity": null,
+      "specifications": {
+        "brightness_lm": {
+          "raw": "3200lm"
+        },
+        "color_temperature_K": null,
+        "power_W": null,
+        "voltage_V": {
+          "raw": "100〜242V"
+        },
+        "Ra": null,
+        "dimensions": null,
+        "cutout": null,
+        "mounting": null,
+        "waterproof": null,
+        "dimming": null,
+        "other": [
+          "授乳室",
+          "蓄電池:ニッケル水素電池",
+          "自己点検スイッチ付、充電モニタ（緑）付",
+          "非常用LEDレンズ:ガラス",
+          "常用ライトバー:ポリカーボネート（乳白）",
+          "光源寿命:40000時間",
+          "非常灯評定番号: LALE-018",
+          "JIS C 8154:2015",
+          "HF32形高出力×1灯器具相当",
+          "保守率:0.93",
+          "K0151387"
+        ]
+      },
+      "uncertain_fields": [
+        "some_emergency_lighting_sentence",
+        "table_values"
+      ],
+      "raw_text": "e321 / LEDベースライト iDシリーズ 非常灯 / 授乳室 / 蓄電池:ニッケル水素電池 / パナソニック XLG431AGN LE9 / 自己点検スイッチ付、充電モニタ（緑）付 / 非常用LEDレンズ:ガラス、常用ライトバー:ポリカーボネート（乳白） / 光源寿命（階段灯専用ライトバー）40000時間、点検スイッチ付 / 電圧100〜242V対応、3200lm（HF32形高出力×1灯器具相当） / 常時・非常時の点灯説明あり / 非常灯評定番号:LALE-018 / JIS C 8154:2015 / 保守率0.93 / K0151387 / 配置表あり",
+      "review_required": false,
+      "recognition_notes": [
+        "本文は概ね読取可能。ただし下部配置表は詳細値を抽出していない。"
+      ]
+    },
+    {
+      "source_file": "sample13.pdf",
+      "page": 2,
+      "item_no": 18,
+      "image_path": "sample13/p002/items/item_018_enhanced.png",
+      "source_route": "item_crop_vision",
+      "selection_reason": "末尾付近、低画質/低コントラスト判定",
+      "drawing_label": null,
+      "identity": {
+        "management_symbol": null,
+        "manufacturer": null,
+        "product_name": null,
+        "category": null,
+        "full_model_number": [],
+        "hinban": null,
+        "kidou": null,
+        "public_facility_model": null,
+        "component_model_numbers": [],
+        "direct_notes": [],
+        "normalized_notes": []
+      },
+      "quantity": null,
+      "specifications": {
+        "brightness_lm": null,
+        "color_temperature_K": null,
+        "power_W": null,
+        "voltage_V": null,
+        "Ra": null,
+        "dimensions": null,
+        "cutout": null,
+        "mounting": null,
+        "waterproof": null,
+        "dimming": null,
+        "other": []
+      },
+      "uncertain_fields": [
+        "entire_item"
+      ],
+      "raw_text": "受付 / 11 09（スタンプまたは図面外文字の一部）",
+      "review_required": true,
+      "recognition_notes": [
+        "商品情報ではなくスタンプ/図面外文字の一部に見える。商品候補検索には不適。"
+      ]
+    },
+    {
+      "source_file": "sample13.pdf",
+      "page": 3,
+      "item_no": null,
+      "image_path": "sample13/p003/sample13_p003_220dpi.png",
+      "source_route": "blank_or_unusable",
+      "selection_reason": "blank_or_unusable page included to check unreadable-page handling",
+      "drawing_label": null,
+      "identity": {
+        "management_symbol": null,
+        "manufacturer": null,
+        "product_name": null,
+        "category": null,
+        "full_model_number": [],
+        "hinban": null,
+        "kidou": null,
+        "public_facility_model": null,
+        "component_model_numbers": [],
+        "direct_notes": [],
+        "normalized_notes": []
+      },
+      "quantity": null,
+      "specifications": {
+        "brightness_lm": null,
+        "color_temperature_K": null,
+        "power_W": null,
+        "voltage_V": null,
+        "Ra": null,
+        "dimensions": null,
+        "cutout": null,
+        "mounting": null,
+        "waterproof": null,
+        "dimming": null,
+        "other": []
+      },
+      "uncertain_fields": [
+        "entire_page"
+      ],
+      "raw_text": "",
+      "review_required": true,
+      "recognition_notes": [
+        "blank_or_unusableページ。黒塗り/空白で商品情報は確認できない。"
+      ]
+    }
+  ]
+}

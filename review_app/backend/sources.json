@@ -1,4 +1,14 @@
 {
-  "note": "クローン直後は姿見図PDFを画面から投入する。Gitに含まれない既存解析データは sources.local.json でPCごとに登録する。",
-  "sources": []
+  "note": "クローン直後から確認できる画像解析済みサンプル。追加のローカルデータは sources.local.json でPCごとに登録する。",
+  "sources": [
+    {
+      "key": "bundled_image_analysis",
+      "label": "同梱の画像解析済みサンプル（50件）",
+      "format": "gpt_direct_image_extraction",
+      "analysis_json": "demo/image_analysis/gpt_extraction_results.json",
+      "manifest": "demo/image_analysis/manifest.json",
+      "image_root": "demo/image_analysis/images",
+      "note": "APIを呼ばずに、画像解析結果・候補検索・確認画面を試せます。"
+    }
+  ]
 }
