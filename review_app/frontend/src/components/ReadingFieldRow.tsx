@@ -104,7 +104,10 @@ export default function ReadingFieldRow({
         >
           {view.displayValue}
         </Typography>
-        <Chip label={view.statusLabel} color={style.chip} variant={style.variant} size="small" />
+        {/* 正常に読めている値は静かに出す。問題があるときだけ状態を目立たせる。 */}
+        {view.status !== 'read' && view.status !== 'not_stated' && (
+          <Chip label={view.statusLabel} color={style.chip} variant={style.variant} size="small" />
+        )}
         <Box sx={{ flex: 1 }} />
         <Button size="small" onClick={() => setEditing((value) => !value)}>
           {editing ? '閉じる' : '修正'}

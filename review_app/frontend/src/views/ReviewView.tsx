@@ -72,11 +72,14 @@ function createDraft(detail: ItemDetail): Draft {
 
 interface Props {
   project: ProjectInfo
+  /** 結果一覧から指定された器具。指定されたらその器具を開く。 */
+  focusItemId?: string | null
+  onFocusHandled?: () => void
   onProjectChanged: () => void
   onError: (message: string) => void
 }
 
-export default function ReviewView({ project, onProjectChanged, onError }: Props) {
+export default function ReviewView({ project, focusItemId, onFocusHandled, onProjectChanged, onError }: Props) {
   const [rows, setRows] = useState<ItemRow[]>([])
   const [filteredIds, setFilteredIds] = useState<string[]>([])
   const [selectedId, setSelectedId] = useState<string | null>(null)
@@ -137,6 +140,12 @@ export default function ReviewView({ project, onProjectChanged, onError }: Props
   useEffect(() => {
     if (selectedId && !details[selectedId]) void loadDetail(selectedId)
   }, [selectedId, details, loadDetail])
+
+  useEffect(() => {
+    if (!focusItemId) return
+    setSelectedId(focusItemId)
+    onFocusHandled?.()
+  }, [focusItemId, onFocusHandled])
 
   const detail = selectedId ? details[selectedId] : undefined
   const draft = selectedId ? drafts[selectedId] : undefined
@@ -294,18 +303,18 @@ export default function ReviewView({ project, onProjectChanged, onError }: Props
           display: 'flex',
           flexDirection: 'column',
           bgcolor: 'background.paper',
+          // 中央カラムの縦スクロールはここ1本だけ。内側の要素には overflow を持たせない。
+          // xs では画面全体が縦に積まれて外側がスクロールするので、ここは切らない。
+          overflow: { xs: 'visible', lg: 'auto' },
         }}
       >
         {loadingItem && <LinearProgress />}
         {detail && draft ? (
           <>
-            {/* 上段：左上に原図（中央カラムの約4割）、その右に重要な読み取り項目。
-                画面が低いときは下段（その他の仕様）の高さを優先して、ここが縮む。 */}
+            {/* 上段：左上に原図（中央カラムの約4割）、その右に重要な読み取り項目。 */}
             <Box
               sx={{
-                flex: '0 1 auto',
-                minHeight: { lg: 200 },
-                overflow: 'auto',
+                flex: '0 0 auto',
                 display: 'grid',
                 gridTemplateColumns: { xs: '1fr', md: 'minmax(260px, 4fr) 6fr' },
                 // 画面が低いノートPCでは原図の取り分を 4:6 から 35:65 に減らす。
@@ -331,8 +340,9 @@ export default function ReviewView({ project, onProjectChanged, onError }: Props
               </Box>
             </Box>
             {/* 下段：中央カラム全幅で、その他の仕様と詳細。
-                最低250pxを確保し、足りない分はこの中だけをスクロールさせる。 */}
-            <Box sx={{ flex: '1 1 auto', minHeight: 250, overflow: 'auto' }}>
+                内容なりに縦へ伸び、収まらない分は中央カラムのスクロールで見る。 */}
+            {/* 余白があるときは伸ばすが、内容が多いときは縮めない（縮むとはみ出すため）。 */}
+            <Box sx={{ flex: '1 0 auto' }}>
               <ExtractionPane
                 detail={detail}
                 draft={draft}

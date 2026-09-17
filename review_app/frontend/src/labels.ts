@@ -2,7 +2,7 @@ import type { EntryDecisionName, ItemStatus, QuantityStatus, RelationStatus } fr
 
 export const STATUS_LABELS: Record<ItemStatus, string> = {
   unconfirmed: '未確認',
-  on_hold: '保留',
+  on_hold: 'あとで確認',
   confirmed: '確認済み',
   needs_recheck: '再確認が必要',
 }
@@ -22,16 +22,17 @@ export const QUANTITY_LABELS: Record<QuantityStatus, string> = {
 
 export const RELATION_LABELS: Record<RelationStatus, string> = {
   single: '品番1件',
-  components_of_one_fixture: '1器具の構成品',
-  multiple_fixtures: '分割の確認が必要',
-  unresolved: '品番同士の関係確認が必要',
+  components_of_one_fixture: '1つの器具の部品',
+  multiple_fixtures: '複数の器具が混ざっている可能性があります',
+  unresolved: '複数の品番が読み取られています',
 }
 
+/** 状態の意味と、担当者が次に何をすればよいかを1文で書く。 */
 export const RELATION_HELP: Record<RelationStatus, string> = {
-  single: '品番は1件。',
-  components_of_one_fixture: '本体・ランプ・電源など、1つの器具を構成する品番として扱う。構成品ごとに候補と採用結果を持つ。',
-  multiple_fixtures: '複数の器具が1件にまとまっている可能性がある。分割の確認が必要なため確認済みにはできない。',
-  unresolved: '複数の品番の関係が未確定。構成品か別器具かを選ぶまで確認済みにはできない。',
+  single: '品番は1件です。',
+  components_of_one_fixture: '本体・ランプ・電源など、1つの器具を組み立てる部品として扱います。部品ごとに商品を選べます。',
+  multiple_fixtures: '1つの枠に複数の器具が入っている可能性があります。分けて確認してください（このままでは確認済みにできません）。',
+  unresolved: '同じ器具の部品か、別々の器具かを確認してください（選ぶまで確認済みにできません）。',
 }
 
 export const DECISION_LABELS: Record<EntryDecisionName, string> = {
@@ -48,23 +49,27 @@ export const ORIGIN_LABELS: Record<string, string> = {
   unknown: '不明',
 }
 
+/**
+ * 取り込み時の注意点。システム内部の言い方ではなく、
+ * 「何が起きているか」と「次に何をすればよいか」が分かる文にする。
+ */
 export const WARNING_LABELS: Record<string, string> = {
-  analysis_root_shape: '解析JSONのルート形式',
-  analysis_item_not_object: '形式不整合の要素',
-  management_symbol_multiple: '管理記号が複数',
-  composite_model_number: '「+」連結の構成品表記',
-  slash_separated_model_number: '「/」区切りの品番表記',
-  model_number_absent: '品番なし（仕様検索）',
-  model_number_only_note: '注記だけの品番',
-  quantity_unknown: '数量が読み取れていない',
-  page_level_extraction: 'ページ全体を1件として読み取り',
-  unusable_page: '判読不能ページ',
-  extractor_review_required: '解析側が要確認',
-  uncertain_fields_reported: '解析側の不確かな項目',
-  category_not_in_db_vocabulary: 'カテゴリがDB分類に一致しない',
-  image_missing: '画像欠損',
-  manifest_item_not_found: 'マニフェストに該当枠なし',
-  manifest_page_not_found: 'マニフェストに該当ページなし',
+  analysis_root_shape: '読み取りデータの形式が想定と違います',
+  analysis_item_not_object: '読み取りデータに不正な項目があります',
+  management_symbol_multiple: '管理記号が複数読み取られています',
+  composite_model_number: '複数の品番が「+」でつながっています',
+  slash_separated_model_number: '複数の品番が「/」で区切られています',
+  model_number_absent: '品番が読み取れていません。仕様で候補を探しています',
+  model_number_only_note: '品番ではなく注記だけが読み取られています',
+  quantity_unknown: '数量が読み取れていません。図面で確認してください',
+  page_level_extraction: 'ページ全体を1件として読み取りました。器具が混ざっていないか確認してください',
+  unusable_page: '図面が読み取れませんでした。原図で確認してください',
+  extractor_review_required: '読み取りが不確かです。値を確認してください',
+  uncertain_fields_reported: '一部の項目が不確かです。値を確認してください',
+  category_not_in_db_vocabulary: '読み取った種類と商品情報が異なります。候補を確認してください',
+  image_missing: '図面の画像が見つかりません',
+  manifest_item_not_found: '図面上の該当箇所が見つかりません',
+  manifest_page_not_found: '図面の該当ページが見つかりません',
 }
 
 export const ROUTE_LABELS: Record<string, string> = {

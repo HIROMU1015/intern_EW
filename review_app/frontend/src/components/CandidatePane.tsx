@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { Fragment, useEffect, useMemo, useState } from 'react'
 import Accordion from '@mui/material/Accordion'
 import AccordionDetails from '@mui/material/AccordionDetails'
 import AccordionSummary from '@mui/material/AccordionSummary'
@@ -38,7 +38,6 @@ import { api } from '../api'
 
 export const CANDIDATE_SURFACE = '#f5f3f0'
 const HEADER_BAND = '#e5e0d8'
-const DIFF_BG = '#e3efff'
 const SELECTED_BG = '#eaf2fb'
 
 /** 機械が返す一致項目のキーを、担当者向けの日本語にする。 */
@@ -80,14 +79,48 @@ function numberOrNull(text: string): number | null {
   return Number.isFinite(parsed) ? parsed : null
 }
 
-function matchReasonText(candidate: Candidate): string {
-  if (candidate.matched_fields.length === 0) return '一致項目なし（候補として提示しているだけ）'
-  const labels = candidate.matched_fields.map((matched) => {
-    const base = MATCH_FIELD_LABELS[matched.field] ?? matched.field
-    return matched.field === 'identifier' && matched.match_type ? `${base}（${matched.match_type}）` : base
-  })
-  const head = labels.slice(0, 4)
-  return head.join('・') + (labels.length > head.length ? ` ほか${labels.length - head.length}項目` : '')
+/** 通常表示に出す仕様。候補を選ぶ判断に効くものだけに絞る。 */
+const CARD_SPEC_KEYS = ['akarusa', 'luminous_flux', 'size', 'mounting']
+
+/** 品番がどう一致したか。内部の match_type は見せず、日本語だけにする。 */
+const IDENTIFIER_MATCH_LABELS: Record<string, string> = {
+  'hinban+kidou': '完全一致',
+  full_code: '完全一致',
+  hinban: '品番本体が一致',
+  public_model_code: '公共施設型番が一致',
+  relaxed_identifier: '記号の違いを除いて一致',
+  partial_identifier: '一部が一致',
+}
+
+function identifierMatchText(candidate: Candidate): string | null {
+  const matched = candidate.matched_fields.find((value) => value.field === 'identifier')
+  if (!matched) return null
+  const kind = (matched.match_type ?? '').split(':')[0]
+  return IDENTIFIER_MATCH_LABELS[kind] ?? null
+}
+
+/** 品番以外で一致した項目の名前。 */
+function matchedSpecLabels(candidate: Candidate): string[] {
+  return candidate.matched_fields
+    .filter((matched) => matched.field !== 'identifier' && matched.field !== 'identifier_similarity')
+    .map((matched) => MATCH_FIELD_LABELS[matched.field] ?? matched.field)
+}
+
+function conflictLabels(candidate: Candidate): string[] {
+  return candidate.conflicts.map((conflict) => MATCH_FIELD_LABELS[conflict.field] ?? conflict.field)
+}
+
+/** 税抜価格。0はDBの未登録値なので0円として見せない。 */
+function priceText(value: number | null): string | null {
+  if (value == null || value <= 0) return null
+  return `¥${value.toLocaleString('ja-JP')}`
+}
+
+function plainValue(value: unknown): string {
+  if (value === null || value === undefined || value === '') return '—'
+  if (Array.isArray(value)) return value.map((entry) => plainValue(entry)).join('・')
+  if (typeof value === 'object') return JSON.stringify(value)
+  return String(value)
 }
 
 interface Props {
@@ -329,12 +362,12 @@ export default function CandidatePane({
 
         {draft.relationStatus === 'multiple_fixtures' && (
           <Alert severity="warning" sx={{ mb: 1, py: 0 }}>
-            複数器具の混在の可能性があるため分割の確認が必要です。この対象は確認済みにできません（保留で先に進めます）。
+            1つの枠に複数の器具が入っている可能性があります。分けて確認してください（このままでは確認済みにできません。「あとで確認」で先に進めます）。
           </Alert>
         )}
         {draft.relationStatus === 'unresolved' && entries.length > 1 && (
           <Alert severity="warning" sx={{ mb: 1, py: 0 }}>
-            品番同士の関係（構成品か別器具か）が未確定です。読み取り結果の「詳細」で関係を選ぶまで確認済みにできません。
+            複数の品番が読み取られています。同じ器具の部品か、別々の器具かを中央の「詳細」で選んでください（選ぶまで確認済みにできません）。
           </Alert>
         )}
 
@@ -570,11 +603,10 @@ export default function CandidatePane({
 
         {compareIds.length > 0 && (
           <Stack direction="row" spacing={1} alignItems="center" sx={{ mb: 0.5 }}>
-            <Chip label={`比較対象 ${compareIds.length}件`} color="info" />
-            <Button disabled={compareIds.length < 2} onClick={() => setCompareOpen(true)}>
-              主要仕様を横並び比較
+            <Button variant="outlined" disabled={compareIds.length < 2} onClick={() => setCompareOpen(true)}>
+              選択した候補を比較（{compareIds.length}件）
             </Button>
-            <Button onClick={() => setCompareIds([])}>選択解除</Button>
+            <Button onClick={() => setCompareIds([])}>選択を解除</Button>
           </Stack>
         )}
 
@@ -583,8 +615,27 @@ export default function CandidatePane({
             const adopted = decision?.decision === 'adopted' && decision.record_id === candidate.record.id
             const selected = selectedRecordId === candidate.record.id
             const open = expanded === candidate.record.id
-            const specs = candidateSpecValues(candidate)
+            const record = candidate.record
             const lifecycle = candidate.lifecycle_warning
+            // 値がある項目だけ出す。空欄は並べない。
+            const cardSpecs = candidateSpecValues(candidate).filter(
+              (spec) => CARD_SPEC_KEYS.includes(spec.key) && spec.value !== null,
+            )
+            const conflicts = conflictLabels(candidate)
+            const price = priceText(record.price_zeinuki)
+            const identifierText = identifierMatchText(candidate)
+            const specMatches = matchedSpecLabels(candidate)
+            const productInfo: [string, string][] = []
+            // 発売日の1900-01-01はDBの未登録値なので出さない。
+            if (record.hatsubai_date && !record.hatsubai_date.startsWith('1900')) {
+              productInfo.push(['発売', record.hatsubai_date])
+            }
+            if (record.seisan_end_date) productInfo.push(['生産終了', record.seisan_end_date])
+            productInfo.push(['販売状況', AVAILABILITY_LABELS[record.availability] ?? record.availability])
+            if (record.koukyou_kataban1) {
+              productInfo.push(['公共施設型番', [record.koukyou_kataban1, record.koukyou_kataban2].filter(Boolean).join(' ')])
+            }
+            if (record.dannetsusekou) productInfo.push(['断熱施工', record.dannetsusekou])
             return (
               <Card
                 key={candidate.record.id}
@@ -597,145 +648,144 @@ export default function CandidatePane({
                   bgcolor: selected ? SELECTED_BG : 'common.white',
                 }}
               >
-                <CardContent sx={{ py: 1, '&:last-child': { pb: 1 } }}>
-                  <Stack direction="row" spacing={0.5} alignItems="baseline" flexWrap="wrap" useFlexGap>
+                <CardContent sx={{ py: 0.75, '&:last-child': { pb: 0.75 } }}>
+                  <Stack direction="row" spacing={0.5} alignItems="center" flexWrap="wrap" useFlexGap>
                     <Radio
                       checked={selected}
-                      onChange={() => setSelectedRecordId(candidate.record.id)}
+                      onChange={() => setSelectedRecordId(record.id)}
                       onClick={(event) => event.stopPropagation()}
                       sx={{ p: 0.25 }}
                     />
-                    <Typography sx={{ fontWeight: 700, fontSize: 15 }}>
-                      {candidate.record.full_code || candidate.record.hinban}
-                    </Typography>
+                    <Typography sx={{ fontWeight: 700, fontSize: 15 }}>{record.full_code || record.hinban}</Typography>
+                    <Box sx={{ flex: 1 }} />
                     <Chip
-                      label={AVAILABILITY_LABELS[candidate.record.availability] ?? candidate.record.availability}
+                      label={AVAILABILITY_LABELS[record.availability] ?? record.availability}
                       color={lifecycle ? 'warning' : 'default'}
                       variant={lifecycle ? 'filled' : 'outlined'}
                     />
-                    {adopted && <Chip label="採用中" color="success" />}
-                    <Box sx={{ flex: 1 }} />
-                    <Chip label={`順位 ${candidate.rank}`} variant="outlined" />
                   </Stack>
 
-                  <Typography variant="caption" component="div" sx={{ mt: 0.25, color: 'text.primary' }}>
-                    {candidate.record.key || candidate.record.view_key || '商品名の登録なし'}
-                  </Typography>
-
-                  <Stack direction="row" spacing={0.5} flexWrap="wrap" useFlexGap sx={{ mt: 0.5 }}>
-                    {specs.map((spec) => {
-                      if (spec.key === 'availability') return null // 販売状態は上のチップで出している
-                      const differs = differingKeys.has(spec.key)
-                      if (!differs && spec.value === null) return null
-                      return (
-                        <Box
-                          key={spec.key}
-                          sx={{
-                            px: 0.75,
-                            py: 0.25,
-                            borderRadius: 0.5,
-                            border: 1,
-                            borderColor: differs ? '#9fc3ea' : 'divider',
-                            bgcolor: differs ? DIFF_BG : 'transparent',
-                          }}
-                        >
-                          <Typography variant="caption" color="text.secondary">
-                            {spec.label}{' '}
-                          </Typography>
-                          <Typography
-                            variant="caption"
-                            sx={{ fontWeight: differs ? 700 : 400, color: spec.value === null ? 'text.disabled' : 'text.primary' }}
-                          >
-                            {spec.value ?? 'DB情報なし'}
-                          </Typography>
-                        </Box>
-                      )
-                    })}
-                  </Stack>
-
-                  <Typography variant="caption" component="div" color="success.dark" sx={{ mt: 0.5 }}>
-                    一致理由: {matchReasonText(candidate)}
-                  </Typography>
-
-                  <Stack direction="row" spacing={0.5} flexWrap="wrap" useFlexGap sx={{ mt: 0.5 }}>
-                    {candidate.conflicts.length > 0 && (
-                      <Chip label={`検索条件との相違 ${candidate.conflicts.length}項目`} color="warning" />
-                    )}
-                    {candidate.db_internal_warnings.map((warning) => (
-                      <Chip key={warning} label="DB内部の矛盾あり" color="error" />
-                    ))}
-                    {candidate.record.price_zeinuki != null && (
-                      <Chip label={`税抜 ${candidate.record.price_zeinuki}`} variant="outlined" />
-                    )}
-                  </Stack>
-
-                  <Stack direction="row" spacing={0.5} alignItems="center" sx={{ mt: 0.5 }}>
-                    <Button
-                      onClick={(event) => {
-                        event.stopPropagation()
-                        setExpanded(open ? null : candidate.record.id)
-                      }}
-                    >
-                      {open ? '詳細を閉じる' : '詳細を見る'}
-                    </Button>
-                    <FormControlLabel
-                      onClick={(event) => event.stopPropagation()}
-                      control={
-                        <Checkbox
-                          checked={compareIds.includes(candidate.record.id)}
-                          onChange={(event) =>
-                            setCompareIds((current) => {
-                              if (event.target.checked) return current.length >= 3 ? current : [...current, candidate.record.id]
-                              return current.filter((value) => value !== candidate.record.id)
-                            })
-                          }
-                        />
-                      }
-                      label={<Typography variant="caption">比較</Typography>}
-                    />
-                  </Stack>
-
-                  <Collapse in={open} unmountOnExit>
-                    <Divider sx={{ my: 0.5 }} />
-                    <Typography variant="caption" component="div" sx={{ fontWeight: 700 }}>
-                      候補になった理由・一致項目
+                  <Box sx={{ ml: 3.5 }}>
+                    <Typography sx={{ fontWeight: 700, fontSize: 14, color: price ? 'text.primary' : 'text.disabled' }}>
+                      {price ?? '価格未登録'}
                     </Typography>
-                    {candidate.matched_fields.map((matched, index) => (
-                      <Typography key={index} variant="caption" component="div" color="success.dark">
-                        ・{MATCH_FIELD_LABELS[matched.field] ?? matched.field}
-                        {matched.match_type ? `（${matched.match_type}）` : ''}
-                        {matched.input !== undefined ? ` 条件: ${JSON.stringify(matched.input)}` : ''}
-                        {matched.db !== undefined ? ` / DB: ${JSON.stringify(matched.db)}` : ''}
+
+                    {cardSpecs.length > 0 && (
+                      <Box
+                        sx={{
+                          mt: 0.25,
+                          display: 'grid',
+                          gridTemplateColumns: 'max-content 1fr',
+                          columnGap: 1,
+                          alignItems: 'baseline',
+                        }}
+                      >
+                        {cardSpecs.map((spec) => (
+                          <Fragment key={spec.key}>
+                            <Typography variant="caption" color="text.secondary">
+                              {spec.label}
+                            </Typography>
+                            {/* 候補同士で値が割れている項目だけ太字にして、比較の手がかりにする。 */}
+                            <Typography variant="caption" sx={{ fontWeight: differingKeys.has(spec.key) ? 700 : 400 }}>
+                              {spec.value}
+                            </Typography>
+                          </Fragment>
+                        ))}
+                      </Box>
+                    )}
+
+                    {conflicts.length > 0 && (
+                      <Typography variant="caption" component="div" sx={{ mt: 0.25, color: 'warning.dark', fontWeight: 700 }}>
+                        ⚠ 差分：{conflicts.join('・')}
+                        {conflicts.length > 1 && `（${conflicts.length}項目）`}
                       </Typography>
-                    ))}
-                    <Typography variant="caption" component="div" sx={{ fontWeight: 700, mt: 0.5 }}>
-                      検索条件との相違点
-                    </Typography>
-                    {candidate.conflicts.length === 0 ? (
-                      <Typography variant="caption" component="div" color="text.secondary">
-                        ・相違として検出された項目はありません（未読取の項目は比較していません）。
+                    )}
+                    {candidate.db_internal_warnings.length > 0 && (
+                      <Typography variant="caption" component="div" color="error.main">
+                        DB内部の矛盾あり
                       </Typography>
-                    ) : (
-                      candidate.conflicts.map((conflict, index) => (
-                        <Typography key={index} variant="caption" component="div" color="warning.dark">
-                          ・{MATCH_FIELD_LABELS[conflict.field] ?? conflict.field}（
-                          {correctedSpecKeys.has(conflict.field) ? '担当者の修正値との差' : '原図の読み取り値との差'}） 条件:{' '}
-                          {JSON.stringify(conflict.input)} / DB: {JSON.stringify(conflict.db)}
+                    )}
+
+                    <Stack direction="row" spacing={0.5} alignItems="center" sx={{ mt: 0.25 }}>
+                      <Button
+                        onClick={(event) => {
+                          event.stopPropagation()
+                          setExpanded(open ? null : record.id)
+                        }}
+                      >
+                        {open ? '詳細を閉じる' : '詳細を見る'}
+                      </Button>
+                      <Box sx={{ flex: 1 }} />
+                      <FormControlLabel
+                        onClick={(event) => event.stopPropagation()}
+                        sx={{ mr: 0 }}
+                        control={
+                          <Checkbox
+                            checked={compareIds.includes(record.id)}
+                            onChange={(event) =>
+                              setCompareIds((current) => {
+                                if (event.target.checked) return current.length >= 3 ? current : [...current, record.id]
+                                return current.filter((value) => value !== record.id)
+                              })
+                            }
+                          />
+                        }
+                        label={<Typography variant="caption">比較に追加</Typography>}
+                      />
+                    </Stack>
+
+                    <Collapse in={open} unmountOnExit>
+                      <Divider sx={{ my: 0.5 }} />
+                      <Typography variant="caption" component="div" sx={{ fontWeight: 700 }}>
+                        候補になった理由
+                      </Typography>
+                      {identifierText && (
+                        <Typography variant="caption" component="div">
+                          品番：{identifierText}
                         </Typography>
-                      ))
-                    )}
-                    <Typography variant="caption" component="div" sx={{ mt: 0.5 }}>
-                      DBレコードID {candidate.record.id} / 順位付けスコア {candidate.score}
-                    </Typography>
-                    <Typography variant="caption" component="div">
-                      分類 {candidate.record.kigugroup || candidate.record.t_kigugroup || '—'} / 発売 {candidate.record.hatsubai_date || '—'} / 生産終了{' '}
-                      {candidate.record.seisan_end_date || '—'} / 在庫区分 {candidate.record.zaiku || '—'}
-                    </Typography>
-                    <Typography variant="caption" component="div">
-                      公共施設型番: {candidate.record.koukyou_kataban1 || '—'} {candidate.record.koukyou_kataban2 || ''} / 断熱施工:{' '}
-                      {candidate.record.dannetsusekou || '—'}
-                    </Typography>
-                  </Collapse>
+                      )}
+                      {specMatches.length > 0 && (
+                        <Typography variant="caption" component="div">
+                          一致した仕様：{specMatches.join('・')}
+                        </Typography>
+                      )}
+                      {!identifierText && specMatches.length === 0 && (
+                        <Typography variant="caption" component="div" color="text.secondary">
+                          仕様条件で抽出した候補です。
+                        </Typography>
+                      )}
+
+                      {candidate.conflicts.length > 0 && (
+                        <>
+                          <Typography variant="caption" component="div" sx={{ fontWeight: 700, mt: 0.5, color: 'warning.dark' }}>
+                            検索条件との差分
+                          </Typography>
+                          {candidate.conflicts.map((conflict, index) => (
+                            <Box key={index} sx={{ mb: 0.25 }}>
+                              <Typography variant="caption" component="div" sx={{ fontWeight: 700 }}>
+                                {MATCH_FIELD_LABELS[conflict.field] ?? conflict.field}
+                              </Typography>
+                              <Typography variant="caption" component="div" color="text.secondary">
+                                {correctedSpecKeys.has(conflict.field) ? '修正値' : '原図'}：{plainValue(conflict.input)}
+                              </Typography>
+                              <Typography variant="caption" component="div" color="text.secondary">
+                                DB：{plainValue(conflict.db)}
+                              </Typography>
+                            </Box>
+                          ))}
+                        </>
+                      )}
+
+                      <Typography variant="caption" component="div" sx={{ fontWeight: 700, mt: 0.5 }}>
+                        商品情報
+                      </Typography>
+                      {productInfo.map(([label, value]) => (
+                        <Typography key={label} variant="caption" component="div">
+                          {label}：{value}
+                        </Typography>
+                      ))}
+                    </Collapse>
+                  </Box>
                 </CardContent>
               </Card>
             )
@@ -863,11 +913,12 @@ export default function CandidatePane({
             該当なし
           </Button>
           <Button variant="outlined" color="warning" disabled={saving} onClick={holdAndNext}>
-            保留
+            あとで確認
           </Button>
           <Box sx={{ flex: 1 }} />
-          <Button disabled={saving} onClick={() => onSave(false)}>
-            保存のみ
+          {/* 通常はこの3つで進む。編集だけ残したいときのために保存も残す（控えめに）。 */}
+          <Button size="small" color="inherit" disabled={saving} onClick={() => onSave(false)}>
+            編集内容を保存
           </Button>
           {draft.dirty && <Chip label="未保存の編集あり" color="warning" />}
         </Stack>

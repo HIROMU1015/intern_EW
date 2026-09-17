@@ -15,7 +15,7 @@ import Tooltip from '@mui/material/Tooltip'
 import Typography from '@mui/material/Typography'
 import ReadingFieldRow, { type SelectOption } from './ReadingFieldRow'
 import { showValue } from '../lib/fieldState'
-import { ORIGIN_LABELS, RELATION_HELP, RELATION_LABELS, WARNING_LABELS } from '../labels'
+import { RELATION_HELP, RELATION_LABELS, WARNING_LABELS } from '../labels'
 import type { Draft } from '../views/ReviewView'
 import type { ItemDetail, RelationStatus } from '../types'
 
@@ -122,8 +122,6 @@ export default function ExtractionPane({ detail, draft, searching, section, onCh
         sx={{
           bgcolor: EXTRACTION_SURFACE,
           height: '100%',
-          minHeight: 0,
-          overflow: 'auto',
           p: 1,
           // 画面が低いノートPCでは、その他の仕様の領域を残すためさらに詰める。
           '@media (max-height: 900px)': {
@@ -157,10 +155,7 @@ export default function ExtractionPane({ detail, draft, searching, section, onCh
             <Typography variant="caption" sx={{ color: 'text.secondary' }}>
               器具名
             </Typography>
-            <Stack direction="row" spacing={0.5} alignItems="baseline" flexWrap="wrap" useFlexGap>
-              <Typography sx={{ fontWeight: 700, fontSize: 14 }}>{detail.display.name}</Typography>
-              <Chip label={ORIGIN_LABELS[detail.display.name_origin] ?? '出所不明'} variant="outlined" />
-            </Stack>
+            <Typography sx={{ fontWeight: 700, fontSize: 14 }}>{detail.display.name}</Typography>
           </Box>
 
           {/* 品番。主品番と構成品はバックエンドが付けた分類ラベルで区別する。 */}
@@ -190,11 +185,8 @@ export default function ExtractionPane({ detail, draft, searching, section, onCh
                       <Typography className="summary-strong" sx={{ fontWeight: 800, fontSize: 16, letterSpacing: 0.2 }}>
                         {effective || '未取得'}
                       </Typography>
-                      <Chip
-                        label={edited ? '修正済み' : '読取あり'}
-                        color={edited ? 'primary' : 'info'}
-                        variant={edited ? 'filled' : 'outlined'}
-                      />
+                      {edited && <Chip label="修正済み" color="primary" />}
+                      {!effective && <Chip label="未取得" />}
                       {entry.code_note && <Chip label={`注記: ${entry.code_note}`} color="warning" variant="outlined" />}
                     </Stack>
                   </Fragment>
@@ -229,11 +221,8 @@ export default function ExtractionPane({ detail, draft, searching, section, onCh
               >
                 {corrections.category ?? detail.display.category_raw ?? '未取得'}
               </Typography>
-              <Chip
-                label={categoryCorrected ? '修正済み' : detail.display.category_raw ? '読取あり' : '未取得'}
-                color={categoryCorrected ? 'primary' : detail.display.category_raw ? 'info' : 'default'}
-                variant={categoryCorrected ? 'filled' : 'outlined'}
-              />
+              {categoryCorrected && <Chip label="修正済み" color="primary" />}
+              {!categoryCorrected && !detail.display.category_raw && <Chip label="未取得" />}
             </Stack>
             <Stack direction="row" spacing={0.5} alignItems="baseline" sx={{ flex: '1 1 100px', minWidth: 0 }} flexWrap="wrap" useFlexGap>
               <Typography variant="caption" sx={{ color: 'text.secondary' }}>
@@ -245,7 +234,7 @@ export default function ExtractionPane({ detail, draft, searching, section, onCh
               >
                 {quantityText}
               </Typography>
-              <Chip label={draft.quantityValue ? '読取あり' : '未取得'} color={draft.quantityValue ? 'info' : 'default'} variant="outlined" />
+              {!draft.quantityValue && <Chip label="未取得" />}
             </Stack>
           </Stack>
 
@@ -337,17 +326,16 @@ export default function ExtractionPane({ detail, draft, searching, section, onCh
             variant="caption"
             sx={{ fontWeight: 700, display: 'block', px: 1, py: 0.5, bgcolor: '#f3f6fa', borderBottom: 1, borderColor: 'divider' }}
           >
-            その他の読み取り仕様（チェックした項目だけを検索条件に使う）
+            商品の絞り込み条件
+          </Typography>
+          <Typography variant="caption" sx={{ display: 'block', px: 1, pb: 0.5, color: 'text.secondary' }}>
+            使いたい条件にチェックしてください
           </Typography>
           {/* 1項目1行。画面幅にかかわらず2列には戻さない。
-              収まらない分はこの領域の中だけをスクロールさせ、下の「詳細」は押し出さない。 */}
+              内部スクロールは持たせず、収まらない分は中央カラムのスクロールで見る。 */}
           <Box
             sx={{
-              minHeight: 160,
-              maxHeight: 300,
-              overflowY: 'auto',
               '@media (max-height: 900px)': {
-                maxHeight: 220,
                 '& .reading-field-row': { py: 0.25 },
               },
             }}

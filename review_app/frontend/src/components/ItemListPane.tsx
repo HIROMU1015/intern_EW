@@ -7,7 +7,7 @@ import MenuItem from '@mui/material/MenuItem'
 import Stack from '@mui/material/Stack'
 import TextField from '@mui/material/TextField'
 import Typography from '@mui/material/Typography'
-import { STATUS_COLORS } from '../labels'
+import { STATUS_COLORS, STATUS_LABELS } from '../labels'
 import type { ItemRow } from '../types'
 
 type FilterKey = 'all' | 'unconfirmed' | 'on_hold' | 'confirmed' | 'needs_recheck' | 'relation' | 'image_missing'
@@ -15,11 +15,11 @@ type FilterKey = 'all' | 'unconfirmed' | 'on_hold' | 'confirmed' | 'needs_rechec
 const FILTERS: { key: FilterKey; label: string }[] = [
   { key: 'all', label: 'すべて' },
   { key: 'unconfirmed', label: '未確認' },
-  { key: 'on_hold', label: '保留' },
+  { key: 'on_hold', label: 'あとで確認' },
   { key: 'needs_recheck', label: '再確認が必要' },
   { key: 'confirmed', label: '確認済み' },
-  { key: 'relation', label: '分割・関係の確認' },
-  { key: 'image_missing', label: '画像欠損' },
+  { key: 'relation', label: '品番の確認が必要' },
+  { key: 'image_missing', label: '図面の画像なし' },
 ]
 
 interface Props {
@@ -33,8 +33,9 @@ interface Props {
 
 /**
  * 左カラムは「器具を選ぶ」ことだけに使う。
- * 管理記号・器具名・確認状態だけを出し、件数や関係などの細かい情報は中央・右のカラムに任せる。
- * 検索と絞り込みは残す（「採用して次へ」で進む順番を決めているため）。
+ * 行に出すのは管理記号と確認状態だけで、器具名や件数などの詳細は中央・右のカラムに任せる。
+ * 検索は器具名や品番も対象にしたままにする（一覧に出さなくても探せるようにするため）。
+ * 絞り込みも残す（「採用して次へ」で進む順番を決めているため）。
  */
 export default function ItemListPane({ rows, selectedId, onSelect, onFilteredChange, dirtyIds, projectItemCount }: Props) {
   const [query, setQuery] = useState('')
@@ -62,7 +63,7 @@ export default function ItemListPane({ rows, selectedId, onSelect, onFilteredCha
     <Box sx={{ height: '100%', display: 'flex', flexDirection: 'column', minHeight: 0 }}>
       <Box sx={{ p: 1, borderBottom: 1, borderColor: 'divider' }}>
         <Typography variant="subtitle2" sx={{ fontWeight: 700 }}>
-          見積対象 {projectItemCount}件
+          確認する器具 {projectItemCount}件
         </Typography>
         <TextField
           fullWidth
@@ -109,14 +110,12 @@ export default function ItemListPane({ rows, selectedId, onSelect, onFilteredCha
                   {row.marker}
                 </Typography>
                 <Chip
-                  label={row.status_label}
+                  label={STATUS_LABELS[row.status] ?? row.status_label}
                   color={STATUS_COLORS[row.status]}
                   variant={row.status === 'unconfirmed' ? 'outlined' : 'filled'}
                 />
               </Stack>
-              <Typography variant="caption" component="div" sx={{ color: 'text.secondary' }} noWrap>
-                {row.name}
-              </Typography>
+              {/* 器具名は中央の基本情報カードで確認するので、一覧には出さない。 */}
               {row.adopted.length > 0 && (
                 <Typography variant="caption" component="div" sx={{ color: 'success.dark' }} noWrap>
                   採用 {row.adopted.map((value) => value.code ?? value.record_id).join(' / ')}

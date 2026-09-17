@@ -15,6 +15,8 @@ import type { ProjectInfo } from './types'
 
 export default function App() {
   const [tab, setTab] = useState(0)
+  // 結果一覧から「この器具を直したい」と選ばれたときに、確認画面へ渡す対象。
+  const [focusItemId, setFocusItemId] = useState<string | null>(null)
   const [project, setProject] = useState<ProjectInfo | null>(null)
   const [health, setHealth] = useState<{ product_db_available: boolean; product_db: string; matcher_version: string } | null>(null)
   const [error, setError] = useState<string | null>(null)
@@ -50,18 +52,10 @@ export default function App() {
           </Tabs>
           <Box sx={{ flex: 1 }} />
           {project && (
-            <Chip
-              label={`案件: ${project.name}（解析済み対象 ${project.item_count}件)`}
-              color="primary"
-              variant="outlined"
-            />
+            <Chip label={`案件：${project.name}`} color="primary" variant="outlined" />
           )}
-          {health && (
-            <Chip
-              label={health.product_db_available ? `商品DB 接続あり / ${health.matcher_version}` : '商品DBが見つかりません'}
-              color={health.product_db_available ? 'default' : 'error'}
-            />
-          )}
+          {/* 正常時は出さない。商品DBが無いと候補が出ないので、そのときだけ知らせる。 */}
+          {health && !health.product_db_available && <Chip label="商品データが読み込めません" color="error" />}
         </Toolbar>
       </AppBar>
 
@@ -76,10 +70,25 @@ export default function App() {
         {/* 確認画面は画面を移動しても取り外さない。未保存の編集をタブ切り替えで失わないため。 */}
         {project && (
           <Box sx={{ height: '100%', minHeight: 0, display: tab === 1 ? 'block' : 'none' }}>
-            <ReviewView project={project} onProjectChanged={() => refreshProject(project.id)} onError={setError} />
+            <ReviewView
+              project={project}
+              focusItemId={focusItemId}
+              onFocusHandled={() => setFocusItemId(null)}
+              onProjectChanged={() => refreshProject(project.id)}
+              onError={setError}
+            />
           </Box>
         )}
-        {tab === 2 && project && <ResultsView project={project} onError={setError} />}
+        {tab === 2 && project && (
+          <ResultsView
+            project={project}
+            onOpenItem={(itemId) => {
+              setFocusItemId(itemId)
+              setTab(1)
+            }}
+            onError={setError}
+          />
+        )}
       </Box>
     </Box>
   )

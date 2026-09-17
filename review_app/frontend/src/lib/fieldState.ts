@@ -37,10 +37,28 @@ const ORIGIN_LABELS: Record<string, string> = {
 
 const NOT_STATED_PATTERN = /^(記載なし|なし|該当なし|非対応)$/
 
+/**
+ * 画面に出す文字列を取り出す。全ての読み取り項目で共通に使う。
+ *
+ * 取り込み層は {"raw": ...} / {"value": ...} 付きの形と素の値が混在するため、
+ * オブジェクトはJSONに落とさず中身を取り出す。取り出せない内部表現
+ * （{"raw": null}・{}・null・undefined）は値なしとして空文字にし、
+ * {"raw":null} や [object Object] が画面に出ないようにする。
+ */
 export function showValue(value: unknown): string {
   if (value === null || value === undefined || value === '') return ''
   if (Array.isArray(value)) return value.map((entry) => showValue(entry)).filter(Boolean).join(' / ')
-  if (typeof value === 'object') return JSON.stringify(value)
+  if (typeof value === 'object') {
+    const record = value as Record<string, unknown>
+    for (const key of ['raw', 'value']) {
+      if (key in record) {
+        const inner = showValue(record[key])
+        if (inner) return inner
+      }
+    }
+    return ''
+  }
+  if (typeof value === 'string') return value.trim()
   return String(value)
 }
 
@@ -69,7 +87,8 @@ function correctionDisplay(key: string, value: unknown): string {
 export function fieldView(field: FieldValue, corrections: Corrections | undefined): FieldView {
   const specs = corrections?.specifications ?? {}
   const hasCorrection = Object.prototype.hasOwnProperty.call(specs, field.key)
-  const rawText = showValue(field.raw)
+  // 原文が内部表現しか持たない場合は正規化値を使う。どちらも無ければ「未取得」。
+  const rawText = showValue(field.raw) || showValue(field.value)
   const originLabel = ORIGIN_LABELS[field.origin] ?? ORIGIN_LABELS.unknown
   const noteLabels = field.notes.map((note) =>
     note.startsWith('approximate:') ? `おおよその値（${note.split(':')[1]}）` : (ATTENTION_NOTES[note] ?? note),

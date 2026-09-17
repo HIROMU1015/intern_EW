@@ -60,6 +60,33 @@ describe('読み取り項目の状態', () => {
     expect(fieldView(field({ raw: '', origin: 'drawing' }), {}).status).toBe('missing')
   })
 
+  it('取り込み層の内部表現を画面に出さない', () => {
+    // {"raw": null} や空オブジェクトは値なしとして扱う。
+    for (const raw of [{ raw: null }, {}, { raw: '' }, null, undefined]) {
+      const view = fieldView(field({ key: 'cutout_size', label: '埋込穴', raw, origin: 'drawing' }), {})
+      expect(view.status).toBe('missing')
+      expect(view.displayValue).toBe('未取得')
+    }
+  })
+
+  it('原文がオブジェクトでも中身を取り出して表示する', () => {
+    const view = fieldView(
+      field({ key: 'cutout_size', label: '埋込穴', raw: { raw: 'φ100?' }, origin: 'drawing', notes: ['uncertain_marker'] }),
+      {},
+    )
+    expect(view.displayValue).toBe('φ100?')
+    expect(view.statusLabel).toBe('要確認')
+  })
+
+  it('原文から値を取り出せないときは正規化値を使う', () => {
+    const view = fieldView(
+      field({ key: 'cutout_size', label: '埋込穴', raw: { raw: null }, value: 'φ100', origin: 'drawing' }),
+      {},
+    )
+    expect(view.displayValue).toBe('φ100')
+    expect(view.statusLabel).toBe('読取あり')
+  })
+
   it('担当者の修正は修正済みとして値を主役にする', () => {
     const view = fieldView(field({ raw: '3000K', origin: 'drawing' }), { specifications: { color_temperature_k: 5000 } })
     expect(view.status).toBe('corrected')

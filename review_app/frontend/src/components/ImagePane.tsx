@@ -14,13 +14,16 @@ import Typography from '@mui/material/Typography'
 import { api } from '../api'
 import type { ItemDetail } from '../types'
 
+/**
+ * 画面で切り替えられる画像。
+ * item は解析に使った推奨画像（強調版が選ばれていることもある）、page は切り出し範囲つきの元ページ。
+ * 原寸・強調・2値はこの2つと内容が重なるため、切替には出さない（APIは引き続き返す）。
+ */
 const VARIANT_LABELS: Record<string, string> = {
   item: '商品画像',
-  item_original: '商品画像(原寸)',
-  item_enhanced: '商品画像(強調)',
-  item_binary: '商品画像(2値)',
   page: '元ページ画像',
 }
+const VISIBLE_VARIANTS = Object.keys(VARIANT_LABELS)
 
 /**
  * 通常表示のビューア高さ。中央カラムを占有しないように抑える。
@@ -37,7 +40,7 @@ interface Props {
 }
 
 export default function ImagePane({ detail }: Props) {
-  const available = detail.images.available
+  const available = detail.images.available.filter((name) => VISIBLE_VARIANTS.includes(name))
   const [variant, setVariant] = useState<string>(available[0] ?? 'item')
   const [zoomOpen, setZoomOpen] = useState(false)
   const [scale, setScale] = useState(1)
@@ -46,7 +49,7 @@ export default function ImagePane({ detail }: Props) {
 
   useEffect(() => {
     // 器具を切り替えたら表示状態を初期化する（IDで対応付けているので表示順には依存しない）。
-    setVariant(detail.images.available[0] ?? 'item')
+    setVariant(detail.images.available.find((name) => VISIBLE_VARIANTS.includes(name)) ?? 'item')
     setZoomOpen(false)
     setScale(1)
     setOffset({ x: 0, y: 0 })
