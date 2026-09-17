@@ -18,6 +18,7 @@ import type {
   ProjectInfo,
   QuantityStatus,
   RelationStatus,
+  SearchFilters,
   SearchResult,
 } from '../types'
 
@@ -86,6 +87,8 @@ export default function ReviewView({ project, onProjectChanged, onError }: Props
   const [searching, setSearching] = useState<string | null>(null)
   const [saving, setSaving] = useState(false)
   const [notice, setNotice] = useState<string | null>(null)
+  // 絞り込みは表示条件なので、保存せず器具ごとに画面の中だけで保持する。
+  const [filters, setFilters] = useState<Record<string, SearchFilters>>({})
   const searchSeq = useRef<Record<string, number>>({})
 
   const reloadRows = useCallback(async () => {
@@ -103,6 +106,7 @@ export default function ReviewView({ project, onProjectChanged, onError }: Props
     setDetails({})
     setDrafts({})
     setSearches({})
+    setFilters({})
     setSelectedId(null)
     void reloadRows()
   }, [reloadRows])
@@ -161,6 +165,7 @@ export default function ReviewView({ project, onProjectChanged, onError }: Props
   const runSearch = useCallback(
     async (itemId: string, entrySuffix: string | null, topK?: number) => {
       const currentDraft = drafts[itemId]
+      const currentFilters = filters[itemId] ?? null
       const key = `${itemId}:${entrySuffix ?? 'all'}`
       const token = (searchSeq.current[key] ?? 0) + 1
       searchSeq.current[key] = token
@@ -170,6 +175,7 @@ export default function ReviewView({ project, onProjectChanged, onError }: Props
           entry_suffix: entrySuffix,
           corrections: currentDraft?.corrections ?? {},
           top_k: topK,
+          filters: currentFilters,
         })
         if (searchSeq.current[key] !== token) return // 遅れて返った結果は捨てる
         setSearches((current) => {
@@ -200,7 +206,7 @@ export default function ReviewView({ project, onProjectChanged, onError }: Props
         setSearching(null)
       }
     },
-    [drafts, onError, reloadRows],
+    [drafts, filters, onError, reloadRows],
   )
 
   const save = useCallback(
@@ -249,8 +255,27 @@ export default function ReviewView({ project, onProjectChanged, onError }: Props
   const dirtyCount = useMemo(() => Object.values(drafts).filter((value) => value.dirty).length, [drafts])
 
   return (
-    <Box sx={{ height: '100%', display: 'flex', minHeight: 0 }}>
-      <Box sx={{ width: 330, borderRight: 1, borderColor: 'divider', bgcolor: 'background.paper', minHeight: 0 }}>
+    <Box
+      sx={{
+        height: '100%',
+        minHeight: 0,
+        display: 'grid',
+        // 左：中央：右 = 2：5：5。固定px幅ではなく比率で持つ。
+        gridTemplateColumns: { xs: '1fr', lg: '2fr 5fr 5fr' },
+        overflow: { xs: 'auto', lg: 'hidden' },
+      }}
+    >
+      {/* 左：器具を選ぶ */}
+      <Box
+        sx={{
+          borderRight: { lg: 1 },
+          borderBottom: { xs: 1, lg: 0 },
+          borderColor: 'divider',
+          bgcolor: 'background.paper',
+          minWidth: 0,
+          minHeight: { xs: 280, lg: 0 },
+        }}
+      >
         <ItemListPane
           rows={rows}
           selectedId={selectedId}
@@ -261,10 +286,63 @@ export default function ReviewView({ project, onProjectChanged, onError }: Props
         />
       </Box>
 
-      <Box sx={{ flex: 1, minWidth: 0, display: 'flex', flexDirection: 'column', minHeight: 0 }}>
+      {/* 中央：原図を見る ＋ 読み取り内容を確認する */}
+      <Box
+        sx={{
+          minWidth: 0,
+          minHeight: { xs: 720, lg: 0 },
+          display: 'flex',
+          flexDirection: 'column',
+          bgcolor: 'background.paper',
+        }}
+      >
         {loadingItem && <LinearProgress />}
-        {detail ? (
-          <ImagePane detail={detail} />
+        {detail && draft ? (
+          <>
+            {/* 上段：左上に原図（中央カラムの約4割）、その右に重要な読み取り項目。
+                画面が低いときは下段（その他の仕様）の高さを優先して、ここが縮む。 */}
+            <Box
+              sx={{
+                flex: '0 1 auto',
+                minHeight: { lg: 200 },
+                overflow: 'auto',
+                display: 'grid',
+                gridTemplateColumns: { xs: '1fr', md: 'minmax(260px, 4fr) 6fr' },
+                // 画面が低いノートPCでは原図の取り分を 4:6 から 35:65 に減らす。
+                '@media (min-width: 900px) and (max-height: 900px)': {
+                  gridTemplateColumns: 'minmax(220px, 35fr) 65fr',
+                },
+                borderBottom: 1,
+                borderColor: 'divider',
+              }}
+            >
+              <Box sx={{ minWidth: 0 }}>
+                <ImagePane detail={detail} />
+              </Box>
+              <Box sx={{ minWidth: 0, borderLeft: { md: 1 }, borderColor: 'divider' }}>
+                <ExtractionPane
+                  detail={detail}
+                  draft={draft}
+                  searching={searching !== null}
+                  section="summary"
+                  onChange={(updater) => updateDraft(detail.id, updater)}
+                  onResearch={() => runSearch(detail.id, null)}
+                />
+              </Box>
+            </Box>
+            {/* 下段：中央カラム全幅で、その他の仕様と詳細。
+                最低250pxを確保し、足りない分はこの中だけをスクロールさせる。 */}
+            <Box sx={{ flex: '1 1 auto', minHeight: 250, overflow: 'auto' }}>
+              <ExtractionPane
+                detail={detail}
+                draft={draft}
+                searching={searching !== null}
+                section="specs"
+                onChange={(updater) => updateDraft(detail.id, updater)}
+                onResearch={() => runSearch(detail.id, null)}
+              />
+            </Box>
+          </>
         ) : (
           <Box sx={{ p: 3 }}>
             <Typography color="text.secondary">左の一覧から見積対象を選んでください。</Typography>
@@ -272,42 +350,31 @@ export default function ReviewView({ project, onProjectChanged, onError }: Props
         )}
       </Box>
 
+      {/* 右：商品候補を比較して採用する */}
       <Box
         sx={{
-          width: 620,
-          borderLeft: 1,
+          borderLeft: { lg: 1 },
+          borderTop: { xs: 1, lg: 0 },
           borderColor: 'divider',
+          minWidth: 0,
+          minHeight: { xs: 560, lg: 0 },
           display: 'flex',
           flexDirection: 'column',
-          minHeight: 0,
-          bgcolor: 'grey.300',
-          gap: '6px',
         }}
       >
         {detail && draft ? (
-          <>
-            <Box sx={{ flex: '0 0 48%', minHeight: 0, overflow: 'auto', bgcolor: 'background.paper' }}>
-              <ExtractionPane
-                detail={detail}
-                draft={draft}
-                searching={searching !== null}
-                onChange={(updater) => updateDraft(detail.id, updater)}
-                onResearch={() => runSearch(detail.id, null)}
-              />
-            </Box>
-            <Box sx={{ flex: 1, minHeight: 0, overflow: 'auto' }}>
-              <CandidatePane
-                detail={detail}
-                draft={draft}
-                searches={searches[detail.id] ?? {}}
-                searching={searching}
-                saving={saving}
-                onChange={(updater) => updateDraft(detail.id, updater)}
-                onResearchEntry={(suffix, topK) => runSearch(detail.id, suffix, topK)}
-                onSave={(moveNext, override) => save(detail.id, moveNext, override)}
-              />
-            </Box>
-          </>
+          <CandidatePane
+            detail={detail}
+            draft={draft}
+            searches={searches[detail.id] ?? {}}
+            searching={searching}
+            saving={saving}
+            filters={filters[detail.id] ?? {}}
+            onFiltersChange={(next) => setFilters((current) => ({ ...current, [detail.id]: next }))}
+            onChange={(updater) => updateDraft(detail.id, updater)}
+            onResearchEntry={(suffix, topK) => runSearch(detail.id, suffix, topK)}
+            onSave={(moveNext, override) => save(detail.id, moveNext, override)}
+          />
         ) : (
           <Box sx={{ p: 2 }}>
             <Alert severity="info">見積対象を選ぶと、読み取り結果と商品候補が表示されます。</Alert>

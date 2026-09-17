@@ -745,9 +745,12 @@ def build_match_input(converted: dict[str, Any], corrections: dict[str, Any] | N
     entry_corrections = (corrections.get("entries") or {}).get(entry["suffix"]) or {}
     spec_corrections = corrections.get("specifications") or {}
 
+    # 担当者が「検索に使わない」に外した項目。読み取り値は残したまま条件からだけ抜く。
+    disabled_specs = set(corrections.get("spec_search_disabled") or [])
+
     identity: dict[str, Any] = {}
     category = corrections.get("category", converted["display"].get("category_raw"))
-    if category:
+    if category and "category" not in disabled_specs:
         identity["category"] = category
 
     if entry.get("kind") == "code":
@@ -802,6 +805,9 @@ def build_match_input(converted: dict[str, Any], corrections: dict[str, Any] | N
         specifications.pop("dimming", None)
         if value in DIMMING_INPUT:
             specifications["dimming"] = dict(DIMMING_INPUT[value])
+
+    for key in disabled_specs:
+        specifications.pop(key, None)
 
     return {
         "source_file": converted.get("source_file"),

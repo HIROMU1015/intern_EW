@@ -36,6 +36,17 @@ app.add_middleware(
 
 service = ReviewService(SETTINGS)
 
+# 販売状況の絞り込み。商品DBの zaiku を正規化した値（availability_norm）に対応する。
+# 「常備在庫品」は実データで3件しかないため、画面では販売中にまとめて扱えるよう group を付ける。
+AVAILABILITY_OPTIONS = [
+    {"value": "factory_stock", "label": "工場在庫品", "group": "on_sale"},
+    {"value": "stock", "label": "常備在庫品", "group": "on_sale"},
+    {"value": "made_to_order", "label": "受注品", "group": "on_sale"},
+    {"value": "planned_discontinued", "label": "生産終了予定品", "group": "planned_discontinued"},
+    {"value": "discontinued", "label": "生産終了品", "group": "discontinued"},
+    {"value": "unknown", "label": "販売状況が未登録", "group": "unknown"},
+]
+
 
 def configure(settings) -> ReviewService:
     """テストや別のデータ領域で動かすときに設定を差し替える。"""
@@ -60,6 +71,8 @@ class SearchRequest(BaseModel):
     entry_suffix: str | None = None
     corrections: dict[str, Any] | None = None
     top_k: int = Field(default=DEFAULT_TOP_K, ge=1, le=200)
+    # 販売状況・価格・発売年・分類での絞り込み。未入力の条件は無視される。
+    filters: dict[str, Any] | None = None
 
 
 class EntryDecisionRequest(BaseModel):
@@ -103,6 +116,14 @@ def health() -> dict[str, Any]:
             "decision": DECISION_LABELS,
         },
     }
+
+
+@app.get("/api/filter-options")
+def filter_options() -> dict[str, Any]:
+    """絞り込みに使える選択肢。分類は商品DBの実データから作る。"""
+    if not service.matcher.available:
+        return {"categories": [], "availability": AVAILABILITY_OPTIONS}
+    return {"categories": service.matcher.category_options(), "availability": AVAILABILITY_OPTIONS}
 
 
 @app.get("/api/sources")
@@ -264,9 +285,19 @@ def get_image(item_id: str, variant: str = Query(default="item")) -> FileRespons
 def search(item_id: str, request: SearchRequest) -> dict[str, Any]:
     try:
         if request.entry_suffix:
-            result = service.run_search(item_id, request.entry_suffix, corrections=request.corrections, top_k=request.top_k)
+            result = service.run_search(
+                item_id,
+                request.entry_suffix,
+                corrections=request.corrections,
+                top_k=request.top_k,
+                filters=request.filters,
+            )
             return {"results": [result]}
-        return {"results": service.run_search_all(item_id, corrections=request.corrections, top_k=request.top_k)}
+        return {
+            "results": service.run_search_all(
+                item_id, corrections=request.corrections, top_k=request.top_k, filters=request.filters
+            )
+        }
     except ServiceError as error:
         raise _handle(error) from error
 

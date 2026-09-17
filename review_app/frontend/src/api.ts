@@ -1,4 +1,14 @@
-import type { ImageExtractionStatus, ImageExtractionTarget, ItemDetail, ItemRow, PdfDraft, ProjectInfo, SourceInfo } from './types'
+import type {
+  FilterOptions,
+  ImageExtractionStatus,
+  ImageExtractionTarget,
+  ItemDetail,
+  ItemRow,
+  PdfDraft,
+  ProjectInfo,
+  SearchFilters,
+  SourceInfo,
+} from './types'
 
 async function parseResponse<T>(response: Response): Promise<T> {
   if (!response.ok) {
@@ -50,7 +60,8 @@ export const api = {
   project: (projectId: string) => request<{ project: ProjectInfo }>(`/api/projects/${projectId}`),
   items: (projectId: string) => request<{ items: ItemRow[] }>(`/api/projects/${projectId}/items`),
   item: (itemId: string) => request<{ item: ItemDetail }>(`/api/items/${itemId}`),
-  search: (itemId: string, body: { entry_suffix?: string | null; corrections?: unknown; top_k?: number }) =>
+  filterOptions: () => request<FilterOptions>('/api/filter-options'),
+  search: (itemId: string, body: { entry_suffix?: string | null; corrections?: unknown; top_k?: number; filters?: SearchFilters | null }) =>
     request<{ results: { item_id: string; entry_suffix: string; is_latest: boolean; search: any; notes: string[] }[] }>(
       `/api/items/${itemId}/search`,
       { method: 'POST', body: JSON.stringify(body) },

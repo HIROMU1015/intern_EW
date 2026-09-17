@@ -403,6 +403,7 @@ class ReviewService:
         corrections: dict[str, Any] | None = None,
         top_k: int = DEFAULT_TOP_K,
         record_history: bool = True,
+        filters: dict[str, Any] | None = None,
     ) -> dict[str, Any]:
         if not self.matcher.available:
             raise ServiceError(f"商品DBが見つかりません: {self.settings.product_db}", 503)
@@ -419,7 +420,9 @@ class ReviewService:
         fingerprint = ingest.input_fingerprint(match_input)
         # 完了順ではなく要求順で「最新」を決めるため、検索の前に番号を採る。
         sequence = self.store.reserve_search_sequence(item_id, entry_suffix)
-        result = self.matcher.match(match_input, top_k=top_k)
+        # 絞り込みは表示する候補を減らすだけで読み取り内容は変えないため、
+        # 判断の版（fingerprint）には含めない。含めると条件を触るたび採用が無効になる。
+        result = self.matcher.match(match_input, top_k=top_k, filters=filters)
 
         search_record = {
             "sequence": sequence,
@@ -487,13 +490,21 @@ class ReviewService:
             return "candidates_found_after_no_candidate"
         return None
 
-    def run_search_all(self, item_id: str, corrections: dict[str, Any] | None = None, top_k: int = DEFAULT_TOP_K) -> list[dict[str, Any]]:
+    def run_search_all(
+        self,
+        item_id: str,
+        corrections: dict[str, Any] | None = None,
+        top_k: int = DEFAULT_TOP_K,
+        filters: dict[str, Any] | None = None,
+    ) -> list[dict[str, Any]]:
         item = self.store.get_item(item_id)
         if item is None:
             raise ServiceError("見積対象が見つかりません。", 404)
         results = []
         for entry in item["converted"].get("entries", []):
-            results.append(self.run_search(item_id, entry["suffix"], corrections=corrections, top_k=top_k))
+            results.append(
+                self.run_search(item_id, entry["suffix"], corrections=corrections, top_k=top_k, filters=filters)
+            )
         return results
 
     # ---- 確認結果の保存 ---------------------------------------------------

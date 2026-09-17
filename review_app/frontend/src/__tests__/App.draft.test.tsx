@@ -25,9 +25,9 @@ function stubFetch(input: RequestInfo | URL): Promise<Response> {
   return jsonResponse({})
 }
 
-/** カテゴリは表示専用で、［修正］を押したときだけ入力欄が開く。 */
+/** カテゴリは表示専用で、基本情報カードの［修正］を押したときだけ入力欄が開く。 */
 async function openCategoryEditor() {
-  const heading = await screen.findByText('カテゴリ・数量')
+  const heading = await screen.findByText('基本情報')
   fireEvent.click(within(heading.parentElement as HTMLElement).getByRole('button', { name: '修正' }))
   return (await screen.findByLabelText('カテゴリ（担当者の修正）')) as HTMLInputElement
 }

@@ -190,6 +190,9 @@ export interface SearchResult {
     candidate_count: number
     returned_count: number
     candidate_pool_truncated: boolean
+    /** 絞り込みで候補から外した件数。candidate_count は絞り込み前のDB該当件数。 */
+    filtered_out_count?: number
+    filters?: Record<string, any> | null
   }
   machine_decision: { status: string; selected_id: string | null; review_required: boolean; reason: string }
   candidates: Candidate[]
@@ -294,4 +297,23 @@ export interface Corrections {
   category?: string | null
   specifications?: Record<string, any>
   entries?: Record<string, { code?: string; hinban?: string | null; kidou?: string | null }>
+  /** 読み取れているが検索条件には使わない項目のキー（'category' を含む）。 */
+  spec_search_disabled?: string[]
+}
+
+/** 商品DB側の絞り込み。未入力の条件はバックエンドで無視される。 */
+export interface SearchFilters {
+  availability?: string[]
+  price_min?: number | null
+  price_max?: number | null
+  price_include_unknown?: boolean
+  release_year_min?: number | null
+  release_year_max?: number | null
+  release_include_unknown?: boolean
+  category?: string | null
+}
+
+export interface FilterOptions {
+  categories: { value: string; label: string; count: number }[]
+  availability: { value: string; label: string; group: string }[]
 }

@@ -1,10 +1,12 @@
 import { useState } from 'react'
 import Box from '@mui/material/Box'
+import Checkbox from '@mui/material/Checkbox'
 import Button from '@mui/material/Button'
 import Chip from '@mui/material/Chip'
 import Collapse from '@mui/material/Collapse'
 import MenuItem from '@mui/material/MenuItem'
 import Stack from '@mui/material/Stack'
+import Tooltip from '@mui/material/Tooltip'
 import TextField from '@mui/material/TextField'
 import Typography from '@mui/material/Typography'
 import { fieldView, showValue, type FieldStatus } from '../lib/fieldState'
@@ -29,20 +31,38 @@ interface Props {
   corrections: Corrections | undefined
   numeric?: boolean
   options?: SelectOption[]
+  /** 原文・正規化値・出所などの［補足］を出すか。一覧を簡潔にしたい場所では false。 */
+  supplement?: boolean
+  /** この項目を検索条件に使うか。未指定ならチェックボックスを出さない。 */
+  searchEnabled?: boolean
+  onToggleSearch?: (next: boolean) => void
   onSet: (value: unknown) => void
   onClear: () => void
 }
 
-export default function ReadingFieldRow({ field, corrections, numeric, options, onSet, onClear }: Props) {
+export default function ReadingFieldRow({
+  field,
+  corrections,
+  numeric,
+  options,
+  supplement = true,
+  searchEnabled,
+  onToggleSearch,
+  onSet,
+  onClear,
+}: Props) {
   const [editing, setEditing] = useState(false)
   const [details, setDetails] = useState(false)
   const view = fieldView(field, corrections)
   const style = STATUS_STYLE[view.status]
   const correctionValue = (corrections?.specifications ?? {})[field.key]
+  // 検索条件にできるのは、取り込み時に条件へ変換できた項目か、担当者が値を入れ直した項目だけ。
+  const searchable = field.used_in_search || (correctionValue !== undefined && correctionValue !== null && correctionValue !== '')
   const editingValue = correctionValue === null || correctionValue === undefined ? '' : String(correctionValue)
 
   return (
     <Box
+      className="reading-field-row"
       sx={{
         px: 1,
         py: 0.75,
@@ -54,10 +74,34 @@ export default function ReadingFieldRow({ field, corrections, numeric, options, 
       }}
     >
       <Stack direction="row" spacing={1} alignItems="baseline" flexWrap="wrap" useFlexGap>
+        {onToggleSearch && (
+          <Tooltip
+            title={
+              searchable
+                ? '検索条件に使う（外すと読み取り値は残したまま条件から除く）'
+                : 'この値は検索条件に使える形で読み取れていないため、条件にできません'
+            }
+          >
+            {/* Tooltip は disabled な要素を包めないので span を挟む。 */}
+            <Box component="span" sx={{ display: 'inline-flex' }}>
+              <Checkbox
+                size="small"
+                sx={{ p: 0 }}
+                checked={searchable && searchEnabled !== false}
+                disabled={!searchable}
+                onChange={(event) => onToggleSearch(event.target.checked)}
+                inputProps={{ 'aria-label': `${field.label}を検索条件に使う` }}
+              />
+            </Box>
+          </Tooltip>
+        )}
         <Typography variant="caption" sx={{ minWidth: 92, color: 'text.secondary' }}>
           {field.label}
         </Typography>
-        <Typography sx={{ fontWeight: view.status === 'missing' ? 400 : 700, fontSize: 14, color: style.valueColor }}>
+        {/* 1行1項目なので、値の幅を揃えて状態バッジの位置を縦にそろえる。 */}
+        <Typography
+          sx={{ minWidth: 120, fontWeight: view.status === 'missing' ? 400 : 700, fontSize: 14, color: style.valueColor }}
+        >
           {view.displayValue}
         </Typography>
         <Chip label={view.statusLabel} color={style.chip} variant={style.variant} size="small" />
@@ -65,9 +109,11 @@ export default function ReadingFieldRow({ field, corrections, numeric, options, 
         <Button size="small" onClick={() => setEditing((value) => !value)}>
           {editing ? '閉じる' : '修正'}
         </Button>
-        <Button size="small" color="inherit" onClick={() => setDetails((value) => !value)}>
-          補足
-        </Button>
+        {supplement && (
+          <Button size="small" color="inherit" onClick={() => setDetails((value) => !value)}>
+            補足
+          </Button>
+        )}
       </Stack>
 
       <Collapse in={editing} unmountOnExit>
@@ -125,7 +171,7 @@ export default function ReadingFieldRow({ field, corrections, numeric, options, 
         </Box>
       </Collapse>
 
-      <Collapse in={details} unmountOnExit>
+      <Collapse in={supplement && details} unmountOnExit>
         <Box sx={{ mt: 0.5, pl: 1, borderLeft: 2, borderColor: 'divider' }}>
           <Typography variant="caption" color="text.secondary" component="div">
             読み取り原文: {showValue(field.raw) || '—'}

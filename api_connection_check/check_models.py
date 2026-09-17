@@ -8,7 +8,7 @@ from dataclasses import dataclass
 
 from openai import OpenAI
 
-BASE_URL = "https://llmapi.ops.avilen.co.jp/v2/summer-intern-team-a"
+BASE_URL = "https://llmapi.ops.avilen.co.jp/v2/summer-intern-team-d-three"
 TARGETS = (
     ("openai", "openai.gpt-5.5"),
     ("google-ai", "google-ai.gemini-3.5-flash"),

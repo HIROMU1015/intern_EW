@@ -195,6 +195,121 @@ def normalize_input(item: dict[str, Any]) -> NormalizedInput:
     )
 
 
+AVAILABILITY_VALUES = (
+    "stock",
+    "factory_stock",
+    "made_to_order",
+    "planned_discontinued",
+    "discontinued",
+    "unknown",
+)
+# 発売日の未登録を表すダミー値。実値は1956年以降なので、この年は「未登録」として扱う。
+UNKNOWN_DATE_PREFIX = "1900"
+
+
+def price_value(row: sqlite3.Row) -> float | None:
+    """税抜単価。0は「未登録」であって0円ではないので、値として返さない。"""
+    value = row["price_zeinuki"]
+    if value is None:
+        return None
+    number = float(value)
+    return number if number > 0 else None
+
+
+def release_year(row: sqlite3.Row) -> int | None:
+    """発売年。ダミー値（1900-01-01）は未登録として返さない。"""
+    text = (row["hatsubai_date"] or "").strip()
+    if len(text) < 4 or text.startswith(UNKNOWN_DATE_PREFIX):
+        return None
+    try:
+        return int(text[:4])
+    except ValueError:
+        return None
+
+
+def _number(value: Any) -> float | None:
+    if value is None or value == "":
+        return None
+    try:
+        return float(value)
+    except (TypeError, ValueError):
+        return None
+
+
+def normalize_filters(filters: dict[str, Any] | None) -> dict[str, Any] | None:
+    """未入力の条件は落とす。何も残らなければ絞り込みなしとして None を返す。"""
+    if not filters:
+        return None
+    cleaned: dict[str, Any] = {}
+
+    availability = filters.get("availability")
+    if availability:
+        selected = [value for value in availability if value in AVAILABILITY_VALUES]
+        # すべて選ばれている場合は絞り込みにならないので条件にしない。
+        if selected and len(selected) < len(AVAILABILITY_VALUES):
+            cleaned["availability"] = sorted(set(selected))
+
+    for key in ("price_min", "price_max"):
+        number = _number(filters.get(key))
+        if number is not None:
+            cleaned[key] = number
+    for key in ("release_year_min", "release_year_max"):
+        number = _number(filters.get(key))
+        if number is not None:
+            cleaned[key] = int(number)
+
+    category = (filters.get("category") or "").strip()
+    if category:
+        cleaned["category"] = category
+
+    if not cleaned:
+        return None
+    # 「未登録を含める」は、対応する範囲条件があるときだけ意味を持つ。
+    if "price_min" in cleaned or "price_max" in cleaned:
+        cleaned["price_include_unknown"] = bool(filters.get("price_include_unknown"))
+    if "release_year_min" in cleaned or "release_year_max" in cleaned:
+        cleaned["release_include_unknown"] = bool(filters.get("release_include_unknown"))
+    return cleaned
+
+
+def passes_filters(row: sqlite3.Row, filters: dict[str, Any]) -> bool:
+    availability = filters.get("availability")
+    if availability and row["availability_norm"] not in availability:
+        return False
+
+    minimum = filters.get("price_min")
+    maximum = filters.get("price_max")
+    if minimum is not None or maximum is not None:
+        price = price_value(row)
+        if price is None:
+            if not filters.get("price_include_unknown"):
+                return False
+        else:
+            if minimum is not None and price < minimum:
+                return False
+            if maximum is not None and price > maximum:
+                return False
+
+    year_min = filters.get("release_year_min")
+    year_max = filters.get("release_year_max")
+    if year_min is not None or year_max is not None:
+        year = release_year(row)
+        if year is None:
+            if not filters.get("release_include_unknown"):
+                return False
+        else:
+            if year_min is not None and year < year_min:
+                return False
+            if year_max is not None and year > year_max:
+                return False
+
+    category = filters.get("category")
+    if category and category not in (row["kigugroup"], row["t_kigugroup"]):
+        return False
+
+    return True
+
+
 def _unique_rows(rows: Iterable[sqlite3.Row]) -> list[sqlite3.Row]:
     by_id: dict[str, sqlite3.Row] = {}
     for row in rows:
@@ -230,9 +345,18 @@ class ProductMatcher:
     def metadata(self) -> dict[str, str]:
         return dict(self.connection.execute("SELECT key,value FROM metadata").fetchall())
 
-    def match(self, item: dict[str, Any], top_k: int = 10) -> dict[str, Any]:
+    def match(self, item: dict[str, Any], top_k: int = 10, filters: dict[str, Any] | None = None) -> dict[str, Any]:
         normalized = normalize_input(item)
         rows, route, basis, candidate_total, truncated, match_types = self._generate_candidates(normalized)
+
+        # 絞り込みは候補生成のあとに掛ける。検索経路と採点の規則は変えない。
+        applied_filters = normalize_filters(filters)
+        filtered_out = 0
+        if applied_filters:
+            kept = [row for row in rows if passes_filters(row, applied_filters)]
+            filtered_out = len(rows) - len(kept)
+            rows = kept
+
         ranked = []
         for row in rows:
             candidate = self._score_candidate(normalized, row, match_types.get(row["id"], []))
@@ -243,6 +367,8 @@ class ProductMatcher:
         warnings: list[str] = []
         if truncated:
             warnings.append("candidate_pool_truncated_before_scoring")
+        if filtered_out:
+            warnings.append("candidates_removed_by_filters")
         if normalized.manufacturer:
             warnings.append("source_db_has_no_manufacturer_column; manufacturer_not_used_for_matching")
         if normalized.uncertain_fields:
@@ -262,6 +388,9 @@ class ProductMatcher:
                 "candidate_count": candidate_total,
                 "returned_count": min(len(ranked), top_k),
                 "candidate_pool_truncated": truncated,
+                # 絞り込みで落とした件数。candidate_count は絞り込み前のDB該当件数のまま。
+                "filtered_out_count": filtered_out,
+                "filters": applied_filters or None,
             },
             "decision": decision,
             "candidates": ranked[:top_k],

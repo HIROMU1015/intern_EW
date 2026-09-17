@@ -35,8 +35,17 @@ class MatcherPool:
             self._local.matcher = matcher
         return matcher
 
-    def match(self, item: dict[str, Any], top_k: int = DEFAULT_TOP_K) -> dict[str, Any]:
-        return self._matcher().match(item, top_k=top_k)
+    def match(
+        self, item: dict[str, Any], top_k: int = DEFAULT_TOP_K, filters: dict[str, Any] | None = None
+    ) -> dict[str, Any]:
+        return self._matcher().match(item, top_k=top_k, filters=filters)
+
+    def category_options(self) -> list[dict[str, Any]]:
+        """絞り込み用の器具分類の選択肢。原文のままの値と件数を返す。"""
+        rows = self._matcher().connection.execute(
+            "SELECT kigugroup AS name, COUNT(*) AS n FROM products GROUP BY kigugroup ORDER BY n DESC"
+        ).fetchall()
+        return [{"value": row[0], "label": row[0] or "（分類なし）", "count": int(row[1])} for row in rows]
 
     def metadata(self) -> dict[str, str]:
         with self._lock:
