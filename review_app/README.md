@@ -71,16 +71,20 @@ node "$env:USERPROFILE\.cache\codex-runtimes\codex-primary-runtime\dependencies\
 
 概要PDFのOpenAI互換 `chat.completions.create` 例に合わせ、providerを付けたURLで呼び出します。接続は90秒、再試行0回です。画像入力は `image_url` のdata URL形式で渡します。APIキーは環境変数からバックエンドだけが読みます。
 
-キーが用意できたら、バックエンドと同じPython環境に追加パッケージを導入し、バックエンドを再起動します。
+キーが用意できたら、初回に一度だけWindowsのユーザー環境変数へ登録します。キーの入力は画面に表示されず、ソースコードにも保存されません。
 
 ```powershell
 python -m pip install -r review_app\backend\requirements-ai.txt
-$env:AVILEN_LLM_API_KEY = "<支給されたキー>"
-$env:AVILEN_LLM_BASE_URL = "<概要PDFに記載されたBASE/PROJECT>"
+.\review_app\setup_api.ps1
+```
+
+設定後はバックエンドを再起動します。以後の起動でキーの再入力は不要です。フロントエンドの起動方法は上記「起動」と同じです。
+
+```powershell
 python review_app\backend\run_backend.py
 ```
 
-キー未設定の現在はPDFの前処理件数まで確認でき、「決定」後の画像送信は無効です。実際の接続とモデルの画像対応は未検証です。キーをソースコードや設定ファイルに記載しないでください。
+キー未設定の現在はPDFの前処理件数まで確認でき、「決定」後の画像送信は無効です。実際の接続とモデルの画像対応は未検証です。キーをソースコードやGit管理下の設定ファイルに記載しないでください。
 
 ## PDFから始める
 

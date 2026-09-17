@@ -22,6 +22,26 @@ DEFAULT_SOURCES_FILE = APP_ROOT / "backend" / "sources.json"
 DEFAULT_AI_BASE_URL = ""
 
 
+def _windows_user_environment(name: str) -> str | None:
+    if os.name != "nt":
+        return None
+    try:
+        import winreg
+
+        with winreg.OpenKey(winreg.HKEY_CURRENT_USER, r"Environment") as key:
+            value, _ = winreg.QueryValueEx(key, name)
+    except OSError:
+        return None
+    return value if isinstance(value, str) else None
+
+
+def _ai_setting(name: str, fallback: str = "") -> str:
+    # Prefer a per-process override, then the Windows value saved by setup_api.ps1.
+    if name in os.environ:
+        return os.environ[name]
+    return _windows_user_environment(name) or fallback
+
+
 def _env_path(name: str, fallback: Path) -> Path:
     value = os.environ.get(name)
     return Path(value).expanduser().resolve() if value else fallback
@@ -122,8 +142,8 @@ class Settings:
     product_db: Path = field(default_factory=lambda: _env_path("REVIEW_APP_PRODUCT_DB", DEFAULT_PRODUCT_DB))
     data_dir: Path = field(default_factory=lambda: _env_path("REVIEW_APP_DATA_DIR", DEFAULT_DATA_DIR))
     sources_file: Path = field(default_factory=lambda: _env_path("REVIEW_APP_SOURCES", DEFAULT_SOURCES_FILE))
-    ai_api_key: str | None = field(default_factory=lambda: os.environ.get("AVILEN_LLM_API_KEY") or None)
-    ai_base_url: str = field(default_factory=lambda: os.environ.get("AVILEN_LLM_BASE_URL", DEFAULT_AI_BASE_URL))
+    ai_api_key: str | None = field(default_factory=lambda: _ai_setting("AVILEN_LLM_API_KEY") or None)
+    ai_base_url: str = field(default_factory=lambda: _ai_setting("AVILEN_LLM_BASE_URL", DEFAULT_AI_BASE_URL))
     ai_provider: str = field(default_factory=lambda: os.environ.get("AVILEN_LLM_PROVIDER", "openai"))
     ai_model: str = field(default_factory=lambda: os.environ.get("AVILEN_LLM_MODEL", "openai.gpt-5.5"))
 
